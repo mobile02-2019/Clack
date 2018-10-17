@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ClackApp</string>
+    <string name="login_center_hint">Acesse nosso aplicativo através da sua rede social de preferência!</string>
+    <string name="login_greetings">Bem-vindo, Clacker!</string>
 </resources>
