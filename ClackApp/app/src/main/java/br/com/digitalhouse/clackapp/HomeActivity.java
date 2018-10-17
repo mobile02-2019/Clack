@@ -13,9 +13,10 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 
-    public void filme_escolhido(View view) {
+    public void filmeEscolhido(View view) {
 
         Intent intent = new Intent(this,DetailActivity.class);
+        startActivity(intent);
 
     }
 }
