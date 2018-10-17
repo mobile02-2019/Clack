@@ -36,26 +36,147 @@
 
     </LinearLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <CheckBox
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="animação"
             android:textSize="16sp"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
+            android:checked="false"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="false"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="false"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="false"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
             android:checked="true"
             />
 
-        <View
+        <CheckBox
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:background="#B8B894" />
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <CheckBox
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="animação"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:checked="true"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ENVIAR"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorBlack"
+            android:layout_gravity="center"
+            android:id="@+id/button_enviar_id"
+            android:onClick="botaoClicado"
+            />
+
 
     </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>
