@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="8dp"
         android:orientation="vertical">
 
         <TextView
@@ -22,18 +23,89 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
-            android:src="@drawable/amigosalienigenas"
-            android:layout_marginTop="8dp"/>
+            android:layout_height="185dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/amigosalienigenas" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="left"
             android:text="A vida de Louis, um menino de doze anos, muda completamente quando a nave espacial de três alienígenas cai nos fundos do quintal de sua casa. Seu pai, um ufologista famoso, congelaria os novos amigos na primeira oportunidade, por isso ele precisa protegê-los e ajudá-los a descobrir o paradeiro da nave mãe, para que só assim eles consigam voltar para casa."
             android:textColor="@color/colorWhite"
-            android:layout_margin="20dp"
+            android:textSize="14dp" />
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:gravity="end"
+           >
+
+           <ImageView
+               android:layout_width="50dp"
+               android:layout_height="32dp"
+               android:src="@drawable/favoritar"
+               android:layout_margin="8dp"/>
+
+           <ImageView
+               android:layout_width="50dp"
+               android:layout_height="32dp"
+               android:src="@drawable/partilhar"
+               android:layout_margin="8dp"/>
+
+       </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="18sp"/>
+            android:text="Estreia: 11 de outubro"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Direçao: Ari Sandel"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elenco: Jack Black, Wendi McLendon-Covey, Madison Iseman, Jeremy Ray Taylor, Chris PArnell, Ken Jeong"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Idioma: inglês"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duraçao: 83 minutos"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="País: Estados Unidos"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ano: 2018"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nota: 4,5"
+            android:textColor="@color/colorWhite"/>
 
     </LinearLayout>
 
