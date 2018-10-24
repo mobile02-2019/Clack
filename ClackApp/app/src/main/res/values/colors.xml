@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#F0DE3E</color>
-    <color name="colorPrimaryDark">#F0DE3E</color>
-    <color name="colorAccent">#F0DE3E</color>
-    <color name="colorYellow">#F0DE3E</color>
+    <color name="colorPrimary">#ffe81a</color>
+    <color name="colorPrimaryOriginal">#F0DE3E</color>
+    <color name="colorPrimaryDark">#ddc917</color>
+    <color name="colorAccent">#7dcaec</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="facebook">#2f66ab</color>
     <color name="twiter">#00a2f1</color>
     <color name="google">#ce2a15</color>
     <color name="ic_launcher_background">#ce2a15</color>
-    <color name="colorbt">#f0de3e</color>
-    <color name="white">#FFFFFF</color>
 </resources>

@@ -27,6 +27,10 @@
         <activity android:name=".HomeActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".DetailActivity"></activity>
+        <activity
+            android:name=".PreferenceActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

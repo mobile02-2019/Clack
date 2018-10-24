@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".PreferenceActivity"
     android:orientation="vertical"
-    android:background="@color/colorYellow"
+    android:background="@color/colorPrimaryOriginal"
     >
 
     <LinearLayout
@@ -19,43 +19,161 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Olá Tadashi!"
-            android:textColor="@color/colorYellow"
-            android:textSize="24dp"
-            android:layout_weight="4"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="16dp"
-            />
+            android:layout_weight="4"
+            android:text="@string/preference_greetings"
+            android:textColor="@color/colorPrimaryOriginal"
+            android:textSize="24sp" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:gravity="right"
+            android:gravity="end"
             android:src="@mipmap/ic_launcher" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <CheckBox
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="animação"
-            android:textSize="16sp"
-            android:layout_margin="16dp"
-            android:checked="true"
-            />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="20dp"
-            android:background="#B8B894" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="Escolha suas preferências!"
+                android:textColor="@color/colorBlack"
+                android:textSize="28sp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_acao"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_animacao"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_aventura"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_comedia"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_crime"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_documentario"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_drama"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_ficcao"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_suspense"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+            <CheckBox
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="false"
+                android:text="@string/preference_checkbox_text_terror"
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:textStyle="normal|bold" />
+
+
+            <Button
+                android:id="@+id/button_enviar_id"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/colorBlack"
+                android:onClick="botaoClicado"
+                android:text="ENVIAR"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="normal" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

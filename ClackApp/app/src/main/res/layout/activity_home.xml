@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@color/colorbt"
+            android:background="@color/colorPrimary"
             app:srcCompat="@drawable/icons1"
             android:layout_margin="2dp"
             />
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@color/colorbt"
+            android:background="@color/colorPrimary"
             app:srcCompat="@drawable/icons4"
             android:layout_margin="2dp"/>
 
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@color/colorbt"
+            android:background="@color/colorPrimary"
             app:srcCompat="@drawable/icons"
             android:layout_margin="2dp"
             />
@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:background="@color/colorbt"
+            android:background="@color/colorPrimary"
             app:srcCompat="@drawable/icons2"
             android:layout_margin="2dp"/>
     </LinearLayout>
