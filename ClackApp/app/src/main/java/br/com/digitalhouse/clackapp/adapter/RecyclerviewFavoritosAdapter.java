@@ -3,6 +3,7 @@ package br.com.digitalhouse.clackapp.adapter;
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,7 +32,9 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.modelo_recyclerview_favoritos, viewGroup, false);
+        return new ViewHolder(view);
+
     }
 
     @Override
@@ -43,7 +46,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
 
     @Override
     public int getItemCount() {
-        return 0;
+        return filmeFavoritosList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,12 +61,15 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
 
             titulo = itemView.findViewById(R.id.TituloPrimeiroFilme_id);
             sinopse = itemView.findViewById(R.id.sinopsePrimeiroFile_id);
-            imagemView = itemView.findViewById(R.drawable.nasceumaestrela);
+            imagemView = itemView.findViewById(R.id.primeiro_filme_id);
         }
 
         public void bind(final FilmeFavorito filmeFavoritos) {
             titulo.setText(filmeFavoritos.getTitulo());
             sinopse.setText(filmeFavoritos.getSinopse());
+
+
+            //TODO corrigir este bug
             imagemView.setImageResource(filmeFavoritos.getImageView());
         }
     }

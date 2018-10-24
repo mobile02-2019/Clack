@@ -19,13 +19,13 @@ public class FavoritosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.modelo_recyclerview_favoritos);
+        setContentView(R.layout.actitvity_favoritos);
 
         recyclerView = findViewById(R.id.recyclerview_favoritos_id);
 
         RecyclerviewFavoritosAdapter adapter = new RecyclerviewFavoritosAdapter((getFilmeFavoritosList()));
 
-        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
