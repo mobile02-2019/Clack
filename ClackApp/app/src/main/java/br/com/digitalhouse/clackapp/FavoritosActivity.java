@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.digitalhouse.clackapp.Elementos.FilmeFavorito;
 import br.com.digitalhouse.clackapp.adapter.RecyclerviewFavoritosAdapter;
 
 public class FavoritosActivity extends AppCompatActivity {

@@ -12,7 +12,7 @@ import java.util.List;
 import br.com.digitalhouse.clackapp.Elementos.Movie;
 import br.com.digitalhouse.clackapp.R;
 
-public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPostAdapter.ViewHolder> {
+public class RecyclerViewMovieAdapter3 extends RecyclerView.Adapter<RecyclerViewMovieAdapter3.ViewHolder> {
 
     private List<Movie> movieList;
     private CardMovieClicado listener;
@@ -21,20 +21,20 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
         void onMovieClicado(Movie movie);
     }
 
-    public RecyclerViewPostAdapter(List<Movie> movieList, CardMovieClicado listener){
+    public RecyclerViewMovieAdapter3(List<Movie> movieList){
         this.movieList = movieList;
-        this.listener = listener;
+
     }
 
     @NonNull
     @Override
-    public RecyclerViewPostAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_home, viewGroup, false);
+    public RecyclerViewMovieAdapter3.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_item_acao, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewPostAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerViewMovieAdapter3.ViewHolder viewHolder, int position) {
         Movie movie = movieList.get(position);
         viewHolder.bind(movie);
     }
@@ -53,20 +53,17 @@ public class RecyclerViewPostAdapter extends RecyclerView.Adapter<RecyclerViewPo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            // TODO inserir as imagens
+            poster = itemView.findViewById(R.id.acao_id);
 
         }
 
-        public void bind(final Movie movie) {
+        public void bind(Movie movie) {
 
-            poster.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onMovieClicado(movie);
-                }
-            });
+            poster.setImageResource(movie.getPoster());
 
 
         }
     }
 }
+
+
