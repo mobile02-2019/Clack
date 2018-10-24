@@ -2,15 +2,18 @@ package br.com.digitalhouse.clackapp;
 
 import android.widget.ImageView;
 
-public class FilmeFavoritos {
+public class FilmeFavorito {
     private String titulo;
     private String sinopse;
-    private ImageView imageView;
+    private int imageView;
 
-    public FilmeFavoritos(String titulo, String sinopse, ImageView imageView) {
+    public FilmeFavorito(String titulo, String sinopse, int imageView) {
         this.titulo = titulo;
         this.sinopse = sinopse;
         this.imageView = imageView;
+    }
+
+    public FilmeFavorito() {
     }
 
     public String getTitulo() {
@@ -29,11 +32,11 @@ public class FilmeFavoritos {
         this.sinopse = sinopse;
     }
 
-    public ImageView getImageView() {
+    public int getImageView() {
         return imageView;
     }
 
-    public void setImageView(ImageView imageView) {
+    public void setImageView(int imageView) {
         this.imageView = imageView;
     }
 }

@@ -3,7 +3,6 @@ package br.com.digitalhouse.clackapp.adapter;
 import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,21 +10,21 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.digitalhouse.clackapp.FilmeFavoritos;
+import br.com.digitalhouse.clackapp.FilmeFavorito;
 import br.com.digitalhouse.clackapp.R;
 
 public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<RecyclerviewFavoritosAdapter.ViewHolder> {
-    private List<FilmeFavoritos> filmeFavoritosList;
+    private List<FilmeFavorito> filmeFavoritosList;
 
-    public RecyclerviewFavoritosAdapter(List<FilmeFavoritos> filmeFavoritosList) {
+    public RecyclerviewFavoritosAdapter(List<FilmeFavorito> filmeFavoritosList) {
         this.filmeFavoritosList = filmeFavoritosList;
     }
 
-    public List<FilmeFavoritos> getFilmeFavoritosList() {
+    public List<FilmeFavorito> getFilmeFavoritosList() {
         return filmeFavoritosList;
     }
 
-    public void setFilmeFavoritosList(List<FilmeFavoritos> filmeFavoritosList) {
+    public void setFilmeFavoritosList(List<FilmeFavorito> filmeFavoritosList) {
         this.filmeFavoritosList = filmeFavoritosList;
     }
 
@@ -37,7 +36,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        FilmeFavoritos filmeFavoritos = filmeFavoritosList.get(i);
+        FilmeFavorito filmeFavoritos = filmeFavoritosList.get(i);
         viewHolder.bind(filmeFavoritos);
 
     }
@@ -62,10 +61,10 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             imagemView = itemView.findViewById(R.drawable.nasceumaestrela);
         }
 
-        public void bind(final FilmeFavoritos filmeFavoritos) {
+        public void bind(final FilmeFavorito filmeFavoritos) {
             titulo.setText(filmeFavoritos.getTitulo());
             sinopse.setText(filmeFavoritos.getSinopse());
-            imagemView.setImageDrawable(filmeFavoritos.getImageView());
+            imagemView.setImageResource(filmeFavoritos.getImageView());
         }
     }
 }

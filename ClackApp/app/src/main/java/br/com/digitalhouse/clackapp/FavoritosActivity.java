@@ -19,11 +19,11 @@ public class FavoritosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.modelo_Recyclerview_favoritos);
+        setContentView(R.layout.modelo_recyclerview_favoritos);
 
-        recyclerView = findViewById(R.id.Recyclerview_id);
+        recyclerView = findViewById(R.id.recyclerview_favoritos_id);
 
-        RecyclerviewFavoritosAdapter adapter = new RecyclerviewFavoritosAdapter((getfilmeFavoritosList));
+        RecyclerviewFavoritosAdapter adapter = new RecyclerviewFavoritosAdapter((getFilmeFavoritosList()));
 
         LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false);
 
@@ -32,22 +32,22 @@ public class FavoritosActivity extends AppCompatActivity {
     }
 
 
-    private List<FilmeFavoritos> getFilmeFavoritosList(){
-        List<FilmeFavoritos> filmeFavoritosList = new ArrayList<>();
+    private List<FilmeFavorito> getFilmeFavoritosList(){
+        List<FilmeFavorito> filmeFavoritosList = new ArrayList<>();
 
-        FilmeFavoritos filmeFavoritos = new FilmeFavoritos();
+        FilmeFavorito filmeFavoritos = new FilmeFavorito();
         filmeFavoritos.setImageView(R.drawable.nasceumaestrela);
         filmeFavoritos.setTitulo("NASCE UMA ESTRELA ");
         filmeFavoritos.setSinopse("Nesta releitura da trágica história de amor, Cooper interpreta o experiente músico Jackson Maine, que descobre a artista desconhecida Ally (Gaga), por quem se apaixona.…");
         filmeFavoritosList.add(filmeFavoritos);
 
-        FilmeFavoritos filmeFavoritos2 = new FilmeFavoritos();
+        FilmeFavorito filmeFavoritos2 = new FilmeFavorito();
         filmeFavoritos2.setImageView(R.drawable.amigosalienigenas);
         filmeFavoritos2.setTitulo("AMIGOS ALIENIGENAS");
         filmeFavoritos2.setSinopse("A vida de Louis, um menino de doze anos, muda completamente quando a nave espacial de três alienígenas cai nos fundos do quintal de sua casa....");
         filmeFavoritosList.add(filmeFavoritos2);
 
-        FilmeFavoritos filmeFavoritos3 = new FilmeFavoritos();
+        FilmeFavorito filmeFavoritos3 = new FilmeFavorito();
         filmeFavoritos3.setImageView(R.drawable.casadomedo);
         filmeFavoritos3.setTitulo("CASA DO MEDO");
         filmeFavoritos3.setSinopse("Pauline acaba de herdar uma casa de sua tia e então decide morar lá com suas duas filhas, Beth e Vera. Mas, logo na primeira noite, o lugar é atacado por violentos…");
