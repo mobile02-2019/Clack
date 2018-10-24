@@ -2,10 +2,12 @@ package br.com.digitalhouse.clackapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter4;
 
 public class HomeActivity extends AppCompatActivity implements RecyclerViewMovieAdapter.CardMovieClicado, RecyclerViewMovieAdapter2.CardMovieClicado, RecyclerViewMovieAdapter3.CardMovieClicado, RecyclerViewMovieAdapter4.CardMovieClicado {
 
+    public static final String MOVIE_TITULO = "movie_titulo";
     private RecyclerView recyclerView,recyclerView2,recyclerView3,recyclerView4;
     private BottomNavigationView navigationView;
 
@@ -64,6 +67,8 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewMovie
 
     }
 
+
+
     private List<Movie> getListMovie() {
 
         List<Movie> movieList = new ArrayList<>();
@@ -92,6 +97,8 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewMovie
     public void onMovieClicado(Movie movie) {
 
         Bundle bundle = new Bundle();
+
+        bundle.putString(MOVIE_TITULO,movie.getNome());
 
         Intent intent = new Intent(this,DetailActivity.class);
         intent.putExtras(bundle);
