@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,12 @@ import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter2;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter3;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter4;
 
-public class HomeActivity extends AppCompatActivity implements RecyclerViewMovieAdapter.CardMovieClicado, RecyclerViewMovieAdapter2.CardMovieClicado, RecyclerViewMovieAdapter3.CardMovieClicado, RecyclerViewMovieAdapter4.CardMovieClicado {
+public class HomeActivity extends AppCompatActivity implements RecyclerViewMovieAdapter.CardMovieClicado, RecyclerViewMovieAdapter2.CardMovieClicado, RecyclerViewMovieAdapter3.CardMovieClicado, RecyclerViewMovieAdapter4.CardMovieClicado,BottomNavigationView.OnNavigationItemSelectedListener {
 
     public static final String MOVIE_TITULO = "movie_titulo";
     private RecyclerView recyclerView,recyclerView2,recyclerView3,recyclerView4;
     private BottomNavigationView navigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewMovie
         recyclerView4.setAdapter(adapter4);
 
         navigationView = (BottomNavigationView) findViewById(R.id.navigationView);
-
+        navigationView.setOnNavigationItemSelectedListener(this);
 
     }
 
@@ -74,19 +76,19 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewMovie
         List<Movie> movieList = new ArrayList<>();
 
         Movie movie = new Movie();
-        movie.setPoster(R.drawable.podres);
+        movie.setPoster(R.drawable.cover_podresdericos);
         movieList.add(movie);
 
         Movie movie1 = new Movie();
-        movie1.setPoster(R.drawable.amigosalienigenas);
+        movie1.setPoster(R.drawable.cover_amigosalienigenas);
         movieList.add(movie1);
 
         Movie movie2 = new Movie();
-        movie2.setPoster(R.drawable.animaisfantasticos23);
+        movie2.setPoster(R.drawable.cover_oscrimesdegrindelwald);
         movieList.add(movie2);
 
         Movie movie3 = new Movie();
-        movie3.setPoster(R.drawable.casadomedo);
+        movie3.setPoster(R.drawable.cover_casadomedo);
         movieList.add(movie3);
 
         return movieList;
@@ -105,5 +107,34 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewMovie
         startActivity(intent);
 
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId()){
+            case R.id.navigation_home: {
+                Toast.makeText(this, "Você já está nessa tela.", Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case R.id.navigation_favoritos: {
+                Intent intent = new Intent(this, FavoritosActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.navigation_pesquisa: {
+                break;
+            }
+            case R.id.navigation_config: {
+
+                break;
+            }
+
+
+        }
+
+
+
+        return true;
     }
 }

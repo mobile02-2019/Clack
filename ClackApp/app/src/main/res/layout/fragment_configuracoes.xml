@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/sino"
+        android:src="@drawable/config_sino"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +44,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/botaoligdes"
+        android:src="@drawable/config_switch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView5"
@@ -57,12 +57,11 @@
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="340dp"
-        android:src="@drawable/globo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/config_globo"
+        app:layout_constraintBottom_toTopOf="@+id/imageView18"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView20" />
 
     <TextView
         android:id="@+id/textView6"
@@ -83,7 +82,7 @@
         android:layout_height="44dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="340dp"
-        android:src="@drawable/botaoligdes"
+        android:src="@drawable/config_switch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -93,9 +92,9 @@
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="260dp"
-        android:src="@drawable/coracaopreferencia"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/config_coracao"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -103,17 +102,12 @@
         android:id="@+id/textView8"
         android:layout_width="181dp"
         android:layout_height="32dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="8dp"
         android:text="PREFERÊNCIAS"
         android:textColor="@color/colorBlack"
         android:textSize="24dp"
         android:textStyle="normal|bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView23"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="221dp" />
 
     <ImageView
         android:id="@+id/imageView23"
@@ -122,7 +116,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:src="@drawable/botaoligdes"
+        android:src="@drawable/config_switch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView22"
@@ -142,7 +136,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="116dp"
-            android:src="@drawable/filme3" />
+            android:src="@drawable/config_filme2" />
 
         <TextView
             android:layout_width="108dp"
@@ -182,7 +176,7 @@
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/icons1" />
+            app:srcCompat="@drawable/icon_home" />
 
         <ImageButton
             android:id="@+id/bt_favoritos"
@@ -192,7 +186,7 @@
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/icons4" />
+            app:srcCompat="@drawable/icon_favoritos" />
 
         <ImageButton
             android:id="@+id/bt_pesquisa"
@@ -202,7 +196,7 @@
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/icons" />
+            app:srcCompat="@drawable/icon_buscar" />
 
         <ImageButton
             android:id="@+id/bt_config"
@@ -212,7 +206,7 @@
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:background="@color/colorPrimary"
-            app:srcCompat="@drawable/icons2" />
+            app:srcCompat="@drawable/icon_config" />
     </LinearLayout>
 
 

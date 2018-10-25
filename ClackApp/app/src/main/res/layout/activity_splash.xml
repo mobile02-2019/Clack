@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/background_splash" />
+        android:src="@mipmap/background_splash"/>
 
 </FrameLayout>
