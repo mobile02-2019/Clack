@@ -31,7 +31,8 @@
             android:layout_height="56dp"
             android:layout_weight="1"
             android:gravity="end"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher_clack"
+            />
 
     </LinearLayout>
 
@@ -53,7 +54,9 @@
                 android:text="Escolha suas preferências!"
                 android:textColor="@color/colorBlack"
                 android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+
+                />
 
             <CheckBox
                 android:layout_width="fill_parent"
@@ -90,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:checked="false"
-                android:text="@string/preference_checkbox_text_comedia"
+                android:text="Romance"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
                 android:textStyle="normal|bold" />

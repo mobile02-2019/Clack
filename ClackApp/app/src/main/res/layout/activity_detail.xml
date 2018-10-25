@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="185dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/amigosalienigenas" />
+            android:src="@drawable/cover_amigosalienigenas" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -46,13 +46,13 @@
            <ImageView
                android:layout_width="50dp"
                android:layout_height="32dp"
-               android:src="@drawable/favoritar"
+               android:src="@drawable/button_favoritar"
                android:layout_margin="8dp"/>
 
            <ImageView
                android:layout_width="50dp"
                android:layout_height="32dp"
-               android:src="@drawable/partilhar"
+               android:src="@drawable/button_compartilhar"
                android:layout_margin="8dp"/>
 
        </LinearLayout>
