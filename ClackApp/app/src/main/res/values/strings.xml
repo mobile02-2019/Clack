@@ -21,4 +21,7 @@
     <string name="preference_checkbox_text_aventura">Aventura</string>
     <string name="preference_checkbox_text_documentario">Documentário</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
