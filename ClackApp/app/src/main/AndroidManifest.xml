@@ -18,13 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"/>
-        <activity android:name=".DetailActivity"></activity>
-        <activity
-            android:name=".PreferenceActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".PreferenceActivity" />
         <activity android:name=".FavoritosActivity" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

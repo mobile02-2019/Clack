@@ -57,18 +57,21 @@
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="340dp"
         android:src="@drawable/globo"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.714" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="181dp"
         android:layout_height="32dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="60dp"
         android:text="IDIOMA"
         android:textColor="@color/colorBlack"
@@ -81,30 +84,34 @@
         android:id="@+id/imageView22"
         android:layout_width="44dp"
         android:layout_height="44dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="340dp"
         android:src="@drawable/botaoligdes"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView25"
+        app:layout_constraintVertical_bias="0.358" />
 
     <ImageView
         android:id="@+id/imageView18"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="260dp"
         android:src="@drawable/coracaopreferencia"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView8"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView17" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="181dp"
         android:layout_height="32dp"
         android:layout_marginTop="56dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginEnd="60dp"
         android:layout_marginBottom="8dp"
         android:text="PREFERÊNCIAS"
         android:textColor="@color/colorBlack"
@@ -120,7 +127,7 @@
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginTop="48dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="8dp"
         android:src="@drawable/botaoligdes"
         app:layout_constraintBottom_toBottomOf="parent"
