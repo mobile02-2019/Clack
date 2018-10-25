@@ -54,6 +54,12 @@ public class FavoritosActivity extends AppCompatActivity {
         filmeFavoritos3.setSinopse("Pauline acaba de herdar uma casa de sua tia e então decide morar lá com suas duas filhas, Beth e Vera. Mas, logo na primeira noite, o lugar é atacado por violentos…");
         filmeFavoritosList.add(filmeFavoritos3);
 
+        FilmeFavorito filmeFavoritos4 = new FilmeFavorito();
+        filmeFavoritos4.setImageView(R.drawable.animaisfantasticos23);
+        filmeFavoritos4.setTitulo("OS CRIMES DE GRINDELWAD");
+        filmeFavoritos4.setSinopse("Newt Scamander reencontra os queridos amigos Tina Goldstein, Queenie Goldstein e Jacob Kowalski. Ele é recrutado pelo seu antigo professor em Hogwarts, Alvo Dumbledore, para enfrentar o terrível bruxo das trevas…");
+        filmeFavoritosList.add(filmeFavoritos3);
+
         return filmeFavoritosList;
     }
 

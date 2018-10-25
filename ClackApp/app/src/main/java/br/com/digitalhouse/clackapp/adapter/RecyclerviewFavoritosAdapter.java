@@ -68,8 +68,6 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             titulo.setText(filmeFavoritos.getTitulo());
             sinopse.setText(filmeFavoritos.getSinopse());
 
-
-            //TODO corrigir este bug
             imagemView.setImageResource(filmeFavoritos.getImageView());
         }
     }
