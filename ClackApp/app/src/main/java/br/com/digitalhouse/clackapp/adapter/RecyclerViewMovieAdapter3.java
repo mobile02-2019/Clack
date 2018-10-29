@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import java.util.List;
 
-import br.com.digitalhouse.clackapp.Elementos.Movie;
+import br.com.digitalhouse.clackapp.elementos.Movie;
 import br.com.digitalhouse.clackapp.R;
 
 public class RecyclerViewMovieAdapter3 extends RecyclerView.Adapter<RecyclerViewMovieAdapter3.ViewHolder> {

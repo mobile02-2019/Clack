@@ -10,7 +10,7 @@ import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
     //Definir Constante de Tempo 5 segundos
-    private final static int TIME_SPLASH = 5000;
+    private final static int TIME_SPLASH = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

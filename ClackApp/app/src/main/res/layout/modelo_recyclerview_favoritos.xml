@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorBlack"
-    tools:context=".FavoritosActivity">
+    tools:context=".FavoritosActivity"
+    card_view:cardElevation="5dp"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true"
+    android:backgroundTint="@color/colorBlack">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/primeiro_filme_id"
@@ -46,5 +56,6 @@
         app:layout_constraintStart_toEndOf="@+id/primeiro_filme_id"
         app:layout_constraintTop_toBottomOf="@+id/TituloPrimeiroFilme_id" />
 
+    </android.support.constraint.ConstraintLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

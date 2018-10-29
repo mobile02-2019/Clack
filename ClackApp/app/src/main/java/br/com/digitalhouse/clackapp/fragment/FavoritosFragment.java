@@ -1,35 +1,49 @@
-package br.com.digitalhouse.clackapp;
+package br.com.digitalhouse.clackapp.fragment;
+
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.digitalhouse.clackapp.Elementos.FilmeFavorito;
+import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.adapter.RecyclerviewFavoritosAdapter;
+import br.com.digitalhouse.clackapp.elementos.FilmeFavorito;
 
-public class FavoritosActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class FavoritosFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
+    public FavoritosFragment() {
+        // Required empty public constructor
+    }
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.actitvity_favoritos);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_favoritos, container, false);
 
-        recyclerView = findViewById(R.id.recyclerview_favoritos_id);
+        recyclerView = view.findViewById(R.id.recyclerview_favoritos_id);
 
         RecyclerviewFavoritosAdapter adapter = new RecyclerviewFavoritosAdapter((getFilmeFavoritosList()));
 
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
 
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+
+        return view;
     }
 
 
@@ -58,11 +72,10 @@ public class FavoritosActivity extends AppCompatActivity {
         filmeFavoritos4.setImageView(R.drawable.cover_oscrimesdegrindelwald);
         filmeFavoritos4.setTitulo("OS CRIMES DE GRINDELWAD");
         filmeFavoritos4.setSinopse("Newt Scamander reencontra os queridos amigos Tina Goldstein, Queenie Goldstein e Jacob Kowalski. Ele é recrutado pelo seu antigo professor em Hogwarts, Alvo Dumbledore, para enfrentar o terrível bruxo das trevas…");
-        filmeFavoritosList.add(filmeFavoritos3);
+        filmeFavoritosList.add(filmeFavoritos4);
 
         return filmeFavoritosList;
     }
-
 
 
 }

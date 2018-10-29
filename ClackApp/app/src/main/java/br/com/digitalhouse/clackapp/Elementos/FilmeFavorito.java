@@ -1,6 +1,4 @@
-package br.com.digitalhouse.clackapp.Elementos;
-
-import android.widget.ImageView;
+package br.com.digitalhouse.clackapp.elementos;
 
 public class FilmeFavorito {
     private String titulo;

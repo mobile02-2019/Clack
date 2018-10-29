@@ -23,7 +23,6 @@
         <activity android:name=".DetailActivity"></activity>
         <activity
             android:name=".PreferenceActivity" />
-        <activity android:name=".FavoritosActivity" />
         <activity android:name=".HomeActivity"></activity>
     </application>
 

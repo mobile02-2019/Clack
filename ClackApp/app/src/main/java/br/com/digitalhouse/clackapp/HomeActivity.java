@@ -13,7 +13,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.digitalhouse.clackapp.Elementos.Movie;
+import br.com.digitalhouse.clackapp.elementos.Movie;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter2;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter3;
