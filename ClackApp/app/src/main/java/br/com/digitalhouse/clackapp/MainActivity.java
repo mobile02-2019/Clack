@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import br.com.digitalhouse.clackapp.fragment.FavoritosFragment;
 import br.com.digitalhouse.clackapp.fragments.ConfiguracoesFragment;
 import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
 
@@ -37,8 +38,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             }
             case R.id.navigation_favoritos: {
-                Intent intent = new Intent(this, FavoritosActivity.class);
-                startActivity(intent);
+                replaceFragment(new FavoritosFragment());
                 break;
             }
             case R.id.navigation_pesquisa: {

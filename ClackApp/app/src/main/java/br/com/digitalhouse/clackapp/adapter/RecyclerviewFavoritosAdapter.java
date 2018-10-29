@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.digitalhouse.clackapp.elementos.FilmeFavorito;
+import br.com.digitalhouse.clackapp.Elementos.FilmeFavorito;
 import br.com.digitalhouse.clackapp.R;
 
 public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<RecyclerviewFavoritosAdapter.ViewHolder> {

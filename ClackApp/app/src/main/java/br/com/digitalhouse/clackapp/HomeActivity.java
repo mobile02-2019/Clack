@@ -2,25 +2,18 @@ package br.com.digitalhouse.clackapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.digitalhouse.clackapp.elementos.Movie;
+import br.com.digitalhouse.clackapp.Elementos.Movie;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter2;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter3;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter4;
-import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
 
 public class HomeActivity extends AppCompatActivity implements RecyclerViewMovieAdapter.CardMovieClicado, RecyclerViewMovieAdapter2.CardMovieClicado, RecyclerViewMovieAdapter3.CardMovieClicado, RecyclerViewMovieAdapter4.CardMovieClicado {
 

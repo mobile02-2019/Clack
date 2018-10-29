@@ -1,4 +1,4 @@
-package br.com.digitalhouse.clackapp.elementos;
+package br.com.digitalhouse.clackapp.Elementos;
 
 public class FilmeFavorito {
     private String titulo;

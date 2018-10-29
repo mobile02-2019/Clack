@@ -14,7 +14,7 @@ import java.util.List;
 
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.adapter.RecyclerviewFavoritosAdapter;
-import br.com.digitalhouse.clackapp.elementos.FilmeFavorito;
+import br.com.digitalhouse.clackapp.Elementos.FilmeFavorito;
 
 /**
  * A simple {@link Fragment} subclass.
