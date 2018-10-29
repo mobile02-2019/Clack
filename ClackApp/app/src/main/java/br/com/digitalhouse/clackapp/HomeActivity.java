@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,12 +20,13 @@ import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter2;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter3;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter4;
+import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
 
-public class HomeActivity extends AppCompatActivity implements RecyclerViewMovieAdapter.CardMovieClicado, RecyclerViewMovieAdapter2.CardMovieClicado, RecyclerViewMovieAdapter3.CardMovieClicado, RecyclerViewMovieAdapter4.CardMovieClicado,BottomNavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements RecyclerViewMovieAdapter.CardMovieClicado, RecyclerViewMovieAdapter2.CardMovieClicado, RecyclerViewMovieAdapter3.CardMovieClicado, RecyclerViewMovieAdapter4.CardMovieClicado {
 
     public static final String MOVIE_TITULO = "movie_titulo";
     private RecyclerView recyclerView,recyclerView2,recyclerView3,recyclerView4;
-    private BottomNavigationView navigationView;
+
 
 
     @Override
@@ -64,8 +67,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewMovie
         recyclerView4.setLayoutManager(manager4);
         recyclerView4.setAdapter(adapter4);
 
-        navigationView = (BottomNavigationView) findViewById(R.id.navigationView);
-        navigationView.setOnNavigationItemSelectedListener(this);
+
 
     }
 
@@ -109,32 +111,5 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewMovie
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        switch (menuItem.getItemId()){
-            case R.id.navigation_home: {
-                Toast.makeText(this, "Você já está nessa tela.", Toast.LENGTH_SHORT).show();
-                break;
-            }
-            case R.id.navigation_favoritos: {
-                Intent intent = new Intent(this, FavoritosActivity.class);
-                startActivity(intent);
-                break;
-            }
-            case R.id.navigation_pesquisa: {
-                break;
-            }
-            case R.id.navigation_config: {
-
-                break;
-            }
-
-
-        }
-
-
-
-        return true;
-    }
 }

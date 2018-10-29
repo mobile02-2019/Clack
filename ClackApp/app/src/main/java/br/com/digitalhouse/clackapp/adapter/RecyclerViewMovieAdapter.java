@@ -1,5 +1,6 @@
 package br.com.digitalhouse.clackapp.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.elementos.Movie;
@@ -20,6 +22,7 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
     public interface CardMovieClicado {
         void onMovieClicado(Movie movie);
     }
+
 
     public RecyclerViewMovieAdapter(List<Movie> movieList){
         this.movieList = movieList;

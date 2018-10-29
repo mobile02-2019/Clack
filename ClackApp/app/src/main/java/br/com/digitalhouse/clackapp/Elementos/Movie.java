@@ -13,6 +13,15 @@ public class Movie implements Serializable {
     private int poster;
     private String sinopse;
 
+    public Movie(){
+        //Construtor vazio
+    }
+
+    public Movie(String nomeFilme, int posterFilme){
+        this.nome = nomeFilme;
+        this.poster = posterFilme;
+    }
+
     public String getNome() {
         return nome;
     }
