@@ -21,7 +21,7 @@
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".PreferenceActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".fragments.HomeFragment" />
         <activity android:name=".MainActivity"></activity>
     </application>
 
