@@ -3,15 +3,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorBlack">
 
     <android.support.v7.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="175dp"
         app:cardElevation="5dp"
         app:cardCornerRadius="5dp"
         app:cardPreventCornerOverlap="false"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/colorPrimary">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -21,14 +23,17 @@
             <ImageView
                 android:id="@+id/image_movie_label_id"
                 android:layout_width="100dp"
-                android:layout_height="100dp" />
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/name_movie_label_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/image_movie_label_id"
-                android:layout_centerHorizontal="true"/>
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack" />
 
         </RelativeLayout>
 

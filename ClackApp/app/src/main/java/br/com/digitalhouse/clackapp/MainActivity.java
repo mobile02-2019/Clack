@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
+                //TODO ver aqui se dá para juntar o replace
                 switch (menuItem.getItemId()){
                     case R.id.navigation_home: {
                         viewPager.setCurrentItem(0);
