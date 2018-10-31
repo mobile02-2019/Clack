@@ -48,10 +48,10 @@ public class PesquisaFragment extends Fragment implements SearchView.OnQueryText
 
         View view = inflater.inflate(R.layout.fragment_pesquisa, container, false);
 
-        movieList = new String[]{"O rei leão", "Valente","Frozen"
+        movieList = new String[]{"Nasce uma Estrela", "Amigos Alienigenas","Casa do Medo"
          };
 
-        poster = new int[]{R.drawable.rei_leao,R.drawable.valente,R.drawable.frozen
+        poster = new int[]{R.drawable.cover_nasceumaestrela,R.drawable.cover_amigosalienigenas,R.drawable.cover_casadomedo
         };
 
         list = (ListView) view.findViewById (R.id.listview_id);

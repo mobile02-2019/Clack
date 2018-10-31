@@ -18,6 +18,7 @@
         android:id="@+id/listview_id"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/search_id" />
+        android:layout_below="@+id/search_id"
+        android:background="@color/colorBlack"/>
 
 </RelativeLayout>
