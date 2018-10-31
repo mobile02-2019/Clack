@@ -12,10 +12,10 @@ import br.com.digitalhouse.clackapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class detailFragment extends Fragment {
+public class DetailFragment extends Fragment {
 
 
-    public detailFragment() {
+    public DetailFragment() {
         // Required empty public constructor
     }
 

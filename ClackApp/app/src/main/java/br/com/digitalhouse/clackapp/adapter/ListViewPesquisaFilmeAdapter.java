@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import br.com.digitalhouse.clackapp.Elementos.Movie;
+import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
 
 public class ListViewPesquisaFilmeAdapter extends BaseAdapter {

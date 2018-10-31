@@ -11,7 +11,7 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 
-import br.com.digitalhouse.clackapp.Elementos.Movie;
+import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.adapter.ListViewPesquisaFilmeAdapter;
 
