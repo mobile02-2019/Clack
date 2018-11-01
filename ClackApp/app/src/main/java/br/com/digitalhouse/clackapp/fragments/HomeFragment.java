@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment implements RecyclerViewMovieAdapter.C
 
         bundle.putString(MOVIE_TITULO,movie.getNome());
 
-        Intent intent = new Intent(getContext(),DetailActivity.class);
+        Intent intent = new Intent(getContext(), DetailFragment.class);
         intent.putExtras(bundle);
         startActivity(intent);
 
