@@ -14,4 +14,23 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/background_splash"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:alpha="0.8"
+        android:gravity="center"
+        android:text=" Clack!"
+        android:textAllCaps="true"
+        android:textColor="@color/colorBlack"
+        android:textSize="50dp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
 </FrameLayout>

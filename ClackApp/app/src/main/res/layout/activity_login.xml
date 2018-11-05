@@ -20,13 +20,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="29dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
@@ -35,7 +37,7 @@
         android:text="Olá Clacker!"
         android:textAllCaps="true"
         android:textColor="@color/colorBlack"
-        android:textSize="22dp"
+        android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/imageView13"
@@ -67,29 +69,27 @@
 
     <ImageView
         android:id="@+id/imageView14"
-        android:layout_width="75dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/login_facebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="16dp"
+        android:onClick="irParaPreferencesGenerico"
+        android:src="@drawable/icon_facebook_circled_preto_96px"
         app:layout_anchor="@id/entrecomrede"
         app:layout_anchorGravity="center_horizontal|center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/entrecomrede"
-        android:onClick="irParaPreferencesGenerico"/>
+        app:layout_constraintTop_toBottomOf="@+id/entrecomrede" />
 
     <ImageView
-        android:layout_width="70dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
         android:onClick="irParaPreferencesGenerico"
-        android:src="@drawable/login_google"
+        android:src="@drawable/icon_google_plus_circled_preto_96px"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
         app:layout_constraintTop_toBottomOf="@+id/entrecomrede" />
 
 
