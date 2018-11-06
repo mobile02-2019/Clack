@@ -8,22 +8,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter2;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter3;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter4;
+import br.com.digitalhouse.clackapp.model.MovieResponse;
+import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
 
-public class HomeFragment extends Fragment implements CardMovieClicado {
+public class HomeFragment extends Fragment implements CardMovieClicado, ServiceListener {
 
     public static final String MOVIE_TITULO = "movie_titulo";
     private RecyclerView recyclerView,recyclerView2,recyclerView3,recyclerView4;
+    private RecyclerViewMovieAdapter adapter;
 
 
 
@@ -31,6 +36,10 @@ public class HomeFragment extends Fragment implements CardMovieClicado {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        MovieDAO dao = new MovieDAO();
+        dao.getMovieList(this);
+
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view_id);
@@ -38,7 +47,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado {
         recyclerView3 = view.findViewById(R.id.recycler_view_id_3);
         recyclerView4 = view.findViewById(R.id.recycler_view_id_4);
 
-        RecyclerViewMovieAdapter adapter = new RecyclerViewMovieAdapter(getListMovie());
+        adapter = new RecyclerViewMovieAdapter();
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
 
@@ -77,19 +86,19 @@ public class HomeFragment extends Fragment implements CardMovieClicado {
         List<Movie> movieList = new ArrayList<>();
 
         Movie movie = new Movie();
-        movie.setPoster(R.drawable.cover_podresdericos);
+        movie.setPosterId(R.drawable.cover_podresdericos);
         movieList.add(movie);
 
         Movie movie1 = new Movie();
-        movie1.setPoster(R.drawable.cover_amigosalienigenas);
+        movie1.setPosterId(R.drawable.cover_amigosalienigenas);
         movieList.add(movie1);
 
         Movie movie2 = new Movie();
-        movie2.setPoster(R.drawable.cover_oscrimesdegrindelwald);
+        movie2.setPosterId(R.drawable.cover_oscrimesdegrindelwald);
         movieList.add(movie2);
 
         Movie movie3 = new Movie();
-        movie3.setPoster(R.drawable.cover_casadomedo);
+        movie3.setPosterId(R.drawable.cover_casadomedo);
         movieList.add(movie3);
 
         return movieList;
@@ -111,4 +120,28 @@ public class HomeFragment extends Fragment implements CardMovieClicado {
     }
 
 
+    @Override
+    public void onSuccess(Object object) {
+        MovieResponse movieResponse = (MovieResponse) object;
+        ArrayList<Movie> movieList = movieResponse.getResults();
+        //TODO filtrar a lista de acordo com o genero
+
+        List<Movie> filmesFiltrados = new ArrayList<>();
+
+        for (Movie movie : movieList) {
+            for (Integer genreId : movie.getGeneros()) {
+                if(genreId == 28){ // filtro por ação
+                    filmesFiltrados.add(movie);
+                }
+            }
+        }
+        adapter.setMovieList(filmesFiltrados);
+
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+        Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
+
+    }
 }

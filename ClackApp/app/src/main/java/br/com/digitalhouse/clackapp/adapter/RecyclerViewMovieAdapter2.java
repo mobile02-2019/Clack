@@ -64,7 +64,7 @@ public class RecyclerViewMovieAdapter2 extends RecyclerView.Adapter<RecyclerView
 
         public void bind(Movie movie) {
 
-            poster.setImageResource(movie.getPoster());
+            //poster.setImageResource(movie.getPoster());
 
 
         }

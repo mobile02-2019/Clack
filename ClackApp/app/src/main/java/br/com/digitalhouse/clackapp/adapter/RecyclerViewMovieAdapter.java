@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
+import br.com.digitalhouse.clackapp.service.RetrofitService;
+import retrofit2.Retrofit;
 
 public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewMovieAdapter.ViewHolder> implements CardMovieClicado {
 
@@ -20,8 +25,8 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
 
 
 
-    public RecyclerViewMovieAdapter(List<Movie> movieList){
-        this.movieList = movieList;
+    public RecyclerViewMovieAdapter(){
+        this.movieList = new ArrayList<>();
 
     }
 
@@ -48,6 +53,11 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
 
     }
 
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView poster;
@@ -62,6 +72,8 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
         }
 
         public void bind(Movie movie) {
+
+            Picasso.get().load(RetrofitService.BASE_IMAGE_URL+ movie.getPoster()).into(poster);
 
           poster.setOnClickListener(new View.OnClickListener() {
               @Override

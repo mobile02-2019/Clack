@@ -80,41 +80,40 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado {
         List<Movie> movieList = new ArrayList<>();
 
         Movie movie1 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie1);
 
         Movie movie2 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie2);
 
         Movie movie3 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie3);
 
         Movie movie4 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie4);
 
         Movie movie5 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie5);
 
         Movie movie6 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie6);
 
         Movie movie7 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie7);
 
         Movie movie8 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie8);
 
         Movie movie9 = new Movie();
-        movie1.setPoster(R.id.celula_id);
+        movie1.setPosterId(R.id.celula_id);
         movieList.add(movie9);
-
 
         return movieList;
     }
