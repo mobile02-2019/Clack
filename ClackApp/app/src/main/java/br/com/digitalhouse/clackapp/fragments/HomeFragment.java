@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
     private RecyclerViewMovieAdapter adapter2;
     private RecyclerViewMovieAdapter adapter3;
     private RecyclerViewMovieAdapter adapter4;
+    private ArrayList<String> checados;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +52,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         Intent intent = getActivity().getIntent();
         bundle = intent.getExtras();
 
-        ArrayList<String> checados = bundle.getStringArrayList("checados");
+        checados = bundle.getStringArrayList("checados");
 
         textView1.setText(checados.get(0));
         textView2.setText(checados.get(1));
@@ -142,19 +143,40 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
 
         List<Movie> filmesFiltrados1 = new ArrayList<>();
         List<Movie> filmesFiltrados2 = new ArrayList<>();
+        List<Movie> filmesFiltrados3 = new ArrayList<>();
+        List<Movie> filmesFiltrados4 = new ArrayList<>();
         for (Movie movie : movieList) {
             for (Integer genreId : movie.getGeneros()) {
-                if (genreId == 28) {
+                if (genreId == getGenreIdByString(checados.get(0))) {
                     filmesFiltrados1.add(movie);
                 }
-                if (genreId == 27) {
+                if (genreId == getGenreIdByString(checados.get(1))) {
                     filmesFiltrados2.add(movie);
+                }
+                if (genreId == getGenreIdByString(checados.get(2))) {
+                    filmesFiltrados3.add(movie);
+                }
+                if (genreId == getGenreIdByString(checados.get(3))) {
+                    filmesFiltrados4.add(movie);
                 }
             }
         }
         adapter.setMovieList(filmesFiltrados1);
         adapter2.setMovieList(filmesFiltrados2);
+        adapter3.setMovieList(filmesFiltrados3);
+        adapter4.setMovieList(filmesFiltrados4);
 
+    }
+
+    private Integer getGenreIdByString(String genre) {
+        switch (genre) {
+            case "Ação":
+                return 28;
+            case "Terror":
+                return 27;
+            default:
+                return 28;
+        }
     }
 
     @Override
