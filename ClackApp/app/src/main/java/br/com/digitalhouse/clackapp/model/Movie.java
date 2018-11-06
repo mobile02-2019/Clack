@@ -1,5 +1,7 @@
 package br.com.digitalhouse.clackapp.model;
 
+import android.widget.ImageView;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

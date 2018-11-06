@@ -9,17 +9,15 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
 
-public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewMovieAdapter.ViewHolder> {
+public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewMovieAdapter.ViewHolder> implements CardMovieClicado {
 
     private List<Movie> movieList;
     private CardMovieClicado listener;
 
-    public interface CardMovieClicado {
-        void onMovieClicado(Movie movie);
-    }
 
 
     public RecyclerViewMovieAdapter(List<Movie> movieList){
@@ -30,7 +28,7 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
     @NonNull
     @Override
     public RecyclerViewMovieAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_item_acao, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_celula_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -45,6 +43,11 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
         return movieList.size();
     }
 
+    @Override
+    public void onMovieClicado(Movie movie) {
+
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView poster;
@@ -54,13 +57,18 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            poster = itemView.findViewById(R.id.acao_id);
+            poster = itemView.findViewById(R.id.celula_id);
 
         }
 
         public void bind(Movie movie) {
 
-          poster.setImageResource(movie.getPoster());
+          poster.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+
+              }
+          });
 
         }
     }

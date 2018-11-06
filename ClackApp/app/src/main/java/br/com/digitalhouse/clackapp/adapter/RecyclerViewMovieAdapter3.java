@@ -9,17 +9,15 @@ import android.widget.ImageView;
 
 import java.util.List;
 
+import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
 
-public class RecyclerViewMovieAdapter3 extends RecyclerView.Adapter<RecyclerViewMovieAdapter3.ViewHolder> {
+public class RecyclerViewMovieAdapter3 extends RecyclerView.Adapter<RecyclerViewMovieAdapter3.ViewHolder> implements CardMovieClicado {
 
     private List<Movie> movieList;
     private CardMovieClicado listener;
 
-    public interface CardMovieClicado {
-        void onMovieClicado(Movie movie);
-    }
 
     public RecyclerViewMovieAdapter3(List<Movie> movieList){
         this.movieList = movieList;
@@ -29,7 +27,7 @@ public class RecyclerViewMovieAdapter3 extends RecyclerView.Adapter<RecyclerView
     @NonNull
     @Override
     public RecyclerViewMovieAdapter3.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_item_acao, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recyclerview_celula_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -44,6 +42,11 @@ public class RecyclerViewMovieAdapter3 extends RecyclerView.Adapter<RecyclerView
         return movieList.size();
     }
 
+    @Override
+    public void onMovieClicado(Movie movie) {
+
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView poster;
@@ -53,7 +56,7 @@ public class RecyclerViewMovieAdapter3 extends RecyclerView.Adapter<RecyclerView
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            poster = itemView.findViewById(R.id.acao_id);
+            poster = itemView.findViewById(R.id.celula_id);
 
         }
 
