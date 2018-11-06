@@ -39,9 +39,6 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        MovieDAO dao = new MovieDAO();
-        dao.getMovieList(this);
-
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         textView1 = view.findViewById(R.id.textView_1_id);
@@ -93,6 +90,14 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         recyclerView4.setAdapter(adapter4);
 
 
+        List<Integer> ids = new ArrayList<>();
+        for (String checado : checados) {
+            ids.add(getGenreIdByString(checado));
+        }
+
+        MovieDAO dao = new MovieDAO();
+        dao.getMovieList(this);
+
         return view;
     }
 
@@ -138,13 +143,15 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
 
     @Override
     public void onSuccess(Object object) {
-        MovieResponse movieResponse = (MovieResponse) object;
-        ArrayList<Movie> movieList = movieResponse.getResults();
+        MovieResponse response = (MovieResponse) object;
+        List<Movie> movieList = response.getResults();
 
         List<Movie> filmesFiltrados1 = new ArrayList<>();
         List<Movie> filmesFiltrados2 = new ArrayList<>();
         List<Movie> filmesFiltrados3 = new ArrayList<>();
         List<Movie> filmesFiltrados4 = new ArrayList<>();
+
+
         for (Movie movie : movieList) {
             for (Integer genreId : movie.getGeneros()) {
                 if (genreId == getGenreIdByString(checados.get(0))) {
@@ -161,6 +168,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
                 }
             }
         }
+
         adapter.setMovieList(filmesFiltrados1);
         adapter2.setMovieList(filmesFiltrados2);
         adapter3.setMovieList(filmesFiltrados3);
@@ -172,10 +180,44 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         switch (genre) {
             case "Ação":
                 return 28;
+            case "Animação":
+                return 16;
+            case "Aventura":
+                return 12;
+            case "Cinema TV":
+                return 10770;
+            case "Comédia":
+                return 35;
+            case "Crime":
+                return 80;
+            case "Documentário":
+                return 99;
+            case "Drama":
+                return 18;
+            case "Família":
+                return 10751;
+            case "Fantasia":
+                return 14;
+            case "Faroeste":
+                return 37;
+            case "Ficção Científica":
+                return 878;
+            case "Guerra":
+                return 10752;
+            case "História":
+                return 36;
+                case "Mistério":
+                return 9648;
+            case "Música":
+                return 10402;
+            case "Romance":
+                return 10749;
             case "Terror":
                 return 27;
+            case "Thriller":
+                return 53;
             default:
-                return 28;
+                return 10751;
         }
     }
 
