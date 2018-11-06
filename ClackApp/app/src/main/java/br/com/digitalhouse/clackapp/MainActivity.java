@@ -15,12 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.adapter.FragmentViewPagerAdapter;
+import br.com.digitalhouse.clackapp.fragments.DetailFragment;
 import br.com.digitalhouse.clackapp.fragments.FavoritosFragment;
 import br.com.digitalhouse.clackapp.fragments.ConfiguracoesFragment;
 import br.com.digitalhouse.clackapp.fragments.HomeFragment;
 import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
+import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.model.Movie;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+        CardMovieClicado {
 
     private BottomNavigationView navigationView;
     MenuItem prevMenuItem;
@@ -104,10 +108,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
 
 
-    public void replaceFragment (Fragment fragment){
+    public void replaceFragment(Fragment fragment){
        FragmentManager manager = getSupportFragmentManager();
        FragmentTransaction transaction = manager.beginTransaction();
        transaction.replace(R.id.container_main_id,fragment);
+       transaction.addToBackStack(null);
        transaction.commit();
     }
 
@@ -139,4 +144,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
+    @Override
+    public void onMovieClicado(Movie movie) {
+        replaceFragment(new DetailFragment());
+    }
 }
