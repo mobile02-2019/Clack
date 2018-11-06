@@ -20,14 +20,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
-                style="@style/titulo_home"
+                android:id="@+id/textView_1_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_margin="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Acao"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,24 +36,21 @@
                 android:id="@+id/recycler_view_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/textView_1_id">
 
             </android.support.v7.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/textView2"
-                style="@style/titulo_home"
+                android:id="@+id/textView_2_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Terror"
+                android:layout_margin="8dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_id" />
@@ -62,25 +59,21 @@
                 android:id="@+id/recycler_view_id_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2">
-
+                app:layout_constraintTop_toBottomOf="@+id/textView_2_id">
 
             </android.support.v7.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/textView3"
-                android:text="Animação"
-                style="@style/titulo_home"
+                android:id="@+id/textView_3_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_id_2" />
@@ -89,24 +82,21 @@
                 android:id="@+id/recycler_view_id_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3">
+                app:layout_constraintTop_toBottomOf="@+id/textView_3_id">
 
             </android.support.v7.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/textView4"
-                android:text="Romance"
-                style="@style/titulo_home"
+                android:id="@+id/textView_4_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_id_3" />
@@ -115,39 +105,15 @@
                 android:id="@+id/recycler_view_id_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4">
+                app:layout_constraintTop_toBottomOf="@+id/textView_4_id">
 
             </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 
     </ScrollView>
-    <!--<FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/container_home_id">
-
-    </FrameLayout>-->
-       <!-- <android.support.design.widget.BottomNavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="0dp"
-            android:layout_marginStart="0dp"
-            android:background="@color/colorbt"
-            app:itemBackground="@color/colorPrimary"
-            app:itemIconTint="@color/colorBlack"
-            app:itemTextColor="@color/colorBlack"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/navigation">
-
-        </android.support.design.widget.BottomNavigationView>-->
 
 </android.support.constraint.ConstraintLayout>

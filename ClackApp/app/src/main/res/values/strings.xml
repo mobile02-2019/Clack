@@ -1,27 +1,37 @@
 <resources>
 
-
     <!-- STRINGS MISCELLANEOUS -->
-    <string name="app_name">ClackApp</string>
+    <string name="app_name">Clack</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- STRINGS LOGIN ACTIVITY -->
-    <string name="login_center_hint">Acesse nosso aplicativo através da sua rede social de preferência!</string>
-    <string name="login_greetings">Bem-vindo, Clacker!</string>
+    <string name="login_greetings">Bem-vindo, clacker!</string>
+    <string name="login_choice">Entre com uma rede social</string>
 
     <!-- STRINGS PREFERENCE ACTIVITY -->
-    <string name="preference_greetings">Olá Tadashi!</string>
-    <string name="preference_checkbox_text_animacao">Animação</string>
-    <string name="preference_checkbox_text_acao">Ação</string>
-    <string name="preference_checkbox_text_terror">Terror</string>
-    <string name="preference_checkbox_text_ficcao">Ficção Científica</string>
-    <string name="preference_checkbox_text_suspense">Suspense</string>
-    <string name="preference_checkbox_text_drama">Drama</string>
-    <string name="preference_checkbox_text_comedia">Comédia</string>
-    <string name="preference_checkbox_text_crime">Crime</string>
-    <string name="preference_checkbox_text_aventura">Aventura</string>
-    <string name="preference_checkbox_text_documentario">Documentário</string>
+    <string name="preference_greetings">Olá clacker!</string>
+    <string name="preference_choice">Escolha suas preferências:</string>
+    <string name="preference_checkbox_acao">Ação</string>
+    <string name="preference_checkbox_animacao">Animação</string>
+    <string name="preference_checkbox_aventura">Aventura</string>
+    <string name="preference_checkbox_cinematv">Cinema TV</string>
+    <string name="preference_checkbox_comedia">Comédia</string>
+    <string name="preference_checkbox_crime">Crime</string>
+    <string name="preference_checkbox_documentario">Documentário</string>
+    <string name="preference_checkbox_drama">Drama</string>
+    <string name="preference_checkbox_familia">Família</string>
+    <string name="preference_checkbox_fantasia">Fantasia</string>
+    <string name="preference_checkbox_faroeste">Faroeste</string>
+    <string name="preference_checkbox_ficcaocientifica">Ficção Científica</string>
+    <string name="preference_checkbox_guerra">Guerra</string>
+    <string name="preference_checkbox_historia">História</string>
+    <string name="preference_checkbox_misterio">Mistério</string>
+    <string name="preference_checkbox_musica">Música</string>
+    <string name="preference_checkbox_romance">Romance</string>
+    <string name="preference_checkbox_terror">Terror</string>
+    <string name="preference_checkbox_thriller">Thriller</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- STRINGS HOME FRAGMENT -->
+    <string name="home_textview_1"></string>
 
 </resources>

@@ -1,5 +1,4 @@
 package br.com.digitalhouse.clackapp.fragments;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,29 +7,44 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter;
-import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter2;
-import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter3;
-import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter4;
 
-public class HomeFragment extends Fragment implements RecyclerViewMovieAdapter.CardMovieClicado, RecyclerViewMovieAdapter2.CardMovieClicado, RecyclerViewMovieAdapter3.CardMovieClicado, RecyclerViewMovieAdapter4.CardMovieClicado {
+public class HomeFragment extends Fragment implements RecyclerViewMovieAdapter.CardMovieClicado {
 
     public static final String MOVIE_TITULO = "movie_titulo";
     private RecyclerView recyclerView,recyclerView2,recyclerView3,recyclerView4;
-
-
+    private TextView textView1, textView2, textView3, textView4;
+    private Bundle bundle;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        textView1 = view.findViewById(R.id.textView_1_id);
+        textView2 = view.findViewById(R.id.textView_2_id);
+        textView3 = view.findViewById(R.id.textView_3_id);
+        textView4 = view.findViewById(R.id.textView_4_id);
+
+        Intent intent = getActivity().getIntent();
+        bundle = intent.getExtras();
+
+        ArrayList<String> checados= bundle.getStringArrayList("checados");
+
+
+
+
+        textView1.setText(checados.get(0));
+        textView2.setText(checados.get(1));
+        textView3.setText(checados.get(2));
+        textView4.setText(checados.get(3));
+
 
         recyclerView = view.findViewById(R.id.recycler_view_id);
         recyclerView2 = view.findViewById(R.id.recycler_view_id_2);
@@ -41,15 +55,15 @@ public class HomeFragment extends Fragment implements RecyclerViewMovieAdapter.C
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
 
-        RecyclerViewMovieAdapter2 adapter2 = new RecyclerViewMovieAdapter2(getListMovie());
+        RecyclerViewMovieAdapter adapter2 = new RecyclerViewMovieAdapter(getListMovie());
 
         LinearLayoutManager manager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
 
-        RecyclerViewMovieAdapter3 adapter3 = new RecyclerViewMovieAdapter3(getListMovie());
+        RecyclerViewMovieAdapter adapter3 = new RecyclerViewMovieAdapter(getListMovie());
 
         LinearLayoutManager manager3 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
 
-        RecyclerViewMovieAdapter4 adapter4 = new RecyclerViewMovieAdapter4(getListMovie());
+        RecyclerViewMovieAdapter adapter4 = new RecyclerViewMovieAdapter(getListMovie());
 
         LinearLayoutManager manager4 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
 
@@ -70,8 +84,8 @@ public class HomeFragment extends Fragment implements RecyclerViewMovieAdapter.C
     }
 
 
-
     private List<Movie> getListMovie() {
+        
 
         List<Movie> movieList = new ArrayList<>();
 
@@ -108,6 +122,5 @@ public class HomeFragment extends Fragment implements RecyclerViewMovieAdapter.C
 
 
     }
-
 
 }

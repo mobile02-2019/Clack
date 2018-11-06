@@ -1,5 +1,4 @@
 package br.com.digitalhouse.clackapp;
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,10 +9,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.digitalhouse.clackapp.adapter.FragmentViewPagerAdapter;
 import br.com.digitalhouse.clackapp.fragments.FavoritosFragment;
 import br.com.digitalhouse.clackapp.fragments.ConfiguracoesFragment;
