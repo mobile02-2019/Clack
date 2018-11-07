@@ -13,6 +13,9 @@ public interface MovieAPI {
     @GET("/3/search/movie?api_key=04b84289e6046e45993b288a7e1fe2dc&language=en-US&include_adult=false")
     Call<MovieResponse> searchMovies(@Query("query") String query);
 
+    @GET("/3/discover/movie?api_key=04b84289e6046e45993b288a7e1fe2dc&language=en-US&include_adult=false")
+    Call<MovieResponse> getByGenreId(@Query("with_genres") Integer id);
+
     @GET("/3/movie/popular?api_key=04b84289e6046e45993b288a7e1fe2dc&language=en-US&include_adult=false")
     Call<MovieResponse> getPopularMovies();
 

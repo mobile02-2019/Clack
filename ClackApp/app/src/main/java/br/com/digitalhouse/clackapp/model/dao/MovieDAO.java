@@ -17,18 +17,16 @@ public class MovieDAO {
 
     //Como está buscando apenas da API (não de um arquivo) pode ser void o método getMovieList;
 
-    public void getMovieList(final ServiceListener listener) {
-        List<Movie> postList = new ArrayList<>();
-
+    public void getMovieList(final ServiceListener listener, Integer id, final Integer adapter) {
 
         //Chamada para API
-        Call<MovieResponse> call = RetrofitService.getMovieAPI().getPopularMovies();
+        Call<MovieResponse> call = RetrofitService.getMovieAPI().getByGenreId(id);
 
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if(response.body() != null){
-                    listener.onSuccess(response.body());
+                    listener.onSuccess(response.body(), adapter);
                 }
 
             }
