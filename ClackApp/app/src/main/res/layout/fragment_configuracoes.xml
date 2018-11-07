@@ -54,60 +54,64 @@
         app:layout_constraintTop_toBottomOf="@+id/Switch1" />
 
     <Switch
-        android:id="@+id/Switch3"
-        android:layout_width="316dp"
+    android:id="@+id/Switch3"
+    android:layout_width="316dp"
+    android:layout_height="70dp"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="36dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginRight="8dp"
+    android:checked="true"
+    android:drawableLeft="@drawable/coracao"
+    android:text="PREFERÊNCIA"
+    android:textOff="Off"
+    android:textOn="On"
+    android:textSize="20dp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/Switch2" />
+
+    <Switch
+        android:id="@+id/switcher04"
+        android:layout_width="200dp"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:checked="true"
-        android:drawableLeft="@drawable/coracao"
-        android:text="PREFERÊNCIA"
-        android:textOff="Off"
-        android:textOn="On"
-        android:textSize="20dp"
+        android:fontFamily="sans-serif-condensed"
+        android:showText="true"
+        android:textOff="Ing"
+        android:textOn="Port"
+        android:textSize="10sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Switch2" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="187dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/rolofilme"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:thumb="@drawable/switch_thumb"
+        android:track="@drawable/switch_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Switch3"
-        app:layout_constraintVertical_bias="0.721" />
+        tools:ignore="MissingConstraints" />
+
+
+
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="123dp"
-        android:layout_height="53dp"
+        android:layout_width="121dp"
+        android:layout_height="56dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="SALVAR"
         android:textColor="@color/colorBlack"
         android:textSize="24dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="530dp"
+        tools:ignore="MissingConstraints" />
 
 
 </android.support.constraint.ConstraintLayout>
