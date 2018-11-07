@@ -1,4 +1,5 @@
 package br.com.digitalhouse.clackapp;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 import br.com.digitalhouse.clackapp.adapter.FragmentViewPagerAdapter;
@@ -23,6 +26,8 @@ import br.com.digitalhouse.clackapp.model.Movie;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         CardMovieClicado {
 
+
+
     private BottomNavigationView navigationView;
     MenuItem prevMenuItem;
 
@@ -30,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
 
         final ViewPager viewPager = findViewById(R.id.viewpager_id);
 
