@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.model.Movie;
+import br.com.digitalhouse.clackapp.service.RetrofitService;
 
 public class RecyclerViewPesquisaFilmeAdapter extends RecyclerView.Adapter<RecyclerViewPesquisaFilmeAdapter.ViewHolder> {
     private List<Movie> movieList;
@@ -22,6 +25,10 @@ public class RecyclerViewPesquisaFilmeAdapter extends RecyclerView.Adapter<Recyc
         this.listener = listener;
     }
 
+    public void setMovieList(List<Movie> movieList) {
+        this.movieList = movieList;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -69,9 +76,16 @@ public class RecyclerViewPesquisaFilmeAdapter extends RecyclerView.Adapter<Recyc
 
         }
 
-        public void bind(final Movie movie) {
+        public void bind(Movie movie) {
 
+            Picasso.get().load(RetrofitService.BASE_IMAGE_URL+ movie.getPoster()).into(poster);
 
+            poster.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
 
         }
 

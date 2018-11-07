@@ -10,6 +10,7 @@ import br.com.digitalhouse.clackapp.service.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.http.Query;
 
 
 public class MovieDAO {
@@ -39,6 +40,32 @@ public class MovieDAO {
             }
 
         });
+
+
+    }
+
+    public void getSearchList (final ServiceListener listener, String query){
+        List<Movie> postList = new ArrayList<>();
+
+        Call<MovieResponse> call = RetrofitService.getMovieAPI().searchMovies(query);
+
+        call.enqueue(new Callback<MovieResponse>() {
+            @Override
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                if(response.body() != null){
+                    listener.onSuccess(response.body());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
+                listener.onError(t);
+
+            }
+
+        });
+
 
 
     }
