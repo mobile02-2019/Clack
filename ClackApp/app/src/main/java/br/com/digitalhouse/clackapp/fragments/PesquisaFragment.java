@@ -100,11 +100,11 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
 
     private void callMovieService(String query){
         MovieDAO dao = new MovieDAO();
-        dao.getSearchList(this, query);
+        dao.getSearchList(this, query, 1);
     }
 
     @Override
-    public void onSuccess(Object object) {
+    public void onSuccess(Object object, Integer adapterId) {
         MovieResponse response = (MovieResponse) object;
         List<Movie> movieList = response.getResults();
         adapter.setMovieList(movieList);
