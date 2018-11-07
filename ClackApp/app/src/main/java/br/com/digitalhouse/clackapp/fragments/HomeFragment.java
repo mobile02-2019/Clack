@@ -1,5 +1,4 @@
 package br.com.digitalhouse.clackapp.fragments;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,10 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
 import br.com.digitalhouse.clackapp.model.Movie;
@@ -28,7 +25,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
     private RecyclerView recyclerView, recyclerView2, recyclerView3, recyclerView4;
     private TextView textView1, textView2, textView3, textView4;
     private Bundle bundle;
-    private RecyclerViewMovieAdapter adapter;
+    private RecyclerViewMovieAdapter adapter1;
     private RecyclerViewMovieAdapter adapter2;
     private RecyclerViewMovieAdapter adapter3;
     private RecyclerViewMovieAdapter adapter4;
@@ -56,12 +53,12 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         textView3.setText(checados.get(2));
         textView4.setText(checados.get(3));
 
-        recyclerView = view.findViewById(R.id.recycler_view_id);
+        recyclerView = view.findViewById(R.id.recycler_view_id_1);
         recyclerView2 = view.findViewById(R.id.recycler_view_id_2);
         recyclerView3 = view.findViewById(R.id.recycler_view_id_3);
         recyclerView4 = view.findViewById(R.id.recycler_view_id_4);
 
-        adapter = new RecyclerViewMovieAdapter();
+        adapter1 = new RecyclerViewMovieAdapter();
 
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
@@ -78,7 +75,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         LinearLayoutManager manager4 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter1);
 
         recyclerView2.setLayoutManager(manager2);
         recyclerView2.setAdapter(adapter2);
@@ -96,36 +93,12 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         }
 
         MovieDAO dao = new MovieDAO();
-        dao.getMovieList(this);
+        for (Integer i = 0; i < ids.size(); i ++) {
+            dao.getMovieList(this, ids.get(i), i + 1);
+        }
 
         return view;
     }
-
-
-    private List<Movie> getListMovie() {
-
-
-        List<Movie> movieList = new ArrayList<>();
-
-        Movie movie = new Movie();
-        movie.setPosterId(R.drawable.cover_podresdericos);
-        movieList.add(movie);
-
-        Movie movie1 = new Movie();
-        movie1.setPosterId(R.drawable.cover_amigosalienigenas);
-        movieList.add(movie1);
-
-        Movie movie2 = new Movie();
-        movie2.setPosterId(R.drawable.cover_oscrimesdegrindelwald);
-        movieList.add(movie2);
-
-        Movie movie3 = new Movie();
-        movie3.setPosterId(R.drawable.cover_casadomedo);
-        movieList.add(movie3);
-
-        return movieList;
-    }
-
 
     @Override
     public void onMovieClicado(Movie movie) {
@@ -137,43 +110,6 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         Intent intent = new Intent(getContext(), DetailFragment.class);
         intent.putExtras(bundle);
         startActivity(intent);
-
-
-    }
-
-    @Override
-    public void onSuccess(Object object) {
-        MovieResponse response = (MovieResponse) object;
-        List<Movie> movieList = response.getResults();
-
-        List<Movie> filmesFiltrados1 = new ArrayList<>();
-        List<Movie> filmesFiltrados2 = new ArrayList<>();
-        List<Movie> filmesFiltrados3 = new ArrayList<>();
-        List<Movie> filmesFiltrados4 = new ArrayList<>();
-
-
-        for (Movie movie : movieList) {
-            for (Integer genreId : movie.getGeneros()) {
-                if (genreId == getGenreIdByString(checados.get(0))) {
-                    filmesFiltrados1.add(movie);
-                }
-                if (genreId == getGenreIdByString(checados.get(1))) {
-                    filmesFiltrados2.add(movie);
-                }
-                if (genreId == getGenreIdByString(checados.get(2))) {
-                    filmesFiltrados3.add(movie);
-                }
-                if (genreId == getGenreIdByString(checados.get(3))) {
-                    filmesFiltrados4.add(movie);
-                }
-            }
-        }
-
-        adapter.setMovieList(filmesFiltrados1);
-        adapter2.setMovieList(filmesFiltrados2);
-        adapter3.setMovieList(filmesFiltrados3);
-        adapter4.setMovieList(filmesFiltrados4);
-
     }
 
     private Integer getGenreIdByString(String genre) {
@@ -218,6 +154,22 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
                 return 53;
             default:
                 return 10751;
+        }
+    }
+
+    @Override
+    public void onSuccess(Object object, Integer adapter) {
+        MovieResponse movieResponse = (MovieResponse) object;
+
+        switch (adapter) {
+            case 1 :
+                this.adapter1.setMovieList(movieResponse.getResults());
+            case 2 :
+                this.adapter2.setMovieList(movieResponse.getResults());
+            case 3 :
+                this.adapter3.setMovieList(movieResponse.getResults());
+            case 4 :
+                this.adapter4.setMovieList(movieResponse.getResults());
         }
     }
 
