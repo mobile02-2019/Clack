@@ -19,9 +19,8 @@ public class MovieDAO {
 
     //Como está buscando apenas da API (não de um arquivo) pode ser void o método getMovieList;
 
-    public void getMovieList(final ServiceListener listener, Integer id, final Integer adapter) {
+    public void getMovieList(final ServiceListener listener, Integer id, final Integer adaptadorNumber) {
         List<Movie> postList = new ArrayList<>();
-
 
         //Chamada para API
         Call<MovieResponse> call = RetrofitService.getMovieAPI().getByGenreId(id);
@@ -30,7 +29,7 @@ public class MovieDAO {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if(response.body() != null){
-                    listener.onSuccess(response.body(), adapter);
+                    listener.onSuccess(response.body(), adaptadorNumber);
                 }
 
             }
@@ -46,7 +45,7 @@ public class MovieDAO {
 
     }
 
-    public void getSearchList (final ServiceListener listener, String query, final Integer adapter){
+    public void getSearchList (final ServiceListener listener, String query, final Integer adaptador){
         List<Movie> postList = new ArrayList<>();
 
         Call<MovieResponse> call = RetrofitService.getMovieAPI().searchMovies(query);
@@ -55,7 +54,7 @@ public class MovieDAO {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if(response.body() != null){
-                    listener.onSuccess(response.body(), adapter);
+                    listener.onSuccess(response.body(), adaptador);
                 }
 
             }
