@@ -22,7 +22,7 @@ import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
 public class HomeFragment extends Fragment implements CardMovieClicado, ServiceListener {
 
     public static final String MOVIE_TITULO = "movie_titulo";
-    private RecyclerView recyclerView, recyclerView2, recyclerView3, recyclerView4;
+    private RecyclerView recyclerView1, recyclerView2, recyclerView3, recyclerView4;
     private TextView textView1, textView2, textView3, textView4;
     private Bundle bundle;
     private RecyclerViewMovieAdapter adapter1;
@@ -53,14 +53,14 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         textView3.setText(checados.get(2));
         textView4.setText(checados.get(3));
 
-        recyclerView = view.findViewById(R.id.recycler_view_id_1);
+        recyclerView1 = view.findViewById(R.id.recycler_view_id_1);
         recyclerView2 = view.findViewById(R.id.recycler_view_id_2);
         recyclerView3 = view.findViewById(R.id.recycler_view_id_3);
         recyclerView4 = view.findViewById(R.id.recycler_view_id_4);
 
         adapter1 = new RecyclerViewMovieAdapter();
 
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager manager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
         adapter2 = new RecyclerViewMovieAdapter();
 
@@ -74,8 +74,8 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
 
         LinearLayoutManager manager4 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter1);
+        recyclerView1.setLayoutManager(manager1);
+        recyclerView1.setAdapter(adapter1);
 
         recyclerView2.setLayoutManager(manager2);
         recyclerView2.setAdapter(adapter2);
@@ -164,12 +164,16 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         switch (adapter) {
             case 1 :
                 this.adapter1.setMovieList(movieResponse.getResults());
+                break;
             case 2 :
                 this.adapter2.setMovieList(movieResponse.getResults());
+                break;
             case 3 :
                 this.adapter3.setMovieList(movieResponse.getResults());
+                break;
             case 4 :
                 this.adapter4.setMovieList(movieResponse.getResults());
+                break;
         }
     }
 
