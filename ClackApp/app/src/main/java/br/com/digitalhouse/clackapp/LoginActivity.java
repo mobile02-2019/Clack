@@ -38,7 +38,6 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
 //        sing com google: - inicio do codigo
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -46,13 +45,15 @@ public class LoginActivity extends Activity {
                 .build();
 
         mAuth = FirebaseAuth.getInstance();
+
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        SignInButton btnGoogleSignIn = findViewById(R.id.sigin_btn_id);
+
+        ImageView btnGoogleSignIn = findViewById(R.id.google_sign_in_id);
         btnGoogleSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.sigin_btn_id:
+                    case R.id.google_sign_in_id:
                         signIn();
                         break;
                     // ...
@@ -81,7 +82,7 @@ public class LoginActivity extends Activity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(LoginActivity.this, "A autenticacao foi feita com sucesso!", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(LoginActivity.this, "A autenticacao foi feita com sucesso!", Toast.LENGTH_LONG).show();
 
                             goToMain(user);
 //                            updateUI(user);
@@ -100,12 +101,13 @@ public class LoginActivity extends Activity {
     }
 
     private void goToMain(FirebaseUser user) {
-        Toast.makeText(this, "Login realizado com sucesso!" + user.getEmail(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Login realizado com sucesso! " + user.getEmail(), Toast.LENGTH_SHORT).show();
+
     }
 
     private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        Intent intent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(intent, RC_SIGN_IN);
 
     }
 
