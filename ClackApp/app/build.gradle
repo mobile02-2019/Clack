@@ -48,14 +48,17 @@ dependencies {
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+
     //login com google - firebase:
     implementation 'com.google.firebase:firebase-auth:16.0.5'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    //login com google - google documentation
-    implementation 'com.google.android.gms:play-services-auth:15.0.1'
 
 
 
-    
 
+    //Firebase
+    implementation 'com.google.firebase:firebase-core:16.0.5'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
