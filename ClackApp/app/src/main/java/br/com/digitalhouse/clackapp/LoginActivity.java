@@ -102,7 +102,7 @@ public class LoginActivity extends Activity {
 
     private void goToMain(FirebaseUser user) {
         Toast.makeText(this, "Login realizado com sucesso! " + user.getEmail(), Toast.LENGTH_SHORT).show();
-
+        irParaPreferencesGenerico();
     }
 
     private void signIn() {
@@ -139,7 +139,7 @@ public class LoginActivity extends Activity {
     }
 //sign in com o google. fim do codigo do google.
 
-    public void irParaPreferencesGenerico(View view) {
+    public void irParaPreferencesGenerico() {
         Intent intent = new Intent(this, PreferenceActivity.class);
         startActivity(intent);
     }

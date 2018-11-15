@@ -92,4 +92,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/entrecomrede" />
 
+
+
 </android.support.constraint.ConstraintLayout>
