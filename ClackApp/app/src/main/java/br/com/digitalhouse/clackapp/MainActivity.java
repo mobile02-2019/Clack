@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +22,16 @@ import br.com.digitalhouse.clackapp.fragments.ConfiguracoesFragment;
 import br.com.digitalhouse.clackapp.fragments.HomeFragment;
 import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.model.Movie;
+import retrofit2.http.GET;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
-        CardMovieClicado {
-
-
+        ReceptorMovie {
 
     private BottomNavigationView navigationView;
     MenuItem prevMenuItem;
+    private DetailFragment fragmentDetalhe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
                 //TODO ver aqui se dá para juntar o replace
                 switch (menuItem.getItemId()){
                     case R.id.navigation_home: {
@@ -125,33 +128,34 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_home: {
+                    replaceFragment(new HomeFragment());
+                    break;
+                }
+                case R.id.navigation_favoritos: {
+                    replaceFragment(new FavoritosFragment());
+                    break;
+                }
+                case R.id.navigation_pesquisa: {
+                    replaceFragment(new PesquisaFragment());
+                    break;
+                }
+                case R.id.navigation_config: {
+                    replaceFragment(new ConfiguracoesFragment());
+                    break;
+                }
 
-        switch (menuItem.getItemId()){
-            case R.id.navigation_home: {
-                replaceFragment(new HomeFragment());
-                break;
-            }
-            case R.id.navigation_favoritos: {
-                replaceFragment(new FavoritosFragment());
-                break;
-            }
-            case R.id.navigation_pesquisa: {
-                replaceFragment(new PesquisaFragment());
-                break;
-            }
-            case R.id.navigation_config: {
-                replaceFragment(new ConfiguracoesFragment());
-                break;
             }
 
-        }
 
         return true;
     }
 
 
     @Override
-    public void onMovieClicado(Movie movie) {
-        replaceFragment(new DetailFragment());
+    public void receberMovieClicado(Movie movie) {
+        Fragment detailFrag = DetailFragment.newInstance(movie.getNome(), movie.getSinopse(), movie.getPoster());
+        replaceFragment(detailFrag);
     }
 }

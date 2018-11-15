@@ -18,15 +18,16 @@ import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.service.RetrofitService;
 import retrofit2.Retrofit;
 
-public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewMovieAdapter.ViewHolder> implements CardMovieClicado {
+public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewMovieAdapter.ViewHolder> {
 
     private List<Movie> movieList;
     private CardMovieClicado listener;
 
 
 
-    public RecyclerViewMovieAdapter(){
+    public RecyclerViewMovieAdapter(CardMovieClicado listener){
         this.movieList = new ArrayList<>();
+        this.listener = listener;
 
     }
 
@@ -39,7 +40,7 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewMovieAdapter.ViewHolder viewHolder, int position) {
-        Movie movie = movieList.get(position);
+        final Movie movie = movieList.get(position);
         viewHolder.bind(movie);
     }
 
@@ -48,10 +49,6 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
         return movieList.size();
     }
 
-    @Override
-    public void onMovieClicado(Movie movie) {
-
-    }
 
     public void setMovieList(List<Movie> movieList) {
         this.movieList = movieList;
@@ -71,14 +68,14 @@ public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewM
 
         }
 
-        public void bind(Movie movie) {
+        public void bind(final Movie movie) {
 
             Picasso.get().load(RetrofitService.BASE_IMAGE_URL+ movie.getPoster()).into(poster);
 
           poster.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-
+                  listener.onMovieClicado(movie);
               }
           });
 

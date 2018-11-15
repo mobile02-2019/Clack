@@ -83,7 +83,6 @@ public class RecyclerViewPesquisaFilmeAdapter extends RecyclerView.Adapter<Recyc
             poster.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                 }
             });
 

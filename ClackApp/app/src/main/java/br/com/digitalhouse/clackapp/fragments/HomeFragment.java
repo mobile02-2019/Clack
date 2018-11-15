@@ -1,4 +1,5 @@
 package br.com.digitalhouse.clackapp.fragments;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.digitalhouse.clackapp.MainActivity;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
@@ -30,6 +34,14 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
     private RecyclerViewMovieAdapter adapter3;
     private RecyclerViewMovieAdapter adapter4;
     private ArrayList<String> checados;
+    private ReceptorMovie receptorMovie;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        receptorMovie = (ReceptorMovie) context;
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,19 +70,19 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         recyclerView3 = view.findViewById(R.id.recycler_view_id_3);
         recyclerView4 = view.findViewById(R.id.recycler_view_id_4);
 
-        adapter1 = new RecyclerViewMovieAdapter();
+        adapter1 = new RecyclerViewMovieAdapter(this);
 
         LinearLayoutManager manager1 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        adapter2 = new RecyclerViewMovieAdapter();
+        adapter2 = new RecyclerViewMovieAdapter(this);
 
         LinearLayoutManager manager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        adapter3 = new RecyclerViewMovieAdapter();
+        adapter3 = new RecyclerViewMovieAdapter(this);
 
         LinearLayoutManager manager3 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        adapter4 = new RecyclerViewMovieAdapter();
+        adapter4 = new RecyclerViewMovieAdapter(this);
 
         LinearLayoutManager manager4 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 
@@ -102,14 +114,8 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
 
     @Override
     public void onMovieClicado(Movie movie) {
+        receptorMovie.receberMovieClicado(movie);
 
-        Bundle bundle = new Bundle();
-
-        bundle.putString(MOVIE_TITULO, movie.getNome());
-
-        Intent intent = new Intent(getContext(), DetailFragment.class);
-        intent.putExtras(bundle);
-        startActivity(intent);
     }
 
     private Integer getGenreIdByString(String genre) {
