@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
     private RecyclerViewPesquisaFilmeAdapter adapter;
     private SearchView editSearch;
     private List<Movie> movieList = new ArrayList<>();
+    private ProgressBar progressBar;
 
 
     public PesquisaFragment() {
@@ -55,26 +58,40 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
 
         View view = inflater.inflate(R.layout.fragment_pesquisa, container, false);
         //movieList = createMovieList();
-        setupRecyclerView(view);
+
+
+        progressBar = view.findViewById(R.id.progressbar_id);
+        progressBar.setVisibility(View.INVISIBLE);
+
+
+
 
         editSearch = view.findViewById(R.id.search_id);
         editSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                progressBar.setVisibility(View.VISIBLE);
                 callMovieService(query);
+
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                progressBar.setVisibility(View.VISIBLE);
+
                 callMovieService(newText);
+
                 //Toast.makeText(getContext(), newText, Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
 
+        setupRecyclerView(view);
 
         return view;
+
     }
 
 
@@ -85,6 +102,9 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
         recyclerView.setAdapter(adapter);
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), columns));
+
+
+
 
     }
 
@@ -108,11 +128,13 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
         MovieResponse response = (MovieResponse) object;
         List<Movie> movieList = response.getResults();
         adapter.setMovieList(movieList);
+        progressBar.setVisibility(View.GONE);
 
     }
 
     @Override
     public void onError(Throwable throwable) {
+        progressBar.setVisibility(View.GONE);
 
     }
 }

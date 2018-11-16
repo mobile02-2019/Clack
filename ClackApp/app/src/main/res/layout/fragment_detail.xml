@@ -1,111 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.DetailFragment">
+    android:background="@color/colorBlack">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+
+    <ImageView
+        android:id="@+id/imagem_poster_detalhe_id"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/cover_amigosalienigenas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/button_compartilhar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sinopse_detail_id" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/button_favoritar"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/sinopse_detail_id" />
+
+    <TextView
+        android:id="@+id/sinopse_detail_id"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Sinopse do filme"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagem_poster_detalhe_id" />
+
+    <TextView
+        android:id="@+id/censura_detail_id"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:text="Censura"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/imagem_poster_detalhe_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titulo_detail_id"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="TITULO"
+        android:textColor="@color/colorWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imagem_poster_detalhe_id"
+        app:layout_constraintTop_toBottomOf="@+id/censura_detail_id" />
+
+    <TextView
+        android:id="@+id/genero_detail_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="14dp"
+        android:text="Genero"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintStart_toEndOf="@+id/imagem_poster_detalhe_id"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_detail_id" />
+
+    <TextView
+        android:id="@+id/ano_detail_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:text="Ano"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/censura_detail_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/duracao_detail_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:text="Duração"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toEndOf="@+id/ano_detail_id"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/colorBlack">
+        app:layout_constraintGuide_begin="20dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nome do Filme"
-            style="@style/titulo_home"
-            android:gravity="center"/>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="185dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/cover_amigosalienigenas" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:text="A vida de Louis, um menino de doze anos, muda completamente quando a nave espacial de três alienígenas cai nos fundos do quintal de sua casa. Seu pai, um ufologista famoso, congelaria os novos amigos na primeira oportunidade, por isso ele precisa protegê-los e ajudá-los a descobrir o paradeiro da nave mãe, para que só assim eles consigam voltar para casa."
-            android:textColor="@color/colorWhite"
-            android:textSize="14dp" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end"
-            >
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="32dp"
-                android:src="@drawable/button_favoritar"
-                android:layout_margin="8dp"/>
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="32dp"
-                android:src="@drawable/button_compartilhar"
-                android:layout_margin="8dp"/>
-
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Estreia: 11 de outubro"
-            android:textColor="@color/colorWhite" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Direçao: Ari Sandel"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Elenco: Jack Black, Wendi McLendon-Covey, Madison Iseman, Jeremy Ray Taylor, Chris PArnell, Ken Jeong"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Idioma: inglês"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Duraçao: 83 minutos"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="País: Estados Unidos"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ano: 2018"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nota: 4,5"
-            android:textColor="@color/colorWhite"/>
-
-    </LinearLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+    </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
