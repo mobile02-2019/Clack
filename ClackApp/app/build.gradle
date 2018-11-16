@@ -45,9 +45,11 @@ dependencies {
     // GSON
     implementation 'com.google.code.gson:gson:2.3.1'
 
-    //Picasso
+    // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    // Facebook Login SDK
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 
     //login com google - firebase:
     implementation 'com.google.firebase:firebase-auth:16.0.5'
