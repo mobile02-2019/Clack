@@ -34,4 +34,7 @@
     <!-- STRINGS HOME FRAGMENT -->
     <string name="home_textview_1"></string>
 
+    <!-- STRINGS FACEBOOK LOGIN SDK -->
+    <string name="facebook_app_id">1925429784431554</string> <string name="fb_login_protocol_scheme">fb1925429784431554</string>
+
 </resources>

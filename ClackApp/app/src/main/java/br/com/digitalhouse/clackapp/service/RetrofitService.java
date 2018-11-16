@@ -8,10 +8,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
+
     public static final String BASE_URL = "https://api.themoviedb.org/";
     public static final String BASE_IMAGE_URL = "https://image.tmdb.org/t/p/w500/";
-
-
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofit() {
