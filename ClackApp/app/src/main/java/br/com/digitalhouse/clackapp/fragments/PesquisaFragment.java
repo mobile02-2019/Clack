@@ -24,6 +24,7 @@ import java.util.List;
 
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewPesquisaFilmeAdapter;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
@@ -40,6 +41,7 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
     private SearchView editSearch;
     private List<Movie> movieList = new ArrayList<>();
     private ProgressBar progressBar;
+    private ReceptorMovie listener;
 
 
     public PesquisaFragment() {
@@ -49,6 +51,7 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
     @Override // O que devo alterar aqui?
     public void onAttach(Context context) {
         super.onAttach(context);
+        listener = (ReceptorMovie) context;
     }
 
 
@@ -110,10 +113,8 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
 
     @Override
     public void onMovieClicado(Movie movie) {
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.container_main_id, new DetailFragment());
-        transaction.commit();
+        listener.receberMovieClicado(movie);
+
 
 
     }
