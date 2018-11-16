@@ -13,7 +13,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.digitalhouse.clackapp.MainActivity;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
@@ -34,12 +33,12 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
     private RecyclerViewMovieAdapter adapter3;
     private RecyclerViewMovieAdapter adapter4;
     private ArrayList<String> checados;
-    private ReceptorMovie receptorMovie;
+    private ReceptorMovie listener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        receptorMovie = (ReceptorMovie) context;
+        listener = (ReceptorMovie) context;
 
     }
 
@@ -114,7 +113,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
 
     @Override
     public void onMovieClicado(Movie movie) {
-        receptorMovie.receberMovieClicado(movie);
+        listener.receberMovieClicado(movie);
 
     }
 
