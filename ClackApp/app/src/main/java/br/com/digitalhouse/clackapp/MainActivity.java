@@ -26,8 +26,7 @@ import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.model.Movie;
 import retrofit2.http.GET;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
-        ReceptorMovie {
+public class MainActivity extends AppCompatActivity implements ReceptorMovie {
 
     private BottomNavigationView navigationView;
     MenuItem prevMenuItem;
@@ -37,8 +36,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
 
@@ -61,7 +58,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                //TODO ver aqui se dá para juntar o replace
+                for (Fragment fragment:getSupportFragmentManager().getFragments()) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
                 switch (menuItem.getItemId()){
                     case R.id.navigation_home: {
                         viewPager.setCurrentItem(0);
@@ -125,32 +124,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
        transaction.commit();
     }
 
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-                case R.id.navigation_home: {
-                    replaceFragment(new HomeFragment());
-                    break;
-                }
-                case R.id.navigation_favoritos: {
-                    replaceFragment(new FavoritosFragment());
-                    break;
-                }
-                case R.id.navigation_pesquisa: {
-                    replaceFragment(new PesquisaFragment());
-                    break;
-                }
-                case R.id.navigation_config: {
-                    replaceFragment(new ConfiguracoesFragment());
-                    break;
-                }
-
-            }
-
-
-        return true;
-    }
 
 
     @Override
