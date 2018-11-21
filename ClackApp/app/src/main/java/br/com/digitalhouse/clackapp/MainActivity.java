@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie {
 
     @Override
     public void receberMovieClicado(Movie movie) {
-        Fragment detailFrag = DetailFragment.newInstance(movie.getNome(), movie.getSinopse(), movie.getPoster());
+        Fragment detailFrag = DetailFragment.newInstance(movie);
         replaceFragment(detailFrag);
     }
 }
