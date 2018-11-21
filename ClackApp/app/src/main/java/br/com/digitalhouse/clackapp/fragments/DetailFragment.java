@@ -50,7 +50,7 @@ public class DetailFragment extends Fragment {
         Bundle bundle1 = getArguments();
         String titulo = bundle1.getString(TITULO);
         TextView tituloText = view.findViewById(R.id.titulo_act_id);
-        Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
+        Typeface myCustomFontLogo = Typeface.createFromAsset(getContext().getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         tituloText.setTypeface(myCustomFontLogo);
         tituloText.setText(titulo);
 
