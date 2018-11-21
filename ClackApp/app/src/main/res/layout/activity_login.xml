@@ -80,7 +80,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/entrecomrede"
-        app:layout_constraintVertical_bias="0.276" />
+        app:layout_constraintVertical_bias="0.56" />
 
     <ImageView
         android:id="@+id/google_sign_in_id"

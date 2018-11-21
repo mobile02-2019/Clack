@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "329412578683",
+    "firebase_url": "https://clackapp-3372f.firebaseio.com",
+    "project_id": "clackapp-3372f",
+    "storage_bucket": "clackapp-3372f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329412578683:android:454fb2e87a6f62e3",
+        "android_client_info": {
+          "package_name": "br.com.digitalhouse.clackapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329412578683-52q7gr2f0934n6mg2si0mrr3e0ccn8ha.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.digitalhouse.clackapp",
+            "certificate_hash": "e629baf67944d8c11722df55471af8f858701d2e"
+          }
+        },
+        {
+          "client_id": "329412578683-t4ie8ogpti9hljbpgc71r6ppm7ng7hg2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD4HlnFnoz2e2CQfzxuH14-pL9D95aQ94"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329412578683-t4ie8ogpti9hljbpgc71r6ppm7ng7hg2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
