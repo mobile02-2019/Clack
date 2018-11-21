@@ -1,6 +1,7 @@
 package br.com.digitalhouse.clackapp.fragments;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -49,6 +50,8 @@ public class DetailFragment extends Fragment {
         Bundle bundle1 = getArguments();
         String titulo = bundle1.getString(TITULO);
         TextView tituloText = view.findViewById(R.id.titulo_act_id);
+        Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
+        tituloText.setTypeface(myCustomFontLogo);
         tituloText.setText(titulo);
 
         Bundle bundle2 = getArguments();
