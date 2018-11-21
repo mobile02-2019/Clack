@@ -1,16 +1,26 @@
 package br.com.digitalhouse.clackapp;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class PreferenceActivity extends AppCompatActivity {
 
+    private TextView textViewHelloPref;
+    private ImageView imageViewProfile;
     private CheckBox checkBoxAcao;
     private CheckBox checkBoxAnimacao;
     private CheckBox checkBoxAventura;
@@ -33,6 +43,7 @@ public class PreferenceActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private List<CheckBox> checkBoxListAll = new ArrayList<>();
     private ArrayList<String> checkBoxListChecked = new ArrayList<>();
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +69,18 @@ public class PreferenceActivity extends AppCompatActivity {
                 }
             }
         });
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
+        textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
     }
 
     public void setupIds() {
+        textViewHelloPref = findViewById(R.id.textView_hello_pref_id);
+        Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
+        textViewHelloPref.setTypeface(myCustomFontLogo);
+        imageViewProfile = findViewById(R.id.imageView_profile_id);
         checkBoxAcao = findViewById(R.id.checkbox_acao_id);
         checkBoxAnimacao = findViewById(R.id.checkbox_animacao_id);
         checkBoxAventura = findViewById(R.id.checkbox_aventura_id);

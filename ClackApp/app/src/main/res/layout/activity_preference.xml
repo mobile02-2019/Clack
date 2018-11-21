@@ -15,19 +15,22 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/textView_hello_pref_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:layout_weight="4"
             android:text="@string/preference_greetings"
             android:textColor="@color/colorPrimaryOriginal"
             android:textSize="20sp"
             />
 
-        <ImageView
-            android:layout_width="1dp"
-            android:layout_height="50dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView_profile_id"
+            android:layout_width="55dp"
+            android:layout_height="75dp"
             android:layout_weight="1"
             android:gravity="end"
             android:src="@drawable/icon_preference_profile"
@@ -53,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="20dp"
                     android:text="@string/preference_choice"
                     android:textColor="@color/colorBlack"
                     android:textSize="20sp"
@@ -65,209 +68,247 @@
                     android:id="@+id/checkbox_acao_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_acao"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_animacao_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_animacao"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_aventura_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_aventura"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_cinematv_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_cinematv"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_comedia_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_comedia"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_crime_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_crime"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_documentario_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_documentario"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_drama_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_drama"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_familia_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_familia"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_fantasia_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_fantasia"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_faroeste_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_faroeste"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_ficcaocientifica_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_ficcaocientifica"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_guerra_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_guerra"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_historia_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_historia"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_misterio_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_misterio"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_musica_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_musica"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_romance_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_romance"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_terror_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_terror"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
                 <CheckBox
                     android:id="@+id/checkbox_thriller_id"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:checked="false"
                     android:text="@string/preference_checkbox_thriller"
                     android:textColor="@color/colorBlack"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="normal|bold" />
 
             </LinearLayout>
