@@ -27,7 +27,7 @@
             android:layout_height="185dp"
             android:layout_marginTop="8dp"
             android:id="@+id/imagem_act_id"
-            android:gravity="center"
+            android:layout_gravity="center"
             android:src="@drawable/cover_amigosalienigenas" />
 
         <TextView

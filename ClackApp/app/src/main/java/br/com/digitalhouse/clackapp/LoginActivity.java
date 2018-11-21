@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInApi;
@@ -33,11 +34,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends Activity {
+
     private static final String TAG= "login" ;
     private static final int RC_SIGN_IN = 1000 ;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
-
     public static final String CHAVE_EMAIL = "chave_email";
     private CallbackManager callbackManager;
 
@@ -68,15 +69,12 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+        //loginFacebook = findViewById(R.id.button_facebookLogin_id);
+        //loginFacebook.setReadPermissions("email");
         callbackManager = CallbackManager.Factory.create();
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        if (isLoggedIn) {
-            Intent intent = new Intent (this, PreferenceActivity.class);
-            startActivity(intent);
-        }
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
+        //loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Intent intent = new Intent(LoginActivity.this, PreferenceActivity.class);
@@ -102,6 +100,12 @@ public class LoginActivity extends Activity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
 //        updateUI(currentUser);
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        if (isLoggedIn) {
+            Intent intent = new Intent (this, PreferenceActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
