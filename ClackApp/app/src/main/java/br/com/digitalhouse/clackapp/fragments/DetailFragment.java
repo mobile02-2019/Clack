@@ -79,7 +79,7 @@ public class DetailFragment extends Fragment {
         Intent share = new Intent(Intent.ACTION_SEND);
         share.setType("text/plain");
         share.putExtra(Intent.EXTRA_SUBJECT, movie.getNome());
-        share.putExtra(Intent.EXTRA_TEXT, movie.getSinopse());
+        share.putExtra(Intent.EXTRA_TEXT, "https://image.tmdb.org/t/p/w500" + movie.getPoster());
         startActivity(Intent.createChooser(share, movie.getPoster()));
     }
 
