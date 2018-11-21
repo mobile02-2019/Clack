@@ -19,18 +19,15 @@ import br.com.digitalhouse.clackapp.model.Movie;
  * A simple {@link Fragment} subclass.
  */
 public class DetailFragment extends Fragment {
-    public static final String TITULO = "titulo";
-    public static final String DESCRICAO = "descricao";
-    public static final String POSTER = "poster";
+    public static final String MOVIE = "MOVIE";
     private ImageView imagemPost;
     private ImageView share;
     private Movie movie;
 
-    public static DetailFragment newInstance(String titulo, String descricao, String poster) {
+
+    public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
-        args.putString(TITULO, titulo);
-        args.putString(DESCRICAO, descricao);
-        args.putString(POSTER, poster);
+        args.putSerializable(MOVIE, movie);
 
         DetailFragment fragment = new DetailFragment();
         fragment.setArguments(args);
@@ -50,6 +47,7 @@ public class DetailFragment extends Fragment {
 
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,20 +55,19 @@ public class DetailFragment extends Fragment {
             }
         });
 
+        movie = (Movie) getArguments().getSerializable(MOVIE);
 
-
-        Bundle bundle1 = getArguments();
-        String titulo = bundle1.getString(TITULO);
+        String titulo = movie.getNome();
         TextView tituloText = view.findViewById(R.id.titulo_act_id);
         tituloText.setText(titulo);
 
-        Bundle bundle2 = getArguments();
-        String descricao = bundle2.getString(DESCRICAO);
+
+        String descricao = movie.getSinopse();
         TextView descricaoText = view.findViewById(R.id.sinopse_act_id);
         descricaoText.setText(descricao);
 
-        Bundle bundle3 = getArguments();
-        String poster = bundle3.getString(POSTER);
+
+        String poster = movie.getPoster();
         Picasso.get().load("http://image.tmdb.org/t/p/w500/" + poster).into(imagemPost);
 
 
@@ -83,7 +80,7 @@ public class DetailFragment extends Fragment {
         share.setType("text/plain");
         share.putExtra(Intent.EXTRA_SUBJECT, movie.getNome());
         share.putExtra(Intent.EXTRA_TEXT, movie.getSinopse());
-        startActivity(Intent.createChooser(share, (CharSequence) movie.getData()));
+        startActivity(Intent.createChooser(share, movie.getPoster()));
     }
 
 

@@ -164,10 +164,6 @@ public class LoginActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-<<<<<<< HEAD
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-=======
->>>>>>> 59dfc45e2b85480e004f74344d2ddf97e6f31b01
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
