@@ -1,6 +1,7 @@
 package br.com.digitalhouse.clackapp.fragments;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -49,10 +50,15 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        Typeface myCustomFontLogo = Typeface.createFromAsset(getContext().getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textView1 = view.findViewById(R.id.textView_1_id);
+        textView1.setTypeface(myCustomFontLogo);
         textView2 = view.findViewById(R.id.textView_2_id);
+        textView2.setTypeface(myCustomFontLogo);
         textView3 = view.findViewById(R.id.textView_3_id);
+        textView3.setTypeface(myCustomFontLogo);
         textView4 = view.findViewById(R.id.textView_4_id);
+        textView4.setTypeface(myCustomFontLogo);
 
         Intent intent = getActivity().getIntent();
         bundle = intent.getExtras();
