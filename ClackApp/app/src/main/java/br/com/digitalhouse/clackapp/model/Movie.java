@@ -108,6 +108,13 @@ public class Movie implements Serializable{
         this.posterId = posterId;
     }
 
+    public float getNota() {
+        return nota;
+    }
+
+    public void setNota(float nota) {
+        this.nota = nota;
+    }
 
     public List<Integer> getGeneros() {
         return generos;
