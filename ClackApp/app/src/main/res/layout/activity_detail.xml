@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragments.DetailFragment"
-    android:background="@color/colorBlack">
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_margin="8dp"
             android:text="Nome do Filme"
             android:textSize="24sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorBlack"
             android:gravity="center"
             android:id="@+id/titulo_act_id"/>
 
@@ -37,9 +37,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/sinopse_act_id"
-            android:gravity="left"
             android:text="A vida de Louis, um menino de doze anos, muda completamente quando a nave espacial de três alienígenas cai nos fundos do quintal de sua casa. Seu pai, um ufologista famoso, congelaria os novos amigos na primeira oportunidade, por isso ele precisa protegê-los e ajudá-los a descobrir o paradeiro da nave mãe, para que só assim eles consigam voltar para casa."
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/colorBlack"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_margin="8dp"
@@ -50,8 +49,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="horizontal"
-           android:gravity="end"
-           >
+           android:gravity="end">
 
            <ImageView
                android:layout_width="40dp"
@@ -70,53 +68,27 @@
 
 
         <TextView
+            android:id="@+id/textView_data_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="Estreia: 11 de outubro"
-            android:textColor="@color/colorWhite" />
+            android:layout_margin="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/colorBlack" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Direçao: Ari Sandel"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Elenco: Jack Black, Wendi McLendon-Covey, Madison Iseman, Jeremy Ray Taylor, Chris PArnell, Ken Jeong"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Idioma: inglês"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Duraçao: 83 minutos"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="País: Estados Unidos"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ano: 2018"
-            android:textColor="@color/colorWhite"/>
-
-        <TextView
+            android:id="@+id/textView_nota_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nota: 4,5"
-            android:textColor="@color/colorWhite"/>
+            android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/colorBlack"/>
 
     </LinearLayout>
 

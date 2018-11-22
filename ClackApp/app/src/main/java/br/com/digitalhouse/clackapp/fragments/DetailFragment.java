@@ -4,6 +4,7 @@ package br.com.digitalhouse.clackapp.fragments;
 import android.graphics.Typeface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.model.Movie;
@@ -24,7 +28,6 @@ public class DetailFragment extends Fragment {
     private ImageView imagemPost;
     private ImageView share;
     private Movie movie;
-
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
@@ -75,6 +78,24 @@ public class DetailFragment extends Fragment {
         String poster = movie.getPoster();
         Picasso.get().load("http://image.tmdb.org/t/p/w500/" + poster).into(imagemPost);
 
+        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        //
+        //String dateString = format.format( new Date()   );
+        //Date   date       = format.parse ( "2009-12-31" );
+
+        //Date date = new Date();
+        //    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        //    String strDate= formatter.format(date);
+
+        Date data = movie.getData();
+        TextView dataText = view.findViewById(R.id.textView_data_id);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = formatter.format(data);
+        dataText.setText("Data de lançamento: " + dataFormatada);
+
+        float nota = movie.getNota();
+        TextView notaText = view.findViewById(R.id.textView_nota_id);
+        notaText.setText("Nota média: " + nota);
 
         return view;
 

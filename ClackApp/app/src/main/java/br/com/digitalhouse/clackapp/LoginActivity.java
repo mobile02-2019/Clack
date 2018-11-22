@@ -39,6 +39,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginActivity extends Activity {
 
     private TextView textViewHelloLogin;
+    private TextView textViewEntreLogin;
     private static final String TAG= "login" ;
     private static final int RC_SIGN_IN = 1000 ;
     private FirebaseAuth mAuth;
@@ -55,6 +56,9 @@ public class LoginActivity extends Activity {
         textViewHelloLogin = findViewById(R.id.textView_hello_login_id);
         Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textViewHelloLogin.setTypeface(myCustomFontLogo);
+
+        textViewEntreLogin = findViewById(R.id.entrecomrede);
+        textViewEntreLogin.setTypeface(myCustomFontLogo);
 
 //        sing com google: - inicio do codigo
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/colorWhite"
-    android:backgroundTint="@color/colorBlack">
+    android:background="@color/colorPrimary"
+    android:backgroundTint="@color/colorPrimary">
 
     <SearchView
         android:id="@+id/search_id"
@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorWhite">
+        android:background="@color/colorPrimary">
 
         <requestFocus />
     </SearchView>
@@ -39,7 +39,7 @@
         android:layout_marginRight="14dp"
         android:layout_marginBottom="24dp"
         android:background="@color/colorWhite"
-        android:backgroundTint="@color/colorBlack"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -58,7 +58,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTint="@color/colorBlack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
