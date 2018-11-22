@@ -70,6 +70,8 @@ public class DetailFragment extends Fragment {
         descricaoText.setText(descricao);
 
 
+
+
         String poster = movie.getPoster();
         Picasso.get().load("http://image.tmdb.org/t/p/w500/" + poster).into(imagemPost);
 

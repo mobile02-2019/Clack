@@ -35,6 +35,8 @@ public class Movie implements Serializable{
     @SerializedName("genre_ids")
     private List<Integer> generos;
 
+
+
 //    private Boolean adult;
 //    private Integer genre_ids;
 //    private Integer id;
