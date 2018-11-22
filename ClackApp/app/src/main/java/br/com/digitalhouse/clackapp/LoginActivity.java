@@ -118,12 +118,12 @@ public class LoginActivity extends Activity {
             Intent intent = new Intent (this, PreferenceActivity.class);
             startActivity(intent);
         }
-        /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-        if (isLoggedIn) {
-            Intent intent = new Intent (this, PreferenceActivity.class);
-            startActivity(intent);
-        }*/
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+//        if (isLoggedIn) {
+//            Intent intent = new Intent (this, PreferenceActivity.class);
+//            startActivity(intent);
+//        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {

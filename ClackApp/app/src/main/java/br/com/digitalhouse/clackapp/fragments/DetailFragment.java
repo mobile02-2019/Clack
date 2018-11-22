@@ -19,6 +19,7 @@ import java.util.Date;
 
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.model.Movie;
+import br.com.digitalhouse.clackapp.service.RetrofitService;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,7 +77,7 @@ public class DetailFragment extends Fragment {
 
 
         String poster = movie.getPoster();
-        Picasso.get().load("http://image.tmdb.org/t/p/w500/" + poster).into(imagemPost);
+        Picasso.get().load(RetrofitService.BASE_IMAGE_URL + poster).into(imagemPost);
 
         //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         //
