@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 for (Fragment fragment:getSupportFragmentManager().getFragments()) {
-                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                    getSupportFragmentManager().beginTransaction().commit();
                 }
                 switch (menuItem.getItemId()){
                     case R.id.navigation_home: {
