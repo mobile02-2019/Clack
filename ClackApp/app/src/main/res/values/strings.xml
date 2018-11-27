@@ -7,6 +7,16 @@
     <!-- STRINGS LOGIN ACTIVITY -->
     <string name="login_greetings">Bem-vindo, clacker!</string>
     <string name="login_choice">Entre com uma rede social</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="Login">Login</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
 
     <!-- STRINGS PREFERENCE ACTIVITY -->
     <string name="preference_greetings">Olá clacker!</string>
@@ -35,6 +45,7 @@
     <string name="home_textview_1"></string>
 
     <!-- STRINGS FACEBOOK LOGIN SDK -->
-    <string name="facebook_app_id">1925429784431554</string> <string name="fb_login_protocol_scheme">fb1925429784431554</string>
+    <string name="facebook_app_id">1925429784431554</string>
+    <string name="fb_login_protocol_scheme">fb1925429784431554</string>
 
 </resources>

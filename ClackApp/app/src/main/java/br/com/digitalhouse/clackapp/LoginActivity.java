@@ -14,7 +14,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +38,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import br.com.digitalhouse.clackapp.service.Register;
+
 public class LoginActivity extends Activity {
 
     private TextView textViewHelloLogin;
@@ -52,6 +56,10 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        final AutoCompleteTextView emailDigitado = findViewById(R.id.login_email_id);
+        final EditText passwordDigitado = findViewById(R.id.login_password_id);
+        final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
+        final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
 
         textViewHelloLogin = findViewById(R.id.textView_hello_login_id);
         Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
@@ -106,6 +114,63 @@ public class LoginActivity extends Activity {
                 public void onError (FacebookException error){
                     Log.d(TAG, "facebook:onError", error);
                 }
+        });
+        //TODO registro
+        TextView register = findViewById(R.id.register_now_id);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Register.class);
+                startActivity(intent);
+            }
+        });
+
+        //TODO LOGIN COM EMAIL E SENHA
+        Button loginClicado = findViewById(R.id.login_button);
+        loginClicado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(LoginActivity.this, "Estou no loginClicado.OnClick", Toast.LENGTH_SHORT).show();
+                final Intent intent = new Intent(v.getContext(), MainActivity.class);
+                final Bundle bundle = new Bundle();
+
+                final Button buttonLogin = findViewById(R.id.login_button);
+
+
+                if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")){
+                    mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
+                                        bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
+                                    } else {
+                                        emailDigitado.setTextColor(getResources().getColor(R.color.colorBlack));
+                                        passwordDigitado.setTextColor(getResources().getColor(R.color.colorBlack));
+
+                                        Snackbar.make(buttonLogin, "Invalid email and/or password.", Snackbar.LENGTH_INDEFINITE)
+                                                .setAction("Got it.", new View.OnClickListener(){
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        emailDigitado.setTextColor(colorDefaultEmail);
+                                                        passwordDigitado.setTextColor(colorDefaultPassword);
+                                                    }
+                                                }).show();
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    }
+                                }
+                            });
+                } else {
+                    Toast.makeText(LoginActivity.this, "You need to provide an email and a password in order to Log In.", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
     }
 
@@ -165,6 +230,11 @@ public class LoginActivity extends Activity {
         Intent intent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
 
+    }
+
+    public void registerNow(View view) {
+        Intent intent = new Intent(this,Register.class);
+        startActivity(intent);
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
