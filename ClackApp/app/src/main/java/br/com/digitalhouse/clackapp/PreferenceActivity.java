@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -72,8 +73,10 @@ public class PreferenceActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
-        textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
+        if (user != null){
+            Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
+            textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
+        }
     }
 
     public void setupIds() {

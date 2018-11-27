@@ -97,7 +97,7 @@
         tools:ignore="MissingConstraints" />
 
 
-    <TextView
+    <Button
         android:id="@+id/btn-salvar"
         android:layout_width="121dp"
         android:layout_height="40dp"
@@ -116,9 +116,30 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switcher-luz"
+        app:layout_constraintVertical_bias="0.216"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button_logout_id"
+        android:layout_width="121dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:text="LOGOUT"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn-salvar" />
 
 
 </android.support.constraint.ConstraintLayout>

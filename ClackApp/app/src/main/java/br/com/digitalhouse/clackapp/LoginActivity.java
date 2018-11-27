@@ -88,22 +88,25 @@ public class LoginActivity extends Activity {
         loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
                 @Override
                 public void onSuccess (LoginResult loginResult){
+                    Toast.makeText(getApplicationContext(),"Autenticação foi bem sucedida",Toast.LENGTH_LONG).show();
                     Log.d(TAG, "facebook:onSuccess:" + loginResult);
                     handleFacebookAccessToken (loginResult.getAccessToken());
                     Intent intent = new Intent (loginFacebook.getContext(), PreferenceActivity.class);
                     startActivity(intent);
-                    /*Bundle bundle = new Bundle();
+                    Bundle bundle = new Bundle();
                     bundle.putString(CHAVE_EMAIL, Profile.getCurrentProfile().getName());
-                    intent.putExtras(bundle);*/
+                    intent.putExtras(bundle);
                 }
 
                 @Override
                 public void onCancel () {
                     Log.d(TAG, "facebook:onCancel");
+                    Toast.makeText(getApplicationContext(),"Autenticação falhou",Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void onError (FacebookException error){
+                    Toast.makeText(getApplicationContext(),"Login error",Toast.LENGTH_LONG).show();
                     Log.d(TAG, "facebook:onError", error);
                 }
         });
@@ -118,12 +121,6 @@ public class LoginActivity extends Activity {
             Intent intent = new Intent (this, PreferenceActivity.class);
             startActivity(intent);
         }
-//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-//        if (isLoggedIn) {
-//            Intent intent = new Intent (this, PreferenceActivity.class);
-//            startActivity(intent);
-//        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
@@ -204,6 +201,7 @@ public class LoginActivity extends Activity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            goToMain(user);
 
                         } else {
                             // If sign in fails, display a message to the user.

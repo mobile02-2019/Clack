@@ -2,6 +2,7 @@ package br.com.digitalhouse.clackapp.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -18,7 +19,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.util.Util;
+import com.facebook.FacebookButtonBase;
+import com.google.firebase.auth.FacebookAuthCredential;
+import com.google.firebase.auth.FacebookAuthProvider;
+import com.google.firebase.auth.FirebaseAuth;
 
+import br.com.digitalhouse.clackapp.LoginActivity;
 import br.com.digitalhouse.clackapp.R;
 
 
@@ -26,13 +32,13 @@ import br.com.digitalhouse.clackapp.R;
  * A simple {@link Fragment} subclass.
  */
 public class ConfiguracoesFragment extends Fragment {
-    ConstraintLayout constraintFavorito, constraintHome;
-    TextView textTituloConf;
-    Switch switchNot, switchTraducao, switchLuz;
-    TextView btnSalvar;
-    TextView textView1id;
 
-
+    private ConstraintLayout constraintFavorito, constraintHome;
+    private TextView textTituloConf;
+    private Switch switchNot, switchTraducao, switchLuz;
+    private Button btnSalvar, btnLogout;
+    private TextView textView1id;
+    private FacebookButtonBase facebookButtonBase;
 
     public ConfiguracoesFragment() {
         // Required empty public constructor
@@ -70,6 +76,8 @@ public class ConfiguracoesFragment extends Fragment {
         constraintFavorito = view.findViewById(R.id.constraint_fav);
 
         btnSalvar = view.findViewById(R.id.btn_salvar);
+
+        btnLogout = view.findViewById(R.id.button_logout_id);
 
         textView1id = view.findViewById(R.id.textView_1_id);
 
@@ -114,7 +122,14 @@ public class ConfiguracoesFragment extends Fragment {
             }
         });
 
-
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deslogarDoAplicativo();
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         return view;
@@ -122,8 +137,9 @@ public class ConfiguracoesFragment extends Fragment {
 
     }
 
-
-
+    private void deslogarDoAplicativo() {
+        FirebaseAuth.getInstance().signOut();
+    }
 
 
 }
