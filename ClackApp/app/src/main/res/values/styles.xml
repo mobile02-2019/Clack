@@ -13,4 +13,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name="AppYellowTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorBlack</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
 </resources>
