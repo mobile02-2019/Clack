@@ -1,4 +1,7 @@
 package br.com.digitalhouse.clackapp;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,21 +25,32 @@ import br.com.digitalhouse.clackapp.fragments.ConfiguracoesFragment;
 import br.com.digitalhouse.clackapp.fragments.HomeFragment;
 import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.interfaces.MandarSwitchListener;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.model.Movie;
 import retrofit2.http.GET;
 
-public class MainActivity extends AppCompatActivity implements ReceptorMovie {
+public class MainActivity extends AppCompatActivity implements ReceptorMovie,MandarSwitchListener {
 
+    public static final String THEME_PREFERENCE = "THEME_PREFERENCE";
     private BottomNavigationView navigationView;
     MenuItem prevMenuItem;
     private DetailFragment fragmentDetalhe;
+    private boolean respostaSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //todo coisa pra fazer aqui
+        SharedPreferences preferencess = this.getSharedPreferences(
+                "br.com.digitalhouse.clackapp", Context.MODE_PRIVATE);
+        boolean lightTheme = preferencess.getBoolean(THEME_PREFERENCE, false);
+
+        setTheme(lightTheme ? R.style.AppTheme : R.style.AppThemeDark);
+        Toast.makeText(this,"o tema é " + lightTheme,Toast.LENGTH_LONG).show();
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         final ViewPager viewPager = findViewById(R.id.viewpager_id);
@@ -130,5 +144,25 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie {
     public void receberMovieClicado(Movie movie) {
         Fragment detailFrag = DetailFragment.newInstance(movie);
         replaceFragment(detailFrag);
+    }
+
+
+    @Override
+    public void enviarInformacao(boolean isChecked) {
+        // TODO gravar nas preferencias
+      //TODO AQUIIIIIII
+
+        SharedPreferences prefs = this.getSharedPreferences(
+                "br.com.digitalhouse.clackapp", Context.MODE_PRIVATE);
+        prefs.edit().putBoolean(THEME_PREFERENCE,isChecked).apply();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
+
+        //recreate();
+
+
+
+
     }
 }

@@ -1,9 +1,11 @@
 package br.com.digitalhouse.clackapp.fragments;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -16,10 +18,13 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.util.Util;
 
+import br.com.digitalhouse.clackapp.MainActivity;
 import br.com.digitalhouse.clackapp.R;
+import br.com.digitalhouse.clackapp.interfaces.MandarSwitchListener;
 
 
 /**
@@ -31,8 +36,14 @@ public class ConfiguracoesFragment extends Fragment {
     Switch switchNot, switchTraducao, switchLuz;
     TextView btnSalvar;
     TextView textView1id;
+    private MandarSwitchListener mandarSwitchListener;
 
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mandarSwitchListener = (MandarSwitchListener) context;
+    }
 
     public ConfiguracoesFragment() {
         // Required empty public constructor
@@ -43,8 +54,11 @@ public class ConfiguracoesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
+
+
 
 
 //        // create ContextThemeWrapper from the original Activity Context with the custom theme
@@ -75,13 +89,22 @@ public class ConfiguracoesFragment extends Fragment {
 
         constraintHome = view.findViewById(R.id.constraint_home);
 
+
         switchLuz.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // do something, the isChecked will be
-                // true if the switch is in the On position
-                if (isChecked == true ){
-                    // transformar em inteiro
-                    int clackColorValue = Color.parseColor("#ffe81a");
+                //todo coisa feita aqui tirei td que ta comentado embaixo
+                if (!isChecked){
+                    mandarSwitchListener.enviarInformacao(isChecked);
+                }
+                Toast.makeText(getContext(), "o tema agore é " + isChecked, Toast.LENGTH_SHORT).show();
+
+                //todo para funcionar nos outros fragments to enviando sen tirar esses comentados
+                // todo something, the isChecked will be
+
+        /* if (isChecked == true ){
+
+
+                   int clackColorValue = Color.parseColor("#ffe81a");
                     constraintFavorito.setBackgroundColor(clackColorValue);
                     textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
                     textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
@@ -90,40 +113,37 @@ public class ConfiguracoesFragment extends Fragment {
                     switchLuz.setTextColor(getResources().getColor(android.R.color.black));
                     btnSalvar.setTextColor(getResources().getColor(android.R.color.white));
                     btnSalvar.setBackgroundColor(getResources().getColor(android.R.color.black));
-//                    textView1id.setBackgroundColor(getResources().getColor(android.R.color.black));
-//                    constraintHome.setBackgroundColor(clackColorValue);
-
-                }
-                if(isChecked == false) {
-//                    contextThemeWrapper.setTheme(R.style.AppEscuro);
-                    int clackColorValue = Color.parseColor("#ffe81a");
-
-                    constraintFavorito.setBackgroundColor(getResources().getColor(android.R.color.black));
-                    textTituloConf.setTextColor(getResources().getColor(android.R.color.white));
-                    switchNot.setTextColor(getResources().getColor(android.R.color.white));
-                    switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
-                    switchLuz.setTextColor(getResources().getColor(android.R.color.white));
-                    btnSalvar.setTextColor(getResources().getColor(android.R.color.black));
-                    btnSalvar.setBackgroundColor(clackColorValue);
-
-
-//                    switchNot.setTextColor(getResources().getColor(android.R.color.white));
-//                    switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
-//                    switchLuz.setTextColor(getResources().getColor(android.R.color.white));
-                }
-            }
-        });
 
 
 
 
-        return view;
+             }
+            if(isChecked == false) {
+
+                int clackColorValue = Color.parseColor("#ffe81a");
+
+                constraintFavorito.setBackgroundColor(getResources().getColor(android.R.color.black));
+                textTituloConf.setTextColor(getResources().getColor(android.R.color.white));
+                switchNot.setTextColor(getResources().getColor(android.R.color.white));
+                switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
+                switchLuz.setTextColor(getResources().getColor(android.R.color.white));
+                btnSalvar.setTextColor(getResources().getColor(android.R.color.black));
+                btnSalvar.setBackgroundColor(clackColorValue);
+
+            }*/
+        }
 
 
-    }
 
 
+    });
 
+        return view;}
 
 
 }
+
+
+
+
+
