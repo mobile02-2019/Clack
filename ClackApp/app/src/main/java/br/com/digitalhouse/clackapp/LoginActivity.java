@@ -125,7 +125,7 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(LoginActivity.this, "Estou no loginClicado.OnClick", Toast.LENGTH_SHORT).show();
-                final Intent intent = new Intent(v.getContext(), MainActivity.class);
+                final Intent intent = new Intent(v.getContext(), PreferenceActivity.class);
                 final Bundle bundle = new Bundle();
 
                 final Button buttonLogin = findViewById(R.id.login_button);
@@ -167,23 +167,23 @@ public class LoginActivity extends Activity {
             }
         });
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
+//TODO DEIXEI O ON START COMENTADO  PARA TESTE
+   // @Override
+   // public void onStart() {
+     //   super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        if (mAuth.getCurrentUser() != null) {
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            Intent intent = new Intent (this, PreferenceActivity.class);
-            startActivity(intent);
-        }
+       // if (mAuth.getCurrentUser() != null) {
+         //   FirebaseUser currentUser = mAuth.getCurrentUser();
+           // Intent intent = new Intent (this, PreferenceActivity.class);
+            //startActivity(intent);
+        //}
 //        AccessToken accessToken = AccessToken.getCurrentAccessToken();
 //        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 //        if (isLoggedIn) {
 //            Intent intent = new Intent (this, PreferenceActivity.class);
 //            startActivity(intent);
 //        }
-    }
+
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());

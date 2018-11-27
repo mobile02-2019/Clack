@@ -32,11 +32,11 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        getSupportActionBar().hide();
+
 
         mAuth = FirebaseAuth.getInstance();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Button register = findViewById(R.id.register_button_id);
         register.setOnClickListener(new View.OnClickListener() {
