@@ -70,6 +70,7 @@ public class PreferenceActivity extends AppCompatActivity {
                 }
             }
         });
+
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 

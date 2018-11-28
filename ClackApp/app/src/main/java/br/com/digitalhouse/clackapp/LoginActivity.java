@@ -78,11 +78,16 @@ public class LoginActivity extends Activity {
                     case R.id.google_sign_in_id:
                         signIn();
                         break;
-                    // ...
                 }
             }
         });
+
         loginFacebook = findViewById(R.id.button_facebookLogin_id);
+        //Configuração para modificar botão original do facebook
+        loginFacebook.setBackgroundResource(R.drawable.icon_facebook_circled_preto_96px);
+        loginFacebook.setScaleY(1.8F);
+        loginFacebook.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+
         loginFacebook.setReadPermissions("email", "public_profile");
         callbackManager = CallbackManager.Factory.create();
         loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -91,11 +96,6 @@ public class LoginActivity extends Activity {
                     Toast.makeText(getApplicationContext(),"Autenticação foi bem sucedida",Toast.LENGTH_LONG).show();
                     Log.d(TAG, "facebook:onSuccess:" + loginResult);
                     handleFacebookAccessToken (loginResult.getAccessToken());
-                    Intent intent = new Intent (loginFacebook.getContext(), PreferenceActivity.class);
-                    startActivity(intent);
-                    Bundle bundle = new Bundle();
-                    bundle.putString(CHAVE_EMAIL, Profile.getCurrentProfile().getName());
-                    intent.putExtras(bundle);
                 }
 
                 @Override
