@@ -56,11 +56,11 @@ public class LoginActivity extends Activity {
         final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
 
 
-        Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
+        /*Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textViewHelloLogin.setTypeface(myCustomFontLogo);
 
 
-        textViewEntreLogin.setTypeface(myCustomFontLogo);
+        textViewEntreLogin.setTypeface(myCustomFontLogo);*/
 
 //        sing com google: - inicio do codigo
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -87,7 +87,7 @@ public class LoginActivity extends Activity {
         loginFacebook = findViewById(R.id.button_facebookLogin_id);
         //Configuração para modificar botão original do facebook
         loginFacebook.setBackgroundResource(R.drawable.icon_facebook_circled_preto_96px);
-        loginFacebook.setScaleY(1.8F);
+        loginFacebook.setScaleY(1.75F);
         loginFacebook.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
         loginFacebook.setReadPermissions("email", "public_profile");
