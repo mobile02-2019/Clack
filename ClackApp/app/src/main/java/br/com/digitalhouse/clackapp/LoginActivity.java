@@ -55,11 +55,11 @@ public class LoginActivity extends Activity {
         final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
         final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
 
-        textViewHelloLogin = findViewById(R.id.textView_hello_login_id);
+
         Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textViewHelloLogin.setTypeface(myCustomFontLogo);
 
-        textViewEntreLogin = findViewById(R.id.entrecomrede);
+
         textViewEntreLogin.setTypeface(myCustomFontLogo);
 
 //        sing com google: - inicio do codigo
