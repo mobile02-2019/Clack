@@ -74,7 +74,8 @@ public class PreferenceActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-        if (user != null){
+
+        if (user != null) {
             Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
             textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
         }

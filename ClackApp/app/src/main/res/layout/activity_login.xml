@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
     <ImageView
         android:id="@+id/imageView13"
         android:layout_width="match_parent"
@@ -15,57 +24,81 @@
         android:src="@mipmap/background_login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView_hello_login_id"
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/login_email_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:alpha="0.8"
-        android:gravity="center"
-        android:text="Olá Clacker!"
-        android:textAllCaps="true"
-        android:textColor="@color/colorBlack"
-        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/register_now_id">
+
+
+        <EditText
+            android:id="@+id/login_password_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/prompt_password"
+            android:imeActionId="6"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionUnspecified"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_button"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="400dp"
+        android:backgroundTint="@color/colorBlack"
+        android:text="@string/Login"
+        android:textColor="@color/colorWhite"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView13"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/entrecomrede"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:id="@+id/register_now_id"
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
         android:layout_marginBottom="8dp"
-        android:gravity="bottom|center"
-        android:text="Entre com uma rede social"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_hello_login_id"
-        app:layout_constraintVertical_bias="0.045" />
+        android:gravity="right"
+        android:onClick="registerNow"
+        android:text="Register now"
+        app:layout_constraintBottom_toTopOf="@+id/login_button" />
 
-    <com.facebook.login.widget.LoginButton xmlns:facebook="http://schemas.android.com/apk/res-auto"
+
+    <com.facebook.login.widget.LoginButton
+        xmlns:facebook="http://schemas.android.com/apk/res-auto"
         android:id="@+id/button_facebookLogin_id"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -77,22 +110,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/entrecomrede"
         facebook:com_facebook_login_text=""
         facebook:com_facebook_logout_text=""
         facebook:layout_constraintHorizontal_bias="0.404"
         facebook:layout_constraintVertical_bias="0.137" />
-
-   <!-- <ImageView
-        android:id="@+id/button_facebookLogin_id"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="110dp"
-        android:layout_marginLeft="110dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/icon_facebook_circled_preto_96px"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/entrecomrede" />-->
 
     <ImageView
         android:id="@+id/google_sign_in_id"
@@ -103,6 +124,6 @@
         android:layout_marginRight="110dp"
         android:src="@drawable/icon_google_plus_circled_preto_96px"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/entrecomrede" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
 </android.support.constraint.ConstraintLayout>

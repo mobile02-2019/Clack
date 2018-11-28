@@ -4,17 +4,17 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import com.facebook.AccessToken;
-import com.facebook.Profile;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +22,8 @@ import android.widget.Toast;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,8 +38,8 @@ public class LoginActivity extends Activity {
 
     private TextView textViewHelloLogin;
     private TextView textViewEntreLogin;
-    private static final String TAG= "login" ;
-    private static final int RC_SIGN_IN = 1000 ;
+    private static final String TAG = "login";
+    private static final int RC_SIGN_IN = 1000;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
     public static final String CHAVE_EMAIL = "chave_email";
@@ -52,12 +50,16 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        final AutoCompleteTextView emailDigitado = findViewById(R.id.login_email_id);
+        final EditText passwordDigitado = findViewById(R.id.login_password_id);
+        final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
+        final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
 
-        textViewHelloLogin = findViewById(R.id.textView_hello_login_id);
+
         Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textViewHelloLogin.setTypeface(myCustomFontLogo);
 
-        textViewEntreLogin = findViewById(R.id.entrecomrede);
+
         textViewEntreLogin.setTypeface(myCustomFontLogo);
 
 //        sing com google: - inicio do codigo
@@ -86,42 +88,100 @@ public class LoginActivity extends Activity {
         //Configuração para modificar botão original do facebook
         loginFacebook.setBackgroundResource(R.drawable.icon_facebook_circled_preto_96px);
         loginFacebook.setScaleY(1.8F);
-        loginFacebook.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+        loginFacebook.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
         loginFacebook.setReadPermissions("email", "public_profile");
         callbackManager = CallbackManager.Factory.create();
         loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-                @Override
-                public void onSuccess (LoginResult loginResult){
-                    Toast.makeText(getApplicationContext(),"Autenticação foi bem sucedida",Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                    handleFacebookAccessToken (loginResult.getAccessToken());
-                }
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Toast.makeText(getApplicationContext(), "Autenticação foi bem sucedida", Toast.LENGTH_LONG).show();
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
 
-                @Override
-                public void onCancel () {
-                    Log.d(TAG, "facebook:onCancel");
-                    Toast.makeText(getApplicationContext(),"Autenticação falhou",Toast.LENGTH_LONG).show();
-                }
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "facebook:onCancel");
+                Toast.makeText(getApplicationContext(), "Autenticação falhou", Toast.LENGTH_LONG).show();
+            }
 
-                @Override
-                public void onError (FacebookException error){
-                    Toast.makeText(getApplicationContext(),"Login error",Toast.LENGTH_LONG).show();
-                    Log.d(TAG, "facebook:onError", error);
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(getApplicationContext(), "Login error", Toast.LENGTH_LONG).show();
+                Log.d(TAG, "facebook:onError", error);
+            }
+        });
+        //TODO registro
+        TextView register = findViewById(R.id.register_now_id);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Register.class);
+                startActivity(intent);
+            }
+        });
+
+        //TODO LOGIN COM EMAIL E SENHA
+        Button loginClicado = findViewById(R.id.login_button);
+        loginClicado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(LoginActivity.this, "Estou no loginClicado.OnClick", Toast.LENGTH_SHORT).show();
+                final Intent intent = new Intent(v.getContext(), PreferenceActivity.class);
+                final Bundle bundle = new Bundle();
+
+                final Button buttonLogin = findViewById(R.id.login_button);
+
+
+                if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")) {
+                    mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
+                                        bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
+                                    } else {
+                                        emailDigitado.setTextColor(getResources().getColor(R.color.colorBlack));
+                                        passwordDigitado.setTextColor(getResources().getColor(R.color.colorBlack));
+
+                                        Snackbar.make(buttonLogin, "Invalid email and/or password.", Snackbar.LENGTH_INDEFINITE)
+                                                .setAction("Got it.", new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        emailDigitado.setTextColor(colorDefaultEmail);
+                                                        passwordDigitado.setTextColor(colorDefaultPassword);
+                                                    }
+                                                }).show();
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                    }
+                                }
+                            });
+                } else {
+                    Toast.makeText(LoginActivity.this, "You need to provide an email and a password in order to Log In.", Toast.LENGTH_SHORT).show();
                 }
+            }
         });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        if (mAuth.getCurrentUser() != null) {
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            Intent intent = new Intent (this, PreferenceActivity.class);
-            startActivity(intent);
-        }
+     @Override
+     public void onStart() {
+       super.onStart();
+
+        if(mAuth.getCurrentUser()!=null){
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        Intent intent = new Intent(this, PreferenceActivity.class);
+        startActivity(intent);
     }
+
+}
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
@@ -162,6 +222,11 @@ public class LoginActivity extends Activity {
         Intent intent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
 
+    }
+
+    public void registerNow(View view) {
+        Intent intent = new Intent(this,Register.class);
+        startActivity(intent);
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
