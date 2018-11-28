@@ -96,6 +96,40 @@
         app:layout_constraintTop_toBottomOf="@+id/switcher-traducao"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/textEditPref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
+        android:text="Editar preferências"
+        android:textAllCaps="true"
+        android:textColor="@color/colorWhite"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switcher-luz" />
+
+    <Button
+        android:id="@+id/btn_edit_preferencias"
+        android:layout_width="60dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginRight="33dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textEditPref"
+        app:layout_constraintTop_toBottomOf="@+id/switcher-luz" />
+
 
     <Button
         android:id="@+id/btn-salvar"
@@ -105,6 +139,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
@@ -118,8 +153,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switcher-luz"
-        app:layout_constraintVertical_bias="0.216"
+        app:layout_constraintTop_toBottomOf="@+id/textEditPref"
+        app:layout_constraintVertical_bias="0.093"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -138,8 +173,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn-salvar" />
+        app:layout_constraintTop_toBottomOf="@+id/btn-salvar"
+        app:layout_constraintVertical_bias="0.592" />
 
 
 </android.support.constraint.ConstraintLayout>

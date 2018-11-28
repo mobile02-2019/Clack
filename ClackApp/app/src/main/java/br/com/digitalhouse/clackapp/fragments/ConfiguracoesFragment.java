@@ -25,6 +25,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.com.digitalhouse.clackapp.LoginActivity;
+import br.com.digitalhouse.clackapp.PreferenceActivity;
 import br.com.digitalhouse.clackapp.R;
 
 
@@ -36,7 +37,7 @@ public class ConfiguracoesFragment extends Fragment {
     private ConstraintLayout constraintFavorito, constraintHome;
     private TextView textTituloConf;
     private Switch switchNot, switchTraducao, switchLuz;
-    private Button btnSalvar, btnLogout;
+    private Button btnSalvar, btnLogout, btnEditPreferencias;
     private TextView textView1id;
     private FacebookButtonBase facebookButtonBase;
 
@@ -78,6 +79,8 @@ public class ConfiguracoesFragment extends Fragment {
         btnSalvar = view.findViewById(R.id.btn_salvar);
 
         btnLogout = view.findViewById(R.id.button_logout_id);
+
+        btnEditPreferencias = view.findViewById(R.id.btn_edit_preferencias);
 
         textView1id = view.findViewById(R.id.textView_1_id);
 
@@ -127,6 +130,14 @@ public class ConfiguracoesFragment extends Fragment {
             public void onClick(View v) {
                 deslogarDoAplicativo();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnEditPreferencias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), PreferenceActivity.class);
                 startActivity(intent);
             }
         });
