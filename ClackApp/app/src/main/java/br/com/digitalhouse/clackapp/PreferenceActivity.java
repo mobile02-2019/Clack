@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -45,11 +46,14 @@ public class PreferenceActivity extends AppCompatActivity {
     private ArrayList<String> checkBoxListChecked = new ArrayList<>();
     private FirebaseAuth mAuth;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
         setupIds();
+
         getCheckBoxListAll();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +78,9 @@ public class PreferenceActivity extends AppCompatActivity {
 
         Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
         textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
+
+
+
     }
 
     public void setupIds() {
@@ -101,6 +108,7 @@ public class PreferenceActivity extends AppCompatActivity {
         checkBoxTerror = findViewById(R.id.checkbox_terror_id);
         checkBoxThriller = findViewById(R.id.checkbox_thriller_id);
         floatingActionButton = findViewById(R.id.fab_save_id);
+
     }
 
     public List<CheckBox> getCheckBoxListAll() {

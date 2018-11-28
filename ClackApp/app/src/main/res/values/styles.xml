@@ -6,6 +6,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorBlack</item>
+        <item name="android:backgroundTint">@color/colorBlack</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:checkboxStyle">@color/colorPrimary</item>
+        <item name="android:checkedButton">@color/colorPrimary</item>
+
+
+
+
+
+
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,8 +26,12 @@
     <style name="AppThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
 
         <item name="colorPrimary">@color/colorBlack</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
         <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+
+
     </style>
 
 

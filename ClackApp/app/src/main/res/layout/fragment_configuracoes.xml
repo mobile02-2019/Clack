@@ -5,10 +5,12 @@
     android:id="@+id/constraint-fav"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBlack"
     tools:context=".fragments.ConfiguracoesFragment"
     tools:layout_editor_absoluteY="25dp"
+    android:theme="@style/AppThemeDark"
+
     >
+    <!-- android:background="@color/colorBlack"-->
 
     <TextView
         android:id="@+id/textTituloConf"
@@ -17,10 +19,11 @@
         android:layout_marginTop="50dp"
         android:text="CONFIGURAÇÃO"
         android:textAlignment="center"
-        android:textColor="@color/colorWhite"
+
         android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
+    <!--android:textColor="@color/colorWhite"-->
 
 
     <Switch
@@ -33,7 +36,7 @@
         android:layout_marginRight="8dp"
         android:drawableLeft="@drawable/notificacao"
         android:fontFamily="sans-serif-condensed"
-        android:textColor="@color/colorWhite"
+
         android:showText="true"
         android:text="  NOTIFICAÇÃO"
         android:textOff="Off"
@@ -46,6 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTituloConf"
         tools:ignore="MissingConstraints" />
+    <!-- android:textColor="@color/colorWhite"-->
 
 
     <Switch
@@ -57,7 +61,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:drawableLeft="@drawable/language"
-        android:textColor="@color/colorWhite"
         android:fontFamily="sans-serif-condensed"
         android:showText="true"
         android:text="  TRADUÇÃO"
@@ -71,6 +74,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switcher-notificacao"
         tools:ignore="MissingConstraints" />
+    <!--android:textColor="@color/colorWhite"-->
 
     <Switch
         android:id="@+id/switcher-luz"
@@ -79,7 +83,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@color/colorWhite"
+
         android:layout_marginRight="8dp"
         android:drawableLeft="@drawable/lampada"
         android:fontFamily="sans-serif-condensed"
@@ -95,6 +99,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switcher-traducao"
         tools:ignore="MissingConstraints" />
+    <!--android:textColor="@color/colorWhite"-->
 
 
     <TextView
@@ -108,10 +113,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="SALVAR"
-        android:textColor="@color/colorBlack"
+
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -119,6 +123,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switcher-luz"
         tools:ignore="MissingConstraints" />
+    <!-- android:background="@color/colorPrimary"-->
+    <!-- android:textColor="@color/colorBlack"-->
+
+    <Button
+        android:id="@+id/botao_theme_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="180dp"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="232dp"
+
+        android:text="Button"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/botao_theme_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switcher-luz" />
+    <!-- android:background="@color/colorPrimary"-->
+
+    <Button
+        android:id="@+id/botao_theme_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="232dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/botao_theme_light"
+        app:layout_constraintTop_toBottomOf="@+id/switcher-luz" />
+    <!--android:background="@color/colorBlack"-->
+
+    <!--android:textColor="@color/colorPrimary"-->
 
 
 </android.support.constraint.ConstraintLayout>

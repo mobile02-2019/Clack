@@ -3,6 +3,7 @@ package br.com.digitalhouse.clackapp.fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -37,6 +38,8 @@ public class ConfiguracoesFragment extends Fragment {
     TextView btnSalvar;
     TextView textView1id;
     private MandarSwitchListener mandarSwitchListener;
+    Button themeLight;
+    Button themeDark;
 
 
     @Override
@@ -89,19 +92,39 @@ public class ConfiguracoesFragment extends Fragment {
 
         constraintHome = view.findViewById(R.id.constraint_home);
 
+        themeLight = view.findViewById(R.id.botao_theme_light);
+
+        themeDark = view.findViewById(R.id.botao_theme_dark);
+
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("config", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("teste", switchLuz.isChecked());
+        editor.apply();
+
+        themeLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trocarCores(false);
+
+            }
+        });
+        themeDark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trocarCores(true);
+            }
+        });
+
+
+
 
         switchLuz.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                //todo coisa feita aqui tirei td que ta comentado embaixo
-                if (!isChecked){
-                    mandarSwitchListener.enviarInformacao(isChecked);
-                }
-                Toast.makeText(getContext(), "o tema agore é " + isChecked, Toast.LENGTH_SHORT).show();
 
-                //todo para funcionar nos outros fragments to enviando sen tirar esses comentados
-                // todo something, the isChecked will be
 
-        /* if (isChecked == true ){
+
+         if (isChecked == true ){
 
 
                    int clackColorValue = Color.parseColor("#ffe81a");
@@ -130,7 +153,7 @@ public class ConfiguracoesFragment extends Fragment {
                 btnSalvar.setTextColor(getResources().getColor(android.R.color.black));
                 btnSalvar.setBackgroundColor(clackColorValue);
 
-            }*/
+            }
         }
 
 
@@ -139,6 +162,11 @@ public class ConfiguracoesFragment extends Fragment {
     });
 
         return view;}
+
+    private void trocarCores(boolean info) {
+
+        mandarSwitchListener.enviarInformacao(info);
+    }
 
 
 }

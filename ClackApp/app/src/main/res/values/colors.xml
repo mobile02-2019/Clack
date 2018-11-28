@@ -11,4 +11,10 @@
     <color name="google">#ce2a15</color>
     <color name="ic_launcher_background">#ce2a15</color>
     <color name="colorbt">#f0de3e</color>
+    <color name="corRosa">#9f089a</color>
+    <color name="corVerde">#34f204</color>
+    <color name="corVermelho">#73d70917</color>
+    <color name="corDeTitulo">#f9f9f9</color>
+
+
 </resources>

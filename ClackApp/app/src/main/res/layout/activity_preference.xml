@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+
     android:orientation="vertical"
     tools:context=".PreferenceActivity">
+    <!--android:background="@color/colorPrimary"-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorBlack"
+
         android:orientation="horizontal">
+        <!--  android:background="@color/colorBlack"-->
 
         <TextView
             android:id="@+id/textView_hello_pref_id"
@@ -23,9 +25,10 @@
             android:layout_marginTop="24dp"
             android:layout_weight="4"
             android:text="@string/preference_greetings"
-            android:textColor="@color/colorPrimary"
+
             android:textSize="20sp"
             />
+        <!--android:textColor="@color/colorPrimary"-->
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView_profile_id"
@@ -58,7 +61,7 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="20dp"
                     android:text="@string/preference_choice"
-                    android:textColor="@color/colorBlack"
+                 
                     android:textSize="20sp"
                     android:textStyle="bold"
 

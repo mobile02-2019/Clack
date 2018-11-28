@@ -40,17 +40,20 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie,Man
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //todo coisa pra fazer aqui
-        SharedPreferences preferencess = this.getSharedPreferences(
-                "br.com.digitalhouse.clackapp", Context.MODE_PRIVATE);
-        boolean lightTheme = preferencess.getBoolean(THEME_PREFERENCE, false);
-
-        setTheme(lightTheme ? R.style.AppTheme : R.style.AppThemeDark);
-        Toast.makeText(this,"o tema é " + lightTheme,Toast.LENGTH_LONG).show();
-
-
         super.onCreate(savedInstanceState);
+       boolean tema = true;
+
+        if(getIntent().getExtras() != null){
+            tema = getIntent().getExtras().getBoolean("TEMA");
+        }
+
+        if (tema == true){
+            setTheme(R.style.AppTheme);
+        }else{
+            setTheme(R.style.AppThemeDark);
+        }
         setContentView(R.layout.activity_main);
+
 
 
         final ViewPager viewPager = findViewById(R.id.viewpager_id);
@@ -148,18 +151,16 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie,Man
 
 
     @Override
-    public void enviarInformacao(boolean isChecked) {
-        // TODO gravar nas preferencias
-      //TODO AQUIIIIIII
+    public void enviarInformacao(boolean info) {
 
-        SharedPreferences prefs = this.getSharedPreferences(
-                "br.com.digitalhouse.clackapp", Context.MODE_PRIVATE);
-        prefs.edit().putBoolean(THEME_PREFERENCE,isChecked).apply();
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+
+        Intent intent = getIntent();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("TEMA", info);
+        bundle.putBoolean("PREFERENCES", true);
+        intent.putExtras(bundle);
         finish();
-
-        //recreate();
+        startActivity(intent);
 
 
 
