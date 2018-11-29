@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/colorBlack</item>
+        <item name="colorPrimaryDark">@color/colorBlack</item>
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/colorBlack</item>
+        <item name="android:colorPrimary">@color/colorBlack</item>
+        <item name="android:colorPrimaryDark">@color/colorBlack</item>
+        <item name="android:colorAccent">@color/colorPrimary</item>
+
+
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorWhite</item>
+        <item name="android:colorBackground">@color/colorBlack</item>
+        <item name="android:navigationBarColor">@color/colorBlack</item>
+
+
+    </style>
+
+    <style name="AppAceso" parent="AppTheme">
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:colorForeground">@color/colorBlack</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+        <item name="android:windowBackground">@color/colorBlack</item>
+    </style>
+</resources>

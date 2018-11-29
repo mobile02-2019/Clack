@@ -70,13 +70,13 @@ public class ConfiguracoesFragment extends Fragment {
 
         switchTraducao = view.findViewById(R.id.switcher_traducao);
 
-        switchLuz = view.findViewById(R.id.switcher_luz);
+//        switchLuz = view.findViewById(R.id.switcher_luz);
 
         textTituloConf = view.findViewById(R.id.textTituloConf);
 
         constraintFavorito = view.findViewById(R.id.constraint_fav);
 
-        btnSalvar = view.findViewById(R.id.btn_salvar);
+//        btnSalvar = view.findViewById(R.id.btn_salvar);
 
         btnLogout = view.findViewById(R.id.button_logout_id);
 

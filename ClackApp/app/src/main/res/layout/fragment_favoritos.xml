@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorBlack"
     tools:ignore="MissingDefaultResource">
 
     <TextView
@@ -17,7 +17,7 @@
         android:layout_marginEnd="8dp"
         android:text="FAVORITOS"
         android:textAlignment="center"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
