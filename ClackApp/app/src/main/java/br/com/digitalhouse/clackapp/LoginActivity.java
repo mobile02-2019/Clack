@@ -177,8 +177,7 @@ public class LoginActivity extends Activity {
 
         if(mAuth.getCurrentUser()!=null){
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Intent intent = new Intent(this, PreferenceActivity.class);
-        startActivity(intent);
+        goToMain(currentUser);
     }
 
 }

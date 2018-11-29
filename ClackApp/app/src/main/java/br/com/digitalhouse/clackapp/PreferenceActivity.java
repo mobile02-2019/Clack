@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -13,12 +14,18 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PreferenceActivity extends AppCompatActivity {
+import br.com.digitalhouse.clackapp.interfaces.RealtimeDatabasePreferenciaCall;
+import br.com.digitalhouse.clackapp.model.User;
+import br.com.digitalhouse.clackapp.model.dto.PreferenceDTO;
+
+public class PreferenceActivity extends AppCompatActivity implements RealtimeDatabasePreferenciaCall {
 
     private TextView textViewHelloPref;
     private ImageView imageViewProfile;
@@ -45,6 +52,8 @@ public class PreferenceActivity extends AppCompatActivity {
     private List<CheckBox> checkBoxListAll = new ArrayList<>();
     private ArrayList<String> checkBoxListChecked = new ArrayList<>();
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +68,10 @@ public class PreferenceActivity extends AppCompatActivity {
                 for (CheckBox checkBox : checkBoxListAll) {
                     if (checkBox.isChecked()) {
                         checkBoxListChecked.add(checkBox.getText().toString());
+                        // TODO Write a message to the database
+                        inserindoDadosUser();
+                        /*myRef = database.getReference("preferences/" + mAuth.getCurrentUser().getUid());
+                        myRef.setValue(checkBoxListChecked);*/
                     }
                 }
                 if (checkBoxListChecked.size() == 4) {
@@ -74,11 +87,12 @@ public class PreferenceActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
-
         if (user != null) {
             Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
             textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
         }
+
+
     }
 
     public void setupIds() {
@@ -137,4 +151,104 @@ public class PreferenceActivity extends AppCompatActivity {
         return bundleHome;
     }
 
+    //TODO nesse método que seria setado o checkbox
+    private void inserindoDadosUser (){
+        User user = new User();
+        String user_id = mAuth.getCurrentUser().getUid();
+        DatabaseReference current_user_db = myRef.child(user_id);
+
+        Boolean box1Checked = checkBoxAcao.isChecked();
+        myRef.setValue(box1Checked);
+
+        if(checkBoxAcao.isChecked()) {
+            current_user_db.child("1").setValue("Check Action");
+        }
+
+        if(checkBoxAnimacao.isChecked()) {
+            current_user_db.child("2").setValue("Check Animation");
+        }
+
+        if(checkBoxAventura.isChecked()) {
+            current_user_db.child("3").setValue("Check Adventure");
+        }
+
+        if(checkBoxCinemaTv.isChecked()) {
+            current_user_db.child("4").setValue("Check CineTV");
+        }
+
+        if(checkBoxComedia.isChecked()) {
+            current_user_db.child("5").setValue("Check Comedy");
+        }
+
+        if(checkBoxCrime.isChecked()) {
+            current_user_db.child("6").setValue("Check Crime");
+        }
+
+        if(checkBoxDocumentario.isChecked()) {
+            current_user_db.child("7").setValue("Check Documentary");
+        }
+
+        if(checkBoxDrama.isChecked()) {
+            current_user_db.child("8").setValue("Check Drama");
+        }
+
+        if(checkBoxFamilia.isChecked()) {
+            current_user_db.child("9").setValue("Check Family");
+        }
+
+        if(checkBoxFantasia.isChecked()) {
+            current_user_db.child("10").setValue("Check Fantasy");
+        }
+
+        if(checkBoxFaroeste.isChecked()) {
+            current_user_db.child("11").setValue("Check Far west");
+        }
+
+        if(checkBoxFiccaoCientifica.isChecked()) {
+            current_user_db.child("12").setValue("Check Science Fiction");
+        }
+
+        if(checkBoxGuerra.isChecked()) {
+            current_user_db.child("13").setValue("Check War");
+        }
+
+        if(checkBoxHistoria.isChecked()) {
+            current_user_db.child("14").setValue("Check History");
+        }
+
+        if(checkBoxMisterio.isChecked()) {
+            current_user_db.child("15").setValue("Check Mistery");
+        }
+
+        if(checkBoxMusica.isChecked()) {
+            current_user_db.child("16").setValue("Check Music");
+        }
+
+        if(checkBoxRomance.isChecked()) {
+            current_user_db.child("17").setValue("Check Romance");
+        }
+
+        if(checkBoxTerror.isChecked()) {
+            current_user_db.child("18").setValue("Check Terror");
+        }
+
+        if(checkBoxThriller.isChecked()) {
+            current_user_db.child("19").setValue("Check Thriller");
+        }
+
+        Intent interestIntent = new Intent(this, MainActivity.class);
+        interestIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(interestIntent);
+
+    }
+
+    @Override
+    public void onDataChange(PreferenceDTO preferenceDTO) {
+
+    }
+
+    @Override
+    public void onDataCanceled() {
+
+    }
 }
