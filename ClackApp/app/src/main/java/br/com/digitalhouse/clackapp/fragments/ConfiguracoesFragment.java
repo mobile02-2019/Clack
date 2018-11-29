@@ -86,44 +86,44 @@ public class ConfiguracoesFragment extends Fragment {
 
         constraintHome = view.findViewById(R.id.constraint_home);
 
-        switchLuz.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // do something, the isChecked will be
-                // true if the switch is in the On position
-                if (isChecked == true ){
-                    // transformar em inteiro
-                    int clackColorValue = Color.parseColor("#ffe81a");
-                    constraintFavorito.setBackgroundColor(clackColorValue);
-                    textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
-                    textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
-                    switchNot.setTextColor(getResources().getColor(android.R.color.black));
-                    switchTraducao.setTextColor(getResources().getColor(android.R.color.black));
-                    switchLuz.setTextColor(getResources().getColor(android.R.color.black));
-                    btnSalvar.setTextColor(getResources().getColor(android.R.color.white));
-                    btnSalvar.setBackgroundColor(getResources().getColor(android.R.color.black));
-//                    textView1id.setBackgroundColor(getResources().getColor(android.R.color.black));
-//                    constraintHome.setBackgroundColor(clackColorValue);
-
-                }
-                if(isChecked == false) {
-//                    contextThemeWrapper.setTheme(R.style.AppEscuro);
-                    int clackColorValue = Color.parseColor("#ffe81a");
-
-                    constraintFavorito.setBackgroundColor(getResources().getColor(android.R.color.black));
-                    textTituloConf.setTextColor(getResources().getColor(android.R.color.white));
-                    switchNot.setTextColor(getResources().getColor(android.R.color.white));
-                    switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
-                    switchLuz.setTextColor(getResources().getColor(android.R.color.white));
-                    btnSalvar.setTextColor(getResources().getColor(android.R.color.black));
-                    btnSalvar.setBackgroundColor(clackColorValue);
-
-
+//        switchLuz.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                // do something, the isChecked will be
+//                // true if the switch is in the On position
+//                if (isChecked == true ){
+//                    // transformar em inteiro
+//                    int clackColorValue = Color.parseColor("#ffe81a");
+//                    constraintFavorito.setBackgroundColor(clackColorValue);
+//                    textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
+//                    textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
+//                    switchNot.setTextColor(getResources().getColor(android.R.color.black));
+//                    switchTraducao.setTextColor(getResources().getColor(android.R.color.black));
+//                    switchLuz.setTextColor(getResources().getColor(android.R.color.black));
+//                    btnSalvar.setTextColor(getResources().getColor(android.R.color.white));
+//                    btnSalvar.setBackgroundColor(getResources().getColor(android.R.color.black));
+////                    textView1id.setBackgroundColor(getResources().getColor(android.R.color.black));
+////                    constraintHome.setBackgroundColor(clackColorValue);
+//
+//                }
+//                if(isChecked == false) {
+////                    contextThemeWrapper.setTheme(R.style.AppEscuro);
+//                    int clackColorValue = Color.parseColor("#ffe81a");
+//
+//                    constraintFavorito.setBackgroundColor(getResources().getColor(android.R.color.black));
+//                    textTituloConf.setTextColor(getResources().getColor(android.R.color.white));
 //                    switchNot.setTextColor(getResources().getColor(android.R.color.white));
 //                    switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
 //                    switchLuz.setTextColor(getResources().getColor(android.R.color.white));
-                }
-            }
-        });
+//                    btnSalvar.setTextColor(getResources().getColor(android.R.color.black));
+//                    btnSalvar.setBackgroundColor(clackColorValue);
+//
+//
+////                    switchNot.setTextColor(getResources().getColor(android.R.color.white));
+////                    switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
+////                    switchLuz.setTextColor(getResources().getColor(android.R.color.white));
+//                }
+//            }
+//        });
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override

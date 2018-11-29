@@ -17,14 +17,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/primeiro_filme_id"
-        android:layout_width="104dp"
-        android:layout_height="144dp"
-        android:layout_margin="8dp"
-        android:src="@drawable/cover_nasceumaestrela"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/primeiro_filme_id"
+            android:layout_width="104dp"
+            android:layout_height="144dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/cover_nasceumaestrela"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/TituloPrimeiroFilme_id"
