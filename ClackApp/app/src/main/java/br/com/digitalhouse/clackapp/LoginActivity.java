@@ -143,7 +143,7 @@ public class LoginActivity extends Activity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(LoginActivity.this, "Authentication successful! Enjoy our gallery!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this, "Authentication successful!", Toast.LENGTH_LONG).show();
                                         bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
                                         intent.putExtras(bundle);
                                         startActivity(intent);

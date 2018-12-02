@@ -1,24 +1,34 @@
 package br.com.digitalhouse.clackapp;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.digitalhouse.clackapp.model.Preference;
+
 public class PreferenceActivity extends AppCompatActivity {
+
+    private static final String TAG = "PreferenceActivity";
 
     private TextView textViewHelloPref;
     private ImageView imageViewProfile;
@@ -44,7 +54,10 @@ public class PreferenceActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private List<CheckBox> checkBoxListAll = new ArrayList<>();
     private ArrayList<String> checkBoxListChecked = new ArrayList<>();
+
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +65,7 @@ public class PreferenceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preference);
         setupIds();
         getCheckBoxListAll();
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +76,9 @@ public class PreferenceActivity extends AppCompatActivity {
                     }
                 }
                 if (checkBoxListChecked.size() == 4) {
+                    savePreference();
+
+                    //Mudando de activity
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     intent.putExtras(bundleHome());
                     startActivity(intent);
@@ -78,6 +95,97 @@ public class PreferenceActivity extends AppCompatActivity {
         if (user != null) {
             Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
             textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
+        }
+
+        //Ler filtros do Firebase
+        loadPreferences();
+    }
+
+    public void loadPreferences() {
+        try{
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("preferences/"+mAuth.getUid());
+
+            myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Preference preference = dataSnapshot.getValue(Preference.class);
+                Log.d(TAG,"Value is: "+preference);
+                if (preference != null){
+                    setChecked(preference.getPreferenciaSelecionada1());
+                    setChecked(preference.getPreferenciaSelecionada2());
+                    setChecked(preference.getPreferenciaSelecionada3());
+                    setChecked(preference.getPreferenciaSelecionada4());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });}catch (Exception ex){
+
+        }
+    }
+    private void setChecked(String genre) {
+        switch (genre) {
+            case "Ação":
+                checkBoxAcao.setChecked(true);
+                break;
+            case "Animação":
+                checkBoxAnimacao.setChecked(true);
+                break;
+            case "Aventura":
+                checkBoxAventura.setChecked(true);
+                break;
+            case "Cinema TV":
+                checkBoxCinemaTv.setChecked(true);
+                break;
+            case "Comédia":
+                checkBoxComedia.setChecked(true);
+                break;
+            case "Crime":
+                checkBoxCrime.setChecked(true);
+                break;
+            case "Documentário":
+                checkBoxDocumentario.setChecked(true);
+                break;
+            case "Drama":
+                checkBoxDrama.setChecked(true);
+                break;
+            case "Família":
+                checkBoxFamilia.setChecked(true);
+                break;
+            case "Fantasia":
+                checkBoxFantasia.setChecked(true);
+                break;
+            case "Faroeste":
+                checkBoxFaroeste.setChecked(true);
+                break;
+            case "Ficção Científica":
+                checkBoxFiccaoCientifica.setChecked(true);
+                break;
+            case "Guerra":
+                checkBoxGuerra.setChecked(true);
+                break;
+            case "História":
+                checkBoxHistoria.setChecked(true);
+                break;
+            case "Mistério":
+                checkBoxMisterio.setChecked(true);
+                break;
+            case "Música":
+                checkBoxMusica.setChecked(true);
+                break;
+            case "Romance":
+                checkBoxRomance.setChecked(true);
+                break;
+            case "Terror":
+                checkBoxTerror.setChecked(true);
+                break;
+            case "Thriller":
+                checkBoxThriller.setChecked(true);
+                break;
         }
     }
 
@@ -135,6 +243,20 @@ public class PreferenceActivity extends AppCompatActivity {
         Bundle bundleHome = new Bundle();
         bundleHome.putStringArrayList("checados" ,checkBoxListChecked);
         return bundleHome;
+    }
+
+    public void savePreference(){
+        //criar objeto preference
+        Preference preference = new Preference();
+        //definir filtro 1234 com checkBoxListChecked
+        preference.setPreferenciaSelecionada1(checkBoxListChecked.get(0));
+        preference.setPreferenciaSelecionada2(checkBoxListChecked.get(1));
+        preference.setPreferenciaSelecionada3(checkBoxListChecked.get(2));
+        preference.setPreferenciaSelecionada4(checkBoxListChecked.get(3));
+        //salvar no firebase
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("preferences/"+mAuth.getUid());
+        myRef.setValue(preference);
     }
 
 }

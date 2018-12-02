@@ -66,12 +66,10 @@ public class Register extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 //criarUsuario();
-                                //TODO mexi a partir daqui
                                 Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getInstance().getCurrentUser();
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                         .setDisplayName(firstNameInput.getText().toString())
-                                        //.setDisplayName(lastNameInput.getText().toString())
                                         .build();
 
                                 user.updateProfile(profileUpdates)
