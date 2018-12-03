@@ -321,7 +321,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right|bottom"
             android:layout_margin="16dp"
-            app:srcCompat="@drawable/icon_preference_save" />
+            app:srcCompat="@drawable/icon_preference_save"
+            android:backgroundTint="@color/colorBlack"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

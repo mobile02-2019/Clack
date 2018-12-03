@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragments.DetailFragment"
-    android:background="@color/colorPrimary">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,9 +21,9 @@
             android:layout_margin="8dp"
             android:text="Nome do Filme"
             android:textSize="24sp"
-            android:textColor="@color/colorBlack"
             android:gravity="center"
-            android:id="@+id/titulo_act_id"/>
+            android:id="@+id/titulo_act_id"
+            android:textColor="@color/colorPrimary"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sinopse_act_id"
             android:text="A vida de Louis, um menino de doze anos, muda completamente quando a nave espacial de três alienígenas cai nos fundos do quintal de sua casa. Seu pai, um ufologista famoso, congelaria os novos amigos na primeira oportunidade, por isso ele precisa protegê-los e ajudá-los a descobrir o paradeiro da nave mãe, para que só assim eles consigam voltar para casa."
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorPrimary"
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_margin="8dp"
@@ -76,7 +76,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textColor="@color/colorBlack" />
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/textView_nota_id"
@@ -88,7 +88,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textColor="@color/colorBlack"/>
+            android:textColor="@color/colorPrimary"/>
 
     </LinearLayout>
 
