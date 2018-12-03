@@ -26,11 +26,11 @@
             android:textColor="@color/colorPrimary"/>
 
         <ImageView
+            android:id="@+id/imagem_act_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:id="@+id/imagem_act_id"
             android:layout_gravity="center"
+            android:layout_margin="8dp"
             android:src="@drawable/cover_amigosalienigenas" />
 
         <TextView

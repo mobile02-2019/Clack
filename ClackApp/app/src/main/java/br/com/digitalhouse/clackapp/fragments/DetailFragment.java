@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class DetailFragment extends Fragment {
     private ImageView share;
     private Movie movie;
     private Button botaoSalva;
+    private ImageButton botaoFechar;
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
@@ -57,19 +59,30 @@ public class DetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
 
+
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
+        botaoFechar = view.findViewById(R.id.botao_fechar_id);
 
-        botaoSalva = view.findViewById(R.id.botao_para_salva);
-        botaoSalva.setOnClickListener(new View.OnClickListener() {
+
+        botaoFechar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                salvarFilmeLocal( movie);
-
-
+                getFragmentManager().popBackStack();
             }
         });
+
+
+//        botaoSalva = view.findViewById(R.id.botao_para_salva);
+//        botaoSalva.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                salvarFilmeLocal(movie);
+//
+//
+//            }
+//        });
 
 
         share.setOnClickListener(new View.OnClickListener() {

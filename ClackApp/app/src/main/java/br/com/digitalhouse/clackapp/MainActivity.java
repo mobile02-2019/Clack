@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie {
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
 
-        navigationView = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigationView = findViewById(R.id.navigationView);
 
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie {
     public void replaceFragment(Fragment fragment){
        FragmentManager manager = getSupportFragmentManager();
        FragmentTransaction transaction = manager.beginTransaction();
-       transaction.replace(R.id.container_main_id,fragment);
+       transaction.replace(R.id.container_detalhes_id,fragment);
        transaction.addToBackStack(null);
        transaction.commit();
     }
