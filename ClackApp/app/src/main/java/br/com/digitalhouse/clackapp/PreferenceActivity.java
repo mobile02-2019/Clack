@@ -248,7 +248,7 @@ public class PreferenceActivity extends AppCompatActivity {
     public void savePreference(){
         //criar objeto preference
         Preference preference = new Preference();
-        //definir filtro 1234 com checkBoxListChecked
+        //definir filtro com checkBoxListChecked
         preference.setPreferenciaSelecionada1(checkBoxListChecked.get(0));
         preference.setPreferenciaSelecionada2(checkBoxListChecked.get(1));
         preference.setPreferenciaSelecionada3(checkBoxListChecked.get(2));
