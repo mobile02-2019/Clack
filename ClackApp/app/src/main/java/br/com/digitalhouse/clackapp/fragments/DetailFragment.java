@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -29,6 +30,7 @@ public class DetailFragment extends Fragment {
     private ImageView imagemPost;
     private ImageView share;
     private Movie movie;
+    private ImageView favorito;
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
@@ -52,6 +54,13 @@ public class DetailFragment extends Fragment {
 
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
+        favorito = view.findViewById(R.id.favoritar_film);
+        favorito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"nao bugou",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
