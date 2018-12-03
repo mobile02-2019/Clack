@@ -11,13 +11,13 @@ import retrofit2.http.Query;
 
 public interface MovieAPI {
 
-    @GET("/3/search/movie?api_key=04b84289e6046e45993b288a7e1fe2dc&language=en-US&include_adult=false")
+    @GET("/3/search/movie?api_key=32e03a155eeadffc58dd74f4d0f4669c&language=en-US&include_adult=false")
     Call<MovieResponse> searchMovies(@Query("query") String query);
 
-    @GET("/3/discover/movie?api_key=04b84289e6046e45993b288a7e1fe2dc&language=en-US&include_adult=false")
+    @GET("/3/discover/movie?api_key=32e03a155eeadffc58dd74f4d0f4669c&language=en-US&include_adult=false")
     Call<MovieResponse> getByGenreId(@Query("with_genres") Integer id);
 
-    @GET("/3/movie/popular?api_key=04b84289e6046e45993b288a7e1fe2dc&language=en-US&include_adult=false")
+    @GET("/3/movie/popular?api_key=32e03a155eeadffc58dd74f4d0f4669c&language=en-US&include_adult=false")
     Call<MovieResponse> getPopularMovies();
 
 }
