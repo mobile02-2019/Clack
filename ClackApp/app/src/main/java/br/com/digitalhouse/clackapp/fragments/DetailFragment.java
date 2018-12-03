@@ -1,6 +1,8 @@
 package br.com.digitalhouse.clackapp.fragments;
 
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +11,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -18,6 +22,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.digitalhouse.clackapp.R;
+import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
+import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.service.RetrofitService;
 
@@ -29,6 +35,7 @@ public class DetailFragment extends Fragment {
     private ImageView imagemPost;
     private ImageView share;
     private Movie movie;
+    private Button botaoSalva;
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
@@ -48,10 +55,22 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.activity_detail, container, false);
+        View view = inflater.inflate(R.layout.fragment_detail, container, false);
 
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
+
+        botaoSalva = view.findViewById(R.id.botao_para_salva);
+        botaoSalva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                salvarFilmeLocal( movie);
+
+
+            }
+        });
+
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +120,29 @@ public class DetailFragment extends Fragment {
         return view;
 
     }
+
+    private void salvarFilmeLocal(Movie movie) {
+        // Gets the data repository in write mode
+        FilmesFavoritosDbHelper mDbHelper = new FilmesFavoritosDbHelper(getContext());
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE, movie.getNome());
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE, movie.getData().toString());
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER, movie.getPoster());
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA, movie.getNota());
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO, movie.getGeneros().toString());
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE, movie.getGeneros().toString());
+
+
+
+// Insert the new row, returning the primary key value of the new row
+       long newRowId = db.insert(FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME, null, values);
+
+    }
+
+
 
     public void onShareClicado(Movie movie){
         Intent share = new Intent(Intent.ACTION_SEND);

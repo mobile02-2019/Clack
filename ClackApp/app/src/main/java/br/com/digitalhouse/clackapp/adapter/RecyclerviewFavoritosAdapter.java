@@ -9,38 +9,40 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.model.FilmeFavorito;
 import br.com.digitalhouse.clackapp.R;
+import br.com.digitalhouse.clackapp.model.Movie;
+import br.com.digitalhouse.clackapp.service.RetrofitService;
 
 public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<RecyclerviewFavoritosAdapter.ViewHolder> {
 
-    private List<FilmeFavorito> filmeFavoritosList;
+    private List<Movie> filmeFavoritosList = new ArrayList<>();
 
-    public RecyclerviewFavoritosAdapter(List<FilmeFavorito> filmeFavoritosList) {
+    public RecyclerviewFavoritosAdapter(List<Movie> filmeFavoritosList) {
         this.filmeFavoritosList = filmeFavoritosList;
+        notifyDataSetChanged();
+
     }
 
-    public List<FilmeFavorito> getFilmeFavoritosList() {
-        return filmeFavoritosList;
-    }
 
-    public void setFilmeFavoritosList(List<FilmeFavorito> filmeFavoritosList) {
-        this.filmeFavoritosList = filmeFavoritosList;
-    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.modelo_recyclerview_favoritos, viewGroup, false);
+        //if (listavazia) colocar background visible
         return new ViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        FilmeFavorito filmeFavoritos = filmeFavoritosList.get(i);
+        Movie filmeFavoritos = filmeFavoritosList.get(i);
         viewHolder.bind(filmeFavoritos);
 
     }
@@ -65,11 +67,12 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             imagemView = itemView.findViewById(R.id.primeiro_filme_id);
         }
 
-        public void bind(final FilmeFavorito filmeFavoritos) {
-            titulo.setText(filmeFavoritos.getTitulo());
-            sinopse.setText(filmeFavoritos.getSinopse());
+        public void bind(final Movie movie) {
+            titulo.setText(movie.getNome());
+            sinopse.setText(movie.getSinopse());
+            Picasso.get().load(RetrofitService.BASE_IMAGE_URL+ movie.getPoster()).into(imagemView);
 
-            imagemView.setImageResource(filmeFavoritos.getImageView());
+
         }
     }
 }

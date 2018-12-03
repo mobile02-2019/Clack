@@ -1,7 +1,10 @@
 package br.com.digitalhouse.clackapp.fragments;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,11 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.adapter.RecyclerviewFavoritosAdapter;
+import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
+import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
 import br.com.digitalhouse.clackapp.model.FilmeFavorito;
+import br.com.digitalhouse.clackapp.model.Movie;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,32 +54,78 @@ public class FavoritosFragment extends Fragment {
     }
 
 
-    private List<FilmeFavorito> getFilmeFavoritosList(){
-        List<FilmeFavorito> filmeFavoritosList = new ArrayList<>();
+    private List<Movie> getFilmeFavoritosList(){
+        List<Movie> filmeFavoritosList = new ArrayList<>();
 
-        FilmeFavorito filmeFavoritos = new FilmeFavorito();
-        filmeFavoritos.setImageView(R.drawable.cover_nasceumaestrela);
-        filmeFavoritos.setTitulo("NASCE UMA ESTRELA ");
-        filmeFavoritos.setSinopse("Nesta releitura da trágica história de amor, Cooper interpreta o experiente músico Jackson Maine, que descobre a artista desconhecida Ally (Gaga), por quem se apaixona.…");
-        filmeFavoritosList.add(filmeFavoritos);
+        FilmesFavoritosDbHelper mDbHelper = new FilmesFavoritosDbHelper(getContext());
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
-        FilmeFavorito filmeFavoritos2 = new FilmeFavorito();
-        filmeFavoritos2.setImageView(R.drawable.cover_amigosalienigenas);
-        filmeFavoritos2.setTitulo("AMIGOS ALIENIGENAS");
-        filmeFavoritos2.setSinopse("A vida de Louis, um menino de doze anos, muda completamente quando a nave espacial de três alienígenas cai nos fundos do quintal de sua casa....");
-        filmeFavoritosList.add(filmeFavoritos2);
+// Define a projection that specifies which columns from the database
+// you will actually use after this query.
+        String[] projection = {
+                BaseColumns._ID,
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE,
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE,
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER,
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO,
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA
+        };
 
-        FilmeFavorito filmeFavoritos3 = new FilmeFavorito();
-        filmeFavoritos3.setImageView(R.drawable.cover_casadomedo);
-        filmeFavoritos3.setTitulo("CASA DO MEDO");
-        filmeFavoritos3.setSinopse("Pauline acaba de herdar uma casa de sua tia e então decide morar lá com suas duas filhas, Beth e Vera. Mas, logo na primeira noite, o lugar é atacado por violentos…");
-        filmeFavoritosList.add(filmeFavoritos3);
+// Filter results WHERE "title" = 'My Title'
+        String selection = FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE + " = ?";
+        String[] selectionArgs = { "My Title" };
 
-        FilmeFavorito filmeFavoritos4 = new FilmeFavorito();
-        filmeFavoritos4.setImageView(R.drawable.cover_oscrimesdegrindelwald);
-        filmeFavoritos4.setTitulo("OS CRIMES DE GRINDELWAD");
-        filmeFavoritos4.setSinopse("Newt Scamander reencontra os queridos amigos Tina Goldstein, Queenie Goldstein e Jacob Kowalski. Ele é recrutado pelo seu antigo professor em Hogwarts, Alvo Dumbledore, para enfrentar o terrível bruxo das trevas…");
-        filmeFavoritosList.add(filmeFavoritos4);
+// How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE + " DESC";
+
+        Cursor cursor = db.query(
+                FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                null,              // The columns for the WHERE clause
+                null,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                sortOrder               // The sort order
+        );
+
+
+        while(cursor.moveToNext()) {
+
+            //adicionar um campo por vez
+            //leio e add o nome
+            String nome = cursor.getString(
+                    cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry._ID));
+            String poster = cursor.getString(
+                    cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER));
+            String sinopse = cursor.getString(
+                    cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE));
+            float nota = cursor.getFloat(cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA));
+
+           // List<Integer> genero = cursor.(cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO));
+
+          //  String data = cursor.getString(cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE));
+
+
+
+            Movie movie = new Movie();
+            movie.setNome(nome);
+            movie.setPoster(poster);
+           // movie.setGeneros(genero);
+            movie.setNota(nota);
+            movie.setSinopse(sinopse);
+            //movie.setData(data);
+
+
+
+            filmeFavoritosList.add(movie);
+
+
+        }
+        cursor.close();
+
+        
+
 
         return filmeFavoritosList;
     }
