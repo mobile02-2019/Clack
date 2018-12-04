@@ -69,12 +69,15 @@
             android:id="@+id/titulo_act_id"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="TITULO"
             android:textColor="@color/colorWhite"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:layout_editor_absoluteX="156dp"
-            tools:layout_editor_absoluteY="58dp" />
+            app:layout_constraintStart_toEndOf="@+id/imagem_act_id"
+            app:layout_constraintTop_toBottomOf="@+id/botao_fechar_id" />
 
         <TextView
             android:id="@+id/textView_nota_id"
@@ -90,7 +93,7 @@
 
         <TextView
             android:id="@+id/textView_data_id"
-            android:layout_width="180"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
