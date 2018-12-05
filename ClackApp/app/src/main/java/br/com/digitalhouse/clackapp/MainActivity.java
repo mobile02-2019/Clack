@@ -23,13 +23,15 @@ import br.com.digitalhouse.clackapp.fragments.ConfiguracoesFragment;
 import br.com.digitalhouse.clackapp.fragments.HomeFragment;
 import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
 import br.com.digitalhouse.clackapp.model.Movie;
 import retrofit2.http.GET;
 
-public class MainActivity extends AppCompatActivity implements ReceptorMovie, UpdateMovies {
+public class MainActivity extends AppCompatActivity implements ReceptorMovie, UpdateMovies, FavoritosListener {
 
+    public static final String OBJ_FAVORITO = "favoritos" ;
     private BottomNavigationView navigationView;
     MenuItem prevMenuItem;
     private DetailFragment fragmentDetalhe;
@@ -139,5 +141,16 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie, Up
         FragmentViewPagerAdapter adapter = (FragmentViewPagerAdapter) viewPager.getAdapter();
         Fragment fragment = adapter.getItem(1);
         fragment.onResume();
+    }
+
+    @Override
+    public void iniciarFragmentDetalheFavorito(Movie movie) {
+        fragmentDetalhe = new DetailFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(OBJ_FAVORITO, movie);
+        fragmentDetalhe.setArguments(bundle);
+
+        replaceFragment(fragmentDetalhe);
     }
 }

@@ -23,7 +23,9 @@ import br.com.digitalhouse.clackapp.adapter.RecyclerviewFavoritosAdapter;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
+import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
+import br.com.digitalhouse.clackapp.interfaces.RecyclerListenerFavoritos;
 import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
 import br.com.digitalhouse.clackapp.model.FilmeFavorito;
 import br.com.digitalhouse.clackapp.model.Movie;
@@ -31,18 +33,26 @@ import br.com.digitalhouse.clackapp.model.Movie;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoritosFragment extends Fragment implements CardMovieClicado {
+public class FavoritosFragment extends Fragment implements CardMovieClicado,RecyclerListenerFavoritos {
 
     private RecyclerView recyclerView;
     private RecyclerviewFavoritosAdapter favoritosAdapter;
     private FilmesFavoritosDbHelper dbHelper;
     private CardView cardFilmeFavorito;
     private ReceptorMovie listener;
+    private FavoritosListener listenerFavoritos;
+    private List<Movie> listaFavoritos = new ArrayList<>();
 
     public FavoritosFragment() {
         // Required empty public constructor
     }
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.listenerFavoritos = (FavoritosListener) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +62,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado {
 
         recyclerView = view.findViewById(R.id.recyclerview_favoritos_id);
 
-        favoritosAdapter = new RecyclerviewFavoritosAdapter();
+        favoritosAdapter = new RecyclerviewFavoritosAdapter(listaFavoritos,this);
 
         recyclerView.setAdapter(favoritosAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -103,7 +113,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado {
                 sortOrder               // The sort order
         );
 
-        List<Movie> listaFavoritos = new ArrayList<>();
+
         while(cursor.moveToNext()) {
             String nome = cursor.getString(
                     cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE));
@@ -134,6 +144,12 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado {
     @Override
     public void onMovieClicado(Movie movie) {
         listener.receberMovieClicado(movie);
+
+    }
+
+    @Override
+    public void onFavoritoClicado(Movie movie) {
+        listenerFavoritos.iniciarFragmentDetalheFavorito(movie);
 
     }
 }

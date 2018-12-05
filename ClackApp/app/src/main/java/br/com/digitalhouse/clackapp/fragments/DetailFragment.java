@@ -23,9 +23,11 @@ import com.squareup.picasso.Picasso;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import br.com.digitalhouse.clackapp.MainActivity;
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
+import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.service.RetrofitService;
@@ -41,8 +43,9 @@ public class DetailFragment extends Fragment {
     private ImageView favoritarFilme;
     private ImageButton botaoFechar;
     private FilmesFavoritosDbHelper mDbHelper;
-    private  SQLiteDatabase db;
+    private SQLiteDatabase db;
     private UpdateMovies listenerUpdate;
+    private FavoritosListener favoritosListener;
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
@@ -61,6 +64,8 @@ public class DetailFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         listenerUpdate = (UpdateMovies) context;
+        this.movie = (Movie) getArguments().getSerializable(MainActivity.OBJ_FAVORITO);
+        this.favoritosListener = (FavoritosListener) context;
     }
 
     @Override
