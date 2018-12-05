@@ -141,25 +141,62 @@ public class LoginActivity extends Activity {
         loginClicado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              database = FirebaseDatabase.getInstance();
-              myRef = database.getReference().child("preference");
+                if(mAuth.getCurrentUser()!=null){
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+                    try {
+                        //referencia database firebase
+                        database = FirebaseDatabase.getInstance();
+                        myRef = database.getReference("preferences/" + mAuth.getUid());
+                        //tenta buscar preferencia
+                        myRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                //tenta atribuir preferencia do firebase
+                                Preference preference = dataSnapshot.getValue(Preference.class);
+                                Log.d(TAG, "Value is: " + preference);
 
-                if (myRef){
+                                //se existir preferencias, criar array de string com os generos e enviar para Home
+                                if (preference != null) {
+                                    //abre um intent
+                                    //Cria bundle
+                                    Bundle bundleParaHome = new Bundle();
+                                    //adiciona na lista string de generos
+                                    listaChecados.add(preference.getPreferenciaSelecionada1());
+                                    listaChecados.add(preference.getPreferenciaSelecionada2());
+                                    listaChecados.add(preference.getPreferenciaSelecionada3());
+                                    listaChecados.add(preference.getPreferenciaSelecionada4());
+                                    //adiciona lista de string no bundle
+                                    bundleParaHome.putStringArrayList("checados" , listaChecados);
+                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    //adiciona bundle no intent
+                                    intent.putExtras(bundleParaHome);
+                                    startActivity(intent);
+                                }else{//se nao existir preferencia, vai para tela de preferencias para serem criadas
+                                    //abre a outra Activity
+                                    Intent intent = new Intent(getApplicationContext(),PreferenceActivity.class);
+                                    startActivity(intent);
+                                }
+                            }
 
-                    final Intent itent = new Intent(v.getContext(), MainActivity.class));
-                    final Bundle bundle = new Bundle();
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+                            }
+                        });
+                    }catch (Exception ex) {
+
+                    }
                 }
 
 
                 //Toast.makeText(LoginActivity.this, "Estou no loginClicado.OnClick", Toast.LENGTH_SHORT).show();
-                final Intent intent = new Intent(v.getContext(),    Preference.class);
+             /*  final Intent intent = new Intent(v.getContext(),    Preference.class);
                 final Bundle bundle = new Bundle();
 
                 final Button buttonLogin = findViewById(R.id.login_button);
 
 
-                if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")) {
+               if (!emailDigitado.getText().toString().equals("") && !passwordDigitado.getText().toString().equals("")) {
                     mAuth.signInWithEmailAndPassword(emailDigitado.getText().toString(), passwordDigitado.getText().toString())
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -191,7 +228,7 @@ public class LoginActivity extends Activity {
                             });
                 } else {
                     Toast.makeText(LoginActivity.this, "You need to provide an email and a password in order to Log In.", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
     }
