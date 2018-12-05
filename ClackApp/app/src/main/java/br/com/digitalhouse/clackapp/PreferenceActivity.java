@@ -1,6 +1,10 @@
 package br.com.digitalhouse.clackapp;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.provider.BaseColumns;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +28,11 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.digitalhouse.clackapp.database.PreferenceReaderContract;
+import br.com.digitalhouse.clackapp.database.PreferenceReaderDbHelper;
 import br.com.digitalhouse.clackapp.model.Preference;
+
+import static java.security.AccessController.getContext;
 
 public class PreferenceActivity extends AppCompatActivity {
 
@@ -54,10 +62,15 @@ public class PreferenceActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     private List<CheckBox> checkBoxListAll = new ArrayList<>();
     private ArrayList<String> checkBoxListChecked = new ArrayList<>();
+    private Preference preference;
+    private Bundle bundle;
+    private Intent intent;
 
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+
+    private PreferenceReaderDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +78,8 @@ public class PreferenceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_preference);
         setupIds();
         getCheckBoxListAll();
+
+        mDbHelper = new PreferenceReaderDbHelper(getApplicationContext());
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +93,10 @@ public class PreferenceActivity extends AppCompatActivity {
                 if (checkBoxListChecked.size() == 4) {
                     savePreference();
 
+                    cadastrarPreferencesSQL();
+
                     //Mudando de activity
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    intent = new Intent(view.getContext(), MainActivity.class);
                     intent.putExtras(bundleHome());
                     startActivity(intent);
                 } else {
@@ -99,19 +116,31 @@ public class PreferenceActivity extends AppCompatActivity {
 
         //Ler filtros do Firebase
         loadPreferences();
+        exibirPreferencesSQL();
+
+
+        /*bundle = intent.getExtras();
+
+        if (bundle.getBoolean(LoginActivity.VEIO_DO_LOGIN,false)){
+            loadPreferences();
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }*/
     }
 
     public void loadPreferences() {
         try{
-            database = FirebaseDatabase.getInstance();
+            //referencia database firebase
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
             myRef = database.getReference("preferences/"+mAuth.getUid());
-
+            //tenta buscar preferencia
             myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //tenta atribuir preferencia do firebase
                 Preference preference = dataSnapshot.getValue(Preference.class);
                 Log.d(TAG,"Value is: "+preference);
-                if (preference != null){
+                if (preference != null){//se existir, define as preferencias
                     setChecked(preference.getPreferenciaSelecionada1());
                     setChecked(preference.getPreferenciaSelecionada2());
                     setChecked(preference.getPreferenciaSelecionada3());
@@ -127,7 +156,8 @@ public class PreferenceActivity extends AppCompatActivity {
 
         }
     }
-    private void setChecked(String genre) {
+
+    public void setChecked(String genre) {
         switch (genre) {
             case "Ação":
                 checkBoxAcao.setChecked(true);
@@ -189,6 +219,88 @@ public class PreferenceActivity extends AppCompatActivity {
         }
     }
 
+    public void savePreference(){
+        //criar objeto preference
+        preference = new Preference();
+        //definir filtro com checkBoxListChecked
+        preference.setPreferenciaSelecionada1(checkBoxListChecked.get(0));
+        preference.setPreferenciaSelecionada2(checkBoxListChecked.get(1));
+        preference.setPreferenciaSelecionada3(checkBoxListChecked.get(2));
+        preference.setPreferenciaSelecionada4(checkBoxListChecked.get(3));
+        //salvar no firebase
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("preferences/"+mAuth.getUid());
+        myRef.setValue(preference);
+    }
+
+    public void cadastrarPreferencesSQL(){
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE1, checkBoxListChecked.get(0));
+        values.put(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE2, checkBoxListChecked.get(1));
+        values.put(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE3, checkBoxListChecked.get(2));
+        values.put(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE4, checkBoxListChecked.get(3));
+
+        long newRowId = db.insert(PreferenceReaderContract.PreferenceEntry.TABLE_NAME, null, values);
+
+        exibirPreferencesSQL();
+    }
+
+    public void exibirPreferencesSQL(){
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+
+        String[] projection = {
+                BaseColumns._ID,
+                PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE1,
+                PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE2,
+                PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE3,
+                PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE4
+        };
+
+        String sortOrder =
+                PreferenceReaderContract.PreferenceEntry._ID + " ASC";
+
+        Cursor cursor = db.query(
+                PreferenceReaderContract.PreferenceEntry.TABLE_NAME,   // The table to query
+                projection,             // The array of columns to return (pass null to get all)
+                null,              // The columns for the WHERE clause
+                null,          // The values for the WHERE clause
+                null,                   // don't group the rows
+                null,                   // don't filter by row groups
+                sortOrder               // The sort order
+        );
+
+        List<Preference> checkedPreferencesList = new ArrayList<>();
+        while(cursor.moveToNext()) {
+             int id = cursor.getInt(cursor.getColumnIndexOrThrow(PreferenceReaderContract.PreferenceEntry._ID));
+
+             String preferencia1 = cursor.getString(
+                     cursor.getColumnIndexOrThrow(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE1));
+
+            String preferencia2 = cursor.getString(
+                    cursor.getColumnIndexOrThrow(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE2));
+
+            String preferencia3 = cursor.getString(
+                    cursor.getColumnIndexOrThrow(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE3));
+
+            String preferencia4 = cursor.getString(
+                    cursor.getColumnIndexOrThrow(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE4));
+
+            Preference preference = new Preference();
+            preference.setId(id);
+            preference.setPreferenciaSelecionada1(preferencia1);
+            preference.setPreferenciaSelecionada2(preferencia2);
+            preference.setPreferenciaSelecionada3(preferencia3);
+            preference.setPreferenciaSelecionada4(preferencia4);
+
+            checkedPreferencesList.add(preference);
+
+        }
+        cursor.close();
+
+    }
+
     public void setupIds() {
         textViewHelloPref = findViewById(R.id.textView_hello_pref_id);
         Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
@@ -245,18 +357,11 @@ public class PreferenceActivity extends AppCompatActivity {
         return bundleHome;
     }
 
-    public void savePreference(){
-        //criar objeto preference
-        Preference preference = new Preference();
-        //definir filtro com checkBoxListChecked
-        preference.setPreferenciaSelecionada1(checkBoxListChecked.get(0));
-        preference.setPreferenciaSelecionada2(checkBoxListChecked.get(1));
-        preference.setPreferenciaSelecionada3(checkBoxListChecked.get(2));
-        preference.setPreferenciaSelecionada4(checkBoxListChecked.get(3));
-        //salvar no firebase
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("preferences/"+mAuth.getUid());
-        myRef.setValue(preference);
+    public void checkLogin(View view){
+        if (mAuth.getFirebaseAuthSettings() != null){
+            intent = getIntent();
+        }
     }
 
+    //TODO colocar nessa pag a verificação de se já escolheu as pref
 }

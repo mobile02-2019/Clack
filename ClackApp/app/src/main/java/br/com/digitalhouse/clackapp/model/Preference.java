@@ -2,12 +2,21 @@ package br.com.digitalhouse.clackapp.model;
 
 public class Preference {
 
+    private Integer id;
     private String preferenciaSelecionada1;
     private String preferenciaSelecionada2;
     private String preferenciaSelecionada3;
     private String preferenciaSelecionada4;
 
     public Preference() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPreferenciaSelecionada1() {
