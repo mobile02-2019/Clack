@@ -1,5 +1,6 @@
 package br.com.digitalhouse.clackapp.model;
 
+import android.content.Intent;
 import android.widget.ImageView;
 
 import com.google.gson.annotations.SerializedName;
@@ -35,8 +36,8 @@ public class Movie implements Serializable{
     @SerializedName("genre_ids")
     private List<Integer> generos;
 
-    @SerializedName ("")
-    private int id;
+    @SerializedName ("id")
+    private Integer id;
 
 
 
@@ -82,11 +83,11 @@ public class Movie implements Serializable{
 //    }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

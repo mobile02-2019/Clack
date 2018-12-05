@@ -4,5 +4,5 @@ import br.com.digitalhouse.clackapp.model.Movie;
 
 public interface RecyclerListenerFavoritos {
 
-    void onFavoritoClicado (Movie movie);
+    void onFavoritoClicado (Integer movieID);
 }

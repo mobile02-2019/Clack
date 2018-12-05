@@ -20,6 +20,11 @@ public interface MovieAPI {
     @GET("/3/movie/popular?api_key=32e03a155eeadffc58dd74f4d0f4669c&language=en-US&include_adult=false")
     Call<MovieResponse> getPopularMovies();
 
+    @GET("/3/movie/{movie_id}?api_key=32e03a155eeadffc58dd74f4d0f4669c&language=en-US&include_adult=false")
+    Call<Movie> getMovieById (@Path(value = "movie_id") Integer movieId);
+
+
+
     //en-US
 
 }

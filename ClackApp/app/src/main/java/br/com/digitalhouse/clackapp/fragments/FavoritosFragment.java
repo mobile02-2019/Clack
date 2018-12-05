@@ -26,14 +26,16 @@ import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.RecyclerListenerFavoritos;
+import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
 import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
 import br.com.digitalhouse.clackapp.model.FilmeFavorito;
 import br.com.digitalhouse.clackapp.model.Movie;
+import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoritosFragment extends Fragment implements CardMovieClicado,RecyclerListenerFavoritos {
+public class FavoritosFragment extends Fragment implements CardMovieClicado,RecyclerListenerFavoritos, ServiceListener {
 
     private RecyclerView recyclerView;
     private RecyclerviewFavoritosAdapter favoritosAdapter;
@@ -68,6 +70,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         dbHelper = new FilmesFavoritosDbHelper(getContext());
+
 
 
 
@@ -153,8 +156,19 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
     }
 
     @Override
-    public void onFavoritoClicado(Movie movie) {
+    public void onFavoritoClicado(Integer movieID) {
+        MovieDAO movieDAO = new MovieDAO();
+        movieDAO.getMovieById(this,movieID, 1);
+    }
+
+    @Override
+    public void onSuccess(Object object, Integer adapter) {
+        Movie movie = (Movie) object;
         listenerFavoritos.iniciarFragmentDetalheFavorito(movie);
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
 
     }
 }

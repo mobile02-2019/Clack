@@ -88,7 +88,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             cardFavorito.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    recyclerListenerFavoritos.onFavoritoClicado(movie);
+                    recyclerListenerFavoritos.onFavoritoClicado(movie.getId());
                 }
             });
 

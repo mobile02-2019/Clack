@@ -64,7 +64,7 @@ public class DetailFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         listenerUpdate = (UpdateMovies) context;
-        this.movie = (Movie) getArguments().getSerializable(MainActivity.OBJ_FAVORITO);
+//        this.movie = (Movie) getArguments().getSerializable(MainActivity.OBJ_FAVORITO);
         this.favoritosListener = (FavoritosListener) context;
     }
 
@@ -73,7 +73,6 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
-
 
         mDbHelper = new FilmesFavoritosDbHelper(getContext());
         db = mDbHelper.getWritableDatabase();
@@ -146,6 +145,7 @@ public class DetailFragment extends Fragment {
 
     private void salvarFilmeLocal(Movie movie) {
         ContentValues values = new ContentValues();
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI, movie.getId());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE, movie.getNome());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE, movie.getData().toString());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER, movie.getPoster());

@@ -64,14 +64,29 @@ public class MovieDAO {
                 listener.onError(t);
 
             }
-
         });
-
-
-
-
-
     }
 
+    public void getMovieById (final ServiceListener listener, Integer movieId, final Integer adaptador ){
+
+        Call<Movie> call = RetrofitService.getMovieAPI().getMovieById(movieId);
+
+        call.enqueue(new Callback<Movie>() {
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                if(response.body() != null){
+                    listener.onSuccess(response.body(), adaptador);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
+                listener.onError(t);
+
+            }
+        });
+
+    }
 
 }

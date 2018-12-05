@@ -29,6 +29,8 @@ import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
 import br.com.digitalhouse.clackapp.model.Movie;
 import retrofit2.http.GET;
 
+import static br.com.digitalhouse.clackapp.fragments.DetailFragment.MOVIE;
+
 public class MainActivity extends AppCompatActivity implements ReceptorMovie, UpdateMovies, FavoritosListener {
 
     public static final String OBJ_FAVORITO = "favoritos" ;
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie, Up
         fragmentDetalhe = new DetailFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable(OBJ_FAVORITO, movie);
+        bundle.putSerializable(MOVIE, movie);
         fragmentDetalhe.setArguments(bundle);
 
         replaceFragment(fragmentDetalhe);
