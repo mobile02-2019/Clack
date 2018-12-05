@@ -23,11 +23,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
 
     private List<Movie> filmeFavoritosList = new ArrayList<>();
 
-    public RecyclerviewFavoritosAdapter(List<Movie> filmeFavoritosList) {
-        this.filmeFavoritosList = filmeFavoritosList;
-        notifyDataSetChanged();
 
-    }
 
 
 
@@ -35,7 +31,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.modelo_recyclerview_favoritos, viewGroup, false);
-        //if (listavazia) colocar background visible
+
         return new ViewHolder(view);
 
     }
@@ -50,6 +46,13 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
     @Override
     public int getItemCount() {
         return filmeFavoritosList.size();
+    }
+
+    public void setFilmesFaoritos(List<Movie> filmeFavoritosList){
+        this.filmeFavoritosList = filmeFavoritosList;
+        notifyDataSetChanged();
+
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

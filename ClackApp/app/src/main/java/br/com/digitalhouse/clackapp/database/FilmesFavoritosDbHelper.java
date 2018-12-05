@@ -13,6 +13,7 @@ public class FilmesFavoritosDbHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME + " (" +
                     FilmesFavoritosContract.FilmesFavoritosEntry._ID + " INTEGER PRIMARY KEY," +
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE + " TEXT," +
+                    FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE + " TEXT,"+
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER + " TEXT,"+
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA + " TEXT,"+
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO + " TEXT,"+

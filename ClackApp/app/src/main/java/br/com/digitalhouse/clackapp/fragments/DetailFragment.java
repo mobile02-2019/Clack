@@ -2,6 +2,7 @@ package br.com.digitalhouse.clackapp.fragments;
 
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import java.util.Date;
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
+import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.service.RetrofitService;
 
@@ -36,8 +38,11 @@ public class DetailFragment extends Fragment {
     private ImageView imagemPost;
     private ImageView share;
     private Movie movie;
-    private Button botaoSalva;
+    private ImageView favoritarFilme;
     private ImageButton botaoFechar;
+    private FilmesFavoritosDbHelper mDbHelper;
+    private  SQLiteDatabase db;
+    private UpdateMovies listenerUpdate;
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
@@ -52,6 +57,11 @@ public class DetailFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listenerUpdate = (UpdateMovies) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,9 +70,21 @@ public class DetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
 
 
+        mDbHelper = new FilmesFavoritosDbHelper(getContext());
+        db = mDbHelper.getWritableDatabase();
+
+
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
         botaoFechar = view.findViewById(R.id.botao_fechar_id);
+       // botaoSalva = view.findViewById(R.id.)
+        favoritarFilme = view.findViewById(R.id.favoritar_film);
+        favoritarFilme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                salvarFilmeLocal(movie);
+            }
+        });
 
 
         botaoFechar.setOnClickListener(new View.OnClickListener() {
@@ -73,19 +95,11 @@ public class DetailFragment extends Fragment {
         });
 
 
-//        botaoSalva = view.findViewById(R.id.botao_para_salva);
-//        botaoSalva.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                salvarFilmeLocal(movie);
-//
-//
-//            }
-//        });
 
 
-        share.setOnClickListener(new View.OnClickListener() {
+
+        share.setOnClickListener(new View.OnClickListener()
+       {
             @Override
             public void onClick(View v) {
                 onShareClicado(movie);
@@ -111,14 +125,6 @@ public class DetailFragment extends Fragment {
         String poster = movie.getPoster();
         Picasso.get().load(RetrofitService.BASE_IMAGE_URL + poster).into(imagemPost);
 
-        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        //
-        //String dateString = format.format( new Date()   );
-        //Date   date       = format.parse ( "2009-12-31" );
-
-        //Date date = new Date();
-        //    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        //    String strDate= formatter.format(date);
 
         Date data = movie.getData();
         TextView dataText = view.findViewById(R.id.textView_data_id);
@@ -135,24 +141,16 @@ public class DetailFragment extends Fragment {
     }
 
     private void salvarFilmeLocal(Movie movie) {
-        // Gets the data repository in write mode
-        FilmesFavoritosDbHelper mDbHelper = new FilmesFavoritosDbHelper(getContext());
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-// Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE, movie.getNome());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE, movie.getData().toString());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER, movie.getPoster());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA, movie.getNota());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO, movie.getGeneros().toString());
-        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE, movie.getGeneros().toString());
-
-
-
-// Insert the new row, returning the primary key value of the new row
-       long newRowId = db.insert(FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME, null, values);
-
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE,movie.getSinopse());
+        long newRowId = db.insert(FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME, null, values);
+        Toast.makeText(getContext(),"Filme salvo!",Toast.LENGTH_SHORT).show();
+        listenerUpdate.updateMovies();
     }
 
 

@@ -11,7 +11,8 @@
     android:layout_margin="4dp"
     card_view:cardPreventCornerOverlap="false"
     card_view:cardUseCompatPadding="true"
-    android:backgroundTint="@color/colorPrimary">
+    android:backgroundTint="@color/colorPrimary"
+    android:id="@+id/cardView_favorito">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

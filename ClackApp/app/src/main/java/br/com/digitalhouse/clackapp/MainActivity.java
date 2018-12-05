@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,14 +24,16 @@ import br.com.digitalhouse.clackapp.fragments.HomeFragment;
 import br.com.digitalhouse.clackapp.fragments.PesquisaFragment;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
+import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
 import br.com.digitalhouse.clackapp.model.Movie;
 import retrofit2.http.GET;
 
-public class MainActivity extends AppCompatActivity implements ReceptorMovie {
+public class MainActivity extends AppCompatActivity implements ReceptorMovie, UpdateMovies {
 
     private BottomNavigationView navigationView;
     MenuItem prevMenuItem;
     private DetailFragment fragmentDetalhe;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,7 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie {
         setContentView(R.layout.activity_main);
 
 
-
-        final ViewPager viewPager = findViewById(R.id.viewpager_id);
+        viewPager = findViewById(R.id.viewpager_id);
 
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new HomeFragment());
@@ -130,5 +132,12 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie {
     public void receberMovieClicado(Movie movie) {
         Fragment detailFrag = DetailFragment.newInstance(movie);
         replaceFragment(detailFrag);
+    }
+
+    @Override
+    public void updateMovies() {
+        FragmentViewPagerAdapter adapter = (FragmentViewPagerAdapter) viewPager.getAdapter();
+        Fragment fragment = adapter.getItem(1);
+        fragment.onResume();
     }
 }
