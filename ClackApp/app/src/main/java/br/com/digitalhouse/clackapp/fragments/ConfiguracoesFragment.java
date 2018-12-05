@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.util.Util;
 import com.facebook.FacebookButtonBase;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FacebookAuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -150,6 +151,8 @@ public class ConfiguracoesFragment extends Fragment {
 
     private void deslogarDoAplicativo() {
         FirebaseAuth.getInstance().signOut();
+        //TODO com essa frase abaixo desloga corretamente do face
+        LoginManager.getInstance().logOut();
     }
 
 
