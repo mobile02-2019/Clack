@@ -95,6 +95,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE,
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE,
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER,
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI,
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO,
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA,
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE
@@ -122,6 +123,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
             String sinopse = cursor.getString(
                     cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE));
             float nota = cursor.getFloat(cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA));
+
+            Integer idApi = cursor.getInt(cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI));
             //todo ver lista e data
 
 
@@ -130,6 +133,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
             movie.setSinopse(sinopse);
             movie.setPoster(poster);
             movie.setNota(nota);
+            movie.setId(idApi);
            // movie.setData(data);
             //movie.setGeneros(genero);
 

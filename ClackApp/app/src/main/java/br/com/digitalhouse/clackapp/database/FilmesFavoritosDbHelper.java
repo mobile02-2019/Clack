@@ -17,6 +17,7 @@ public class FilmesFavoritosDbHelper extends SQLiteOpenHelper {
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER + " TEXT,"+
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA + " TEXT,"+
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO + " TEXT,"+
+                    FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI + " TEXT,"+
     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES =

@@ -35,6 +35,9 @@ public class Movie implements Serializable{
     @SerializedName("genre_ids")
     private List<Integer> generos;
 
+    @SerializedName ("")
+    private int id;
+
 
 
 //    private Boolean adult;
@@ -77,6 +80,15 @@ public class Movie implements Serializable{
 //    public void setAtores(List<String> atores) {
 //        this.atores = atores;
 //    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Date getData() {
         return data;

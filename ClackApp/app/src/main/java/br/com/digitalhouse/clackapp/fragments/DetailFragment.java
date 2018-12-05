@@ -112,7 +112,6 @@ public class DetailFragment extends Fragment {
         });
 
         movie = (Movie) getArguments().getSerializable(MOVIE);
-
         String titulo = movie.getNome();
         TextView tituloText = view.findViewById(R.id.titulo_act_id);
         Typeface myCustomFontLogo = Typeface.createFromAsset(getContext().getAssets(), "fonts/LuckiestGuy-Regular.ttf");
