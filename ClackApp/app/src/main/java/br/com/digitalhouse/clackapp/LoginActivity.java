@@ -1,7 +1,6 @@
 package br.com.digitalhouse.clackapp;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -33,6 +32,15 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import br.com.digitalhouse.clackapp.model.Preference;
 
 public class LoginActivity extends Activity {
 
@@ -45,6 +53,11 @@ public class LoginActivity extends Activity {
     public static final String CHAVE_EMAIL = "chave_email";
     private CallbackManager callbackManager;
     private LoginButton loginFacebook;
+    private ArrayList<String> listaChecados = new ArrayList<>();
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +67,6 @@ public class LoginActivity extends Activity {
         final EditText passwordDigitado = findViewById(R.id.login_password_id);
         final int colorDefaultEmail = emailDigitado.getCurrentTextColor();
         final int colorDefaultPassword = passwordDigitado.getCurrentTextColor();
-
 
         /*Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textViewHelloLogin.setTypeface(myCustomFontLogo);
@@ -177,10 +189,50 @@ public class LoginActivity extends Activity {
 
         if(mAuth.getCurrentUser()!=null){
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        Intent intent = new Intent(this, PreferenceActivity.class);
-        startActivity(intent);
-    }
+            try {
+                //referencia database firebase
+                database = FirebaseDatabase.getInstance();
+                myRef = database.getReference("preferences/" + mAuth.getUid());
+                //tenta buscar preferencia
+                myRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //tenta atribuir preferencia do firebase
+                        Preference preference = dataSnapshot.getValue(Preference.class);
+                        Log.d(TAG, "Value is: " + preference);
 
+                        //se existir preferencias, criar array de string com os generos e enviar para Home
+                        if (preference != null) {
+                            //abre um intent
+                            //Cria bundle
+                            Bundle bundleParaHome = new Bundle();
+                            //adiciona na lista string de generos
+                            listaChecados.add(preference.getPreferenciaSelecionada1());
+                            listaChecados.add(preference.getPreferenciaSelecionada2());
+                            listaChecados.add(preference.getPreferenciaSelecionada3());
+                            listaChecados.add(preference.getPreferenciaSelecionada4());
+                            //adiciona lista de string no bundle
+                            bundleParaHome.putStringArrayList("checados" , listaChecados);
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            //adiciona bundle no intent
+                            intent.putExtras(bundleParaHome);
+                            startActivity(intent);
+                        }else{//se nao existir preferencia, vai para tela de preferencias para serem criadas
+                            //abre a outra Activity
+                            Intent intent = new Intent(getApplicationContext(),PreferenceActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            } catch (Exception ex) {
+
+            }
+        }
 }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
