@@ -40,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import br.com.digitalhouse.clackapp.fragments.HomeFragment;
 import br.com.digitalhouse.clackapp.model.Preference;
 
 public class LoginActivity extends Activity {
@@ -135,12 +136,24 @@ public class LoginActivity extends Activity {
         });
 
         //TODO LOGIN COM EMAIL E SENHA
+        //TODO LOGGIN COM FIREBASE SUCESS IR PARA MAIN,SENAO IR PARA PREFERENCIA
         Button loginClicado = findViewById(R.id.login_button);
         loginClicado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              database = FirebaseDatabase.getInstance();
+              myRef = database.getReference().child("preference");
+
+                if (myRef){
+
+                    final Intent itent = new Intent(v.getContext(), MainActivity.class));
+                    final Bundle bundle = new Bundle();
+
+                }
+
+
                 //Toast.makeText(LoginActivity.this, "Estou no loginClicado.OnClick", Toast.LENGTH_SHORT).show();
-                final Intent intent = new Intent(v.getContext(), PreferenceActivity.class);
+                final Intent intent = new Intent(v.getContext(),    Preference.class);
                 final Bundle bundle = new Bundle();
 
                 final Button buttonLogin = findViewById(R.id.login_button);

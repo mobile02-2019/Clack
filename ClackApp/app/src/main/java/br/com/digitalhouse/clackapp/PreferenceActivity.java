@@ -76,26 +76,42 @@ public class PreferenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
-        setupIds();
-        getCheckBoxListAll();
-
-        mDbHelper = new PreferenceReaderDbHelper(getApplicationContext());
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkBoxListChecked.clear();
-                for (CheckBox checkBox : checkBoxListAll) {
-                    if (checkBox.isChecked()) {
-                        checkBoxListChecked.add(checkBox.getText().toString());
-                    }
-                }
-                if (checkBoxListChecked.size() == 4) {
-                    savePreference();
-
                     cadastrarPreferencesSQL();
+                    setupIds();
+                    getCheckBoxListAll();
 
-                    //Mudando de activity
+                    mAuth = FirebaseAuth.getInstance();
+                    final FirebaseUser user = mAuth.getCurrentUser();
+
+                    if (user != null) {
+                        Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
+                        textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
+                    }
+
+                    if(user.getDisplayName() == null){
+                        textViewHelloPref.setText("Olá  " + user.getEmail());
+                    }
+
+                    mDbHelper = new PreferenceReaderDbHelper(getApplicationContext());
+
+                    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            checkBoxListChecked.clear();
+                            for (CheckBox checkBox : checkBoxListAll) {
+                                if (checkBox.isChecked()) {
+                                    checkBoxListChecked.add(checkBox.getText().toString());
+                                }
+                            }
+
+
+
+
+                            if (checkBoxListChecked.size() == 4) {
+                                savePreference();
+
+
+                                //Mudando de activity
                     intent = new Intent(view.getContext(), MainActivity.class);
                     intent.putExtras(bundleHome());
                     startActivity(intent);
@@ -105,14 +121,8 @@ public class PreferenceActivity extends AppCompatActivity {
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
 
 
-        if (user != null) {
-            Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
-            textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
-        }
 
         //Ler filtros do Firebase
         loadPreferences();
@@ -234,7 +244,7 @@ public class PreferenceActivity extends AppCompatActivity {
     }
 
     public void cadastrarPreferencesSQL(){
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+       /* SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(PreferenceReaderContract.PreferenceEntry.COLUMN_NAME_PREFERENCE1, checkBoxListChecked.get(0));
@@ -244,7 +254,7 @@ public class PreferenceActivity extends AppCompatActivity {
 
         long newRowId = db.insert(PreferenceReaderContract.PreferenceEntry.TABLE_NAME, null, values);
 
-        exibirPreferencesSQL();
+        exibirPreferencesSQL();*/
     }
 
     public void exibirPreferencesSQL(){
