@@ -98,7 +98,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI,
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO,
                 FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA,
-                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE,
+                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI
 
         };
 

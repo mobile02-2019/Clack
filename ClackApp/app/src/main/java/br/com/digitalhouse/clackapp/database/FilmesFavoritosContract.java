@@ -16,7 +16,7 @@ public final class FilmesFavoritosContract {
         public static final String COLUMN_NOTA = "nota";
         public static final String COLUMN_GENERO = "genero";
         public static final String COLUMN_SINOPSE = "sinopse";
-        public static final String COLUMN_IDAPI = "sinopse";
+        public static final String COLUMN_IDAPI = "idAPI";
 
     }
 }
