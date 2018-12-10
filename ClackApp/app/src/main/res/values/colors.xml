@@ -10,5 +10,6 @@
     <color name="twiter">#00a2f1</color>
     <color name="google">#ce2a15</color>
     <color name="ic_launcher_background">#F0DE3E</color>
-    <color name="colorbt">#f0de3e</color>
+    <color name="colorbt">#f8f1df45</color>
+    <color name="colorCard">#F8EDDC47</color>
 </resources>

@@ -72,6 +72,8 @@ public class PreferenceActivity extends AppCompatActivity {
 
     private PreferenceReaderDbHelper mDbHelper;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +129,19 @@ public class PreferenceActivity extends AppCompatActivity {
             startActivity(intent);
         }*/
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(checkBoxListChecked != null){
+//            loadPreferences();
+//            Intent intent = new Intent(this,MainActivity.class);
+//            intent.putExtras(bundleHome());
+//            startActivity(intent);
+//        }else {
+//            Toast.makeText(this, "Selecione 4 categorias!", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     public void loadPreferences() {
         try{
