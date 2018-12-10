@@ -18,10 +18,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import br.com.digitalhouse.clackapp.MainActivity;
 import br.com.digitalhouse.clackapp.R;
@@ -46,6 +51,10 @@ public class DetailFragment extends Fragment {
     private SQLiteDatabase db;
     private UpdateMovies listenerUpdate;
     private FavoritosListener favoritosListener;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+    private FirebaseAuth firebaseAuth;
+    private List<Movie> movieList = new ArrayList<>();
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
@@ -77,6 +86,8 @@ public class DetailFragment extends Fragment {
         mDbHelper = new FilmesFavoritosDbHelper(getContext());
         db = mDbHelper.getWritableDatabase();
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
 
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
@@ -86,7 +97,9 @@ public class DetailFragment extends Fragment {
         favoritarFilme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                salvarFilmeLocal(movie);
+                salvarFilmeFb(movie);
+                Toast.makeText(getContext(), "Favoritado!", Toast.LENGTH_SHORT).show();
+//                salvarFilmeLocal(movie);
             }
         });
 
@@ -140,6 +153,19 @@ public class DetailFragment extends Fragment {
         notaText.setText("Nota média: " + nota);
 
         return view;
+
+    }
+
+    private void salvarFilmeFb(Movie movie) {
+
+        movieList.add(movie);
+
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
+
+        mFirebaseDatabase.push().setValue(movie);
+
 
     }
 

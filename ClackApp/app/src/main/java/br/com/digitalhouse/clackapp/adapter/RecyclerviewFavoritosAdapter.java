@@ -36,6 +36,11 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
 
     }
 
+    public void setFilmeFavoritosList(List<Movie> filmeFavoritosList) {
+        this.filmeFavoritosList = filmeFavoritosList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
