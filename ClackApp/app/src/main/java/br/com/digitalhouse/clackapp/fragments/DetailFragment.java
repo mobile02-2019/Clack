@@ -59,7 +59,6 @@ public class DetailFragment extends Fragment {
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
         args.putSerializable(MOVIE, movie);
-
         DetailFragment fragment = new DetailFragment();
         fragment.setArguments(args);
         return fragment;

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
     private RecyclerViewMovieAdapter adapter4;
     private ArrayList<String> checados;
     private ReceptorMovie listener;
+    private ProgressBar progressBar;
 
     @Override
     public void onAttach(Context context) {
@@ -49,6 +51,9 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
         super.onCreate(savedInstanceState);
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        progressBar = view.findViewById(R.id.progressbar_home_id);
+        progressBar.setVisibility(View.VISIBLE);
 
         Typeface myCustomFontLogo = Typeface.createFromAsset(getContext().getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textView1 = view.findViewById(R.id.textView_1_id);
@@ -184,6 +189,7 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
                 break;
             case 4 :
                 this.adapter4.setMovieList(movieResponse.getResults());
+                progressBar.setVisibility(View.INVISIBLE);
                 break;
         }
     }

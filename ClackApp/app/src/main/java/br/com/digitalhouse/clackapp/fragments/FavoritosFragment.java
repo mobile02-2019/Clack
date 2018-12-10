@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,6 +61,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
     private FirebaseDatabase database;
     private List<Movie> movieList = new ArrayList<>();
     private DatabaseReference mref;
+    private ProgressBar progressBar;
+
 
     public FavoritosFragment() {
         // Required empty public constructor
@@ -80,6 +83,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
         mAuth = FirebaseAuth.getInstance();
 
+        progressBar = view.findViewById(R.id.progressbar_favoritos_id);
+        progressBar.setVisibility(View.VISIBLE);
 
 
   //      dbHelper = new FilmesFavoritosDbHelper(getContext());
@@ -146,6 +151,10 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
             }
 
         });
+
+                progressBar.setVisibility(View.INVISIBLE);
+
+
 
 //      Metodo do SQL
 //        SQLiteDatabase db = dbHelper.getReadableDatabase();
