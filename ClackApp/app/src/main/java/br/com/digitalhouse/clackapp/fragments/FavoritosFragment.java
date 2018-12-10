@@ -124,7 +124,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
         database = FirebaseDatabase.getInstance();
 
-        mref = database.getReference("users/" + mAuth.getCurrentUser().getUid());
+        mref = database.getReference("favoritos/" + mAuth.getCurrentUser().getUid());
 
         mref.addValueEventListener(new ValueEventListener() {
             @Override
