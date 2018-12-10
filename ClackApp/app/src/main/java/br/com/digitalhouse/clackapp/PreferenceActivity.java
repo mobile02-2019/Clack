@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.provider.BaseColumns;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -31,6 +36,7 @@ import java.util.List;
 import br.com.digitalhouse.clackapp.database.PreferenceReaderContract;
 import br.com.digitalhouse.clackapp.database.PreferenceReaderDbHelper;
 import br.com.digitalhouse.clackapp.model.Preference;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static java.security.AccessController.getContext;
 
@@ -39,7 +45,6 @@ public class PreferenceActivity extends AppCompatActivity {
     private static final String TAG = "PreferenceActivity";
 
     private TextView textViewHelloPref;
-    private ImageView imageViewProfile;
     private CheckBox checkBoxAcao;
     private CheckBox checkBoxAnimacao;
     private CheckBox checkBoxAventura;
@@ -70,12 +75,21 @@ public class PreferenceActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
+    private CircleImageView imagePreference;
+    private StorageReference storageReference;
+    private FirebaseStorage storage;
+
     private PreferenceReaderDbHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preference);
+
+        mAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         setupIds();
         getCheckBoxListAll();
 
@@ -105,12 +119,25 @@ public class PreferenceActivity extends AppCompatActivity {
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
 
+        if (user.getPhotoUrl() == null) {
+            storageReference.child(mAuth.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).into(imagePreference);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                }
+            });
+        } else {
+            Picasso.get().load(user.getPhotoUrl()).into(imagePreference);
+        }
 
         if (user != null) {
-            Picasso.get().load(user.getPhotoUrl()).into(imageViewProfile);
+            Picasso.get().load(user.getPhotoUrl()).into(imagePreference);
             textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
         }
 
@@ -305,7 +332,7 @@ public class PreferenceActivity extends AppCompatActivity {
         textViewHelloPref = findViewById(R.id.textView_hello_pref_id);
         Typeface myCustomFontLogo = Typeface.createFromAsset(getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         textViewHelloPref.setTypeface(myCustomFontLogo);
-        imageViewProfile = findViewById(R.id.imageView_profile_id);
+        imagePreference = findViewById(R.id.imageView_profile_id);
         checkBoxAcao = findViewById(R.id.checkbox_acao_id);
         checkBoxAnimacao = findViewById(R.id.checkbox_animacao_id);
         checkBoxAventura = findViewById(R.id.checkbox_aventura_id);

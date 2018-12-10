@@ -10,19 +10,19 @@
     android:background="@color/colorPrimaryOriginal">
 
 
-    <ImageView
-        android:id="@+id/icon_profile_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/image_profile_id"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_gravity="center"
-        android:layout_margin="48dp"
+        android:layout_margin="25dp"
         android:src="@drawable/icon_profile"
         />
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:outlineSpotShadowColor="@color/colorWhite"
         app:boxStrokeColor="@color/colorBlack">
 
@@ -39,7 +39,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:outlineSpotShadowColor="@color/colorWhite"
         app:boxStrokeColor="@color/colorBlack">
 
@@ -56,7 +56,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:outlineSpotShadowColor="@color/colorWhite"
         app:boxStrokeColor="@color/colorBlack">
 
@@ -72,7 +72,7 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:outlineSpotShadowColor="@color/colorWhite"
         app:boxStrokeColor="@color/colorBlack">
 
@@ -92,6 +92,7 @@
         android:layout_gravity="center"
         android:text="CADASTRAR"
         android:textSize="16sp"
+        android:layout_margin="8dp"
         android:layout_marginTop="16dp"
         android:background="@color/colorBlack"
         android:id="@+id/register_button_id"

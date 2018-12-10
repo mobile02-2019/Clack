@@ -44,7 +44,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register"></activity>
+        <activity android:name=".RegisterActivity"></activity>
 
         <service android:name=".service.ClackFirebaseService">
             <intent-filter>

@@ -71,6 +71,9 @@ dependencies {
     // Firebase Cloud Messaging Service
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
 
+    // Firebase Storage
+    implementation 'com.google.firebase:firebase-storage:16.0.3'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

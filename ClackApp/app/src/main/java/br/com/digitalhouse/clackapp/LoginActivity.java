@@ -129,7 +129,7 @@ public class LoginActivity extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Register.class);
+                Intent intent = new Intent(v.getContext(), RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -277,7 +277,7 @@ public class LoginActivity extends Activity {
     }
 
     public void registerNow(View view) {
-        Intent intent = new Intent(this,Register.class);
+        Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
     }
 
