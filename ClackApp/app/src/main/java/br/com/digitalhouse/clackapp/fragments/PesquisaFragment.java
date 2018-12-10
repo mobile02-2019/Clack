@@ -2,6 +2,8 @@ package br.com.digitalhouse.clackapp.fragments;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -73,18 +75,27 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
         editSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                progressBar.setVisibility(View.VISIBLE);
-                callMovieService(query);
 
+                if(query != ""){
+                    callMovieService(query);
+                    progressBar.setVisibility(View.VISIBLE);
+
+                }else {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
 
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                progressBar.setVisibility(View.VISIBLE);
 
-                callMovieService(newText);
+                if(newText != ""){
+                    progressBar.setVisibility(View.VISIBLE);
+                    callMovieService(newText);
+                }else {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
 
                 //Toast.makeText(getContext(), newText, Toast.LENGTH_SHORT).show();
                 return false;
@@ -106,7 +117,7 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), columns));
 
-
+        progressBar.setVisibility(View.INVISIBLE);
 
 
     }

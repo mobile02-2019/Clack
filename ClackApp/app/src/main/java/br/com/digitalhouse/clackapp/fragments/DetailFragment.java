@@ -34,6 +34,7 @@ import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
 import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
+import br.com.digitalhouse.clackapp.model.FormatarData;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.service.RetrofitService;
 
@@ -59,7 +60,6 @@ public class DetailFragment extends Fragment {
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
         args.putSerializable(MOVIE, movie);
-
         DetailFragment fragment = new DetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -92,7 +92,6 @@ public class DetailFragment extends Fragment {
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
         botaoFechar = view.findViewById(R.id.botao_fechar_id);
-       // botaoSalva = view.findViewById(R.id.)
         favoritarFilme = view.findViewById(R.id.favoritar_film);
         favoritarFilme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,10 +141,10 @@ public class DetailFragment extends Fragment {
         Picasso.get().load(RetrofitService.BASE_IMAGE_URL + poster).into(imagemPost);
 
 
-        Date data = movie.getData();
+        String data = movie.getData();
         TextView dataText = view.findViewById(R.id.textView_data_id);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dataFormatada = formatter.format(data);
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = FormatarData.formateData(data);
         dataText.setText("Data de lançamento: " + dataFormatada);
 
         float nota = movie.getNota();
@@ -173,7 +172,7 @@ public class DetailFragment extends Fragment {
         ContentValues values = new ContentValues();
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI, movie.getId());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE, movie.getNome());
-        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE, movie.getData().toString());
+        values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE, movie.getData());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_POSTER, movie.getPoster());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA, movie.getNota());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO, movie.getGeneros().toString());

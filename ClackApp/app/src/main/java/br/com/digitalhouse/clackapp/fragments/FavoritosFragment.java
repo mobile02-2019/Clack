@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,8 +40,6 @@ import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.RecyclerListenerFavoritos;
 import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
-import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
-import br.com.digitalhouse.clackapp.model.FilmeFavorito;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
 
@@ -60,6 +59,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
     private FirebaseDatabase database;
     private List<Movie> movieList = new ArrayList<>();
     private DatabaseReference mref;
+    private ProgressBar progressBar;
+
 
     public FavoritosFragment() {
         // Required empty public constructor
@@ -80,6 +81,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
         mAuth = FirebaseAuth.getInstance();
 
+        progressBar = view.findViewById(R.id.progressbar_favoritos_id);
+        progressBar.setVisibility(View.VISIBLE);
 
 
   //      dbHelper = new FilmesFavoritosDbHelper(getContext());
@@ -118,6 +121,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
     private void exibirFavoritos() {
 
 
+
         database = FirebaseDatabase.getInstance();
 
         mref = database.getReference("users/" + mAuth.getCurrentUser().getUid());
@@ -146,6 +150,10 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
             }
 
         });
+
+                progressBar.setVisibility(View.INVISIBLE);
+
+
 
 //      Metodo do SQL
 //        SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -206,6 +214,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 //        favoritosAdapter.setFilmesFaoritos(listaFavoritos);
 
     }
+
 
 
     @Override
