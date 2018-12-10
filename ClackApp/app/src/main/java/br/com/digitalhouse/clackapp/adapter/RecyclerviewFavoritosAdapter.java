@@ -9,10 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import br.com.digitalhouse.clackapp.interfaces.RecyclerListenerFavoritos;
@@ -26,7 +29,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
     private List<Movie> filmeFavoritosList = new ArrayList<>();
     private RecyclerListenerFavoritos recyclerListenerFavoritos;
 
-    public RecyclerviewFavoritosAdapter (List<Movie> filmeFavoritosLists,RecyclerListenerFavoritos listenerFavoritos){
+    public RecyclerviewFavoritosAdapter(List<Movie> filmeFavoritosLists, RecyclerListenerFavoritos listenerFavoritos) {
         this.filmeFavoritosList = filmeFavoritosLists;
         this.recyclerListenerFavoritos = listenerFavoritos;
 
@@ -57,7 +60,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
         return filmeFavoritosList.size();
     }
 
-    public void setFilmesFaoritos(List<Movie> filmeFavoritosList){
+    public void setFilmesFavoritos(List<Movie> filmeFavoritosList) {
         this.filmeFavoritosList = filmeFavoritosList;
         notifyDataSetChanged();
 
@@ -67,8 +70,9 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView titulo;
-        private TextView sinopse;
+        private TextView nota;
         private ImageView imagemView;
+        private TextView data;
         private CardView cardFavorito;
 
         @SuppressLint("ResourceType")
@@ -76,15 +80,28 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             super(itemView);
 
             titulo = itemView.findViewById(R.id.TituloPrimeiroFilme_id);
-            sinopse = itemView.findViewById(R.id.sinopsePrimeiroFile_id);
+            nota = itemView.findViewById(R.id.textViewCard_nota_id);
+            data = itemView.findViewById(R.id.textViewCard_data_id);
             imagemView = itemView.findViewById(R.id.primeiro_filme_id);
             cardFavorito = itemView.findViewById(R.id.cardView_favorito);
         }
 
         public void bind(final Movie movie) {
             titulo.setText(movie.getNome());
-            sinopse.setText(movie.getSinopse());
-            Picasso.get().load(RetrofitService.BASE_IMAGE_URL+ movie.getPoster()).into(imagemView);
+            nota.setText("Nota Média: " + movie.getNota());
+
+            String teste = movie.getData();
+            if (movie.getData() != null) {
+//                data.setText(movie.getData());
+                String dataFilme = movie.getData();
+                data.setText("Data de lançamento:\n        " + dataFilme);
+
+//                data = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+
+            }
+
+
+            Picasso.get().load(RetrofitService.BASE_IMAGE_URL + movie.getPoster()).into(imagemView);
             cardFavorito.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

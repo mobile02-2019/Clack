@@ -27,8 +27,6 @@ import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.RecyclerListenerFavoritos;
 import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
-import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
-import br.com.digitalhouse.clackapp.model.FilmeFavorito;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
 
@@ -130,7 +128,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
             Integer idApi = cursor.getInt(cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI));
             //todo ver lista e data
-
+            String dataFilme = cursor.getString(
+                    cursor.getColumnIndexOrThrow(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE));
 
             Movie movie = new Movie();
             movie.setNome(nome);
@@ -138,13 +137,13 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
             movie.setPoster(poster);
             movie.setNota(nota);
             movie.setId(idApi);
-           // movie.setData(data);
+            movie.setData(dataFilme);
             //movie.setGeneros(genero);
 
             listaFavoritos.add(movie);
         }
         cursor.close();
-        favoritosAdapter.setFilmesFaoritos(listaFavoritos);
+        favoritosAdapter.setFilmesFavoritos(listaFavoritos);
 
         }
 
