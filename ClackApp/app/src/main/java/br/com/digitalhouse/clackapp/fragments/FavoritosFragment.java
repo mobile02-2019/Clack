@@ -40,8 +40,6 @@ import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
 import br.com.digitalhouse.clackapp.interfaces.RecyclerListenerFavoritos;
 import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
-import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
-import br.com.digitalhouse.clackapp.model.FilmeFavorito;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
 
@@ -121,6 +119,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 //    }
 
     private void exibirFavoritos() {
+
 
 
         database = FirebaseDatabase.getInstance();
@@ -215,6 +214,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 //        favoritosAdapter.setFilmesFaoritos(listaFavoritos);
 
     }
+
 
 
     @Override

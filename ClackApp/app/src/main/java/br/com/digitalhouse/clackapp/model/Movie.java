@@ -20,7 +20,7 @@ public class Movie implements Serializable{
     private String nomeOriginal;
 
     @SerializedName("release_date")
-    private Date data;
+    private String data;
 
     @SerializedName("poster_path")
     private String poster;
@@ -38,7 +38,7 @@ public class Movie implements Serializable{
 
     @SerializedName ("id")
     private Integer id;
-
+    private String dataString;
 
 
 //    private Boolean adult;
@@ -91,11 +91,11 @@ public class Movie implements Serializable{
         this.id = id;
     }
 
-    public Date getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -137,5 +137,13 @@ public class Movie implements Serializable{
 
     public void setGeneros(List<Integer> generos) {
         this.generos = generos;
+    }
+
+    public void setDataString(String dataFilme) {
+        dataString = dataFilme;
+    }
+
+    public String getDataString() {
+        return dataString;
     }
 }

@@ -18,7 +18,7 @@ public class FilmesFavoritosDbHelper extends SQLiteOpenHelper {
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NOTA + " TEXT,"+
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO + " TEXT,"+
                     FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_IDAPI + " TEXT,"+
-    FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE + " TEXT)";
+                    FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_DATE + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME;
