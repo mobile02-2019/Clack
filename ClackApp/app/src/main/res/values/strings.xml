@@ -48,4 +48,7 @@
     <string name="facebook_app_id">1925429784431554</string>
     <string name="fb_login_protocol_scheme">fb1925429784431554</string>
 
+    <!-- STRING FIREBASE CLOUD MESSAGING SERVICE -->
+    <string name="default_notification_channel_id">ClackChannel</string>
+
 </resources>

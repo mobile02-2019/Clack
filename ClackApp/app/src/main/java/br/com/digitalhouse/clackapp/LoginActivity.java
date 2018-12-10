@@ -188,7 +188,7 @@ public class LoginActivity extends Activity {
        super.onStart();
 
         if(mAuth.getCurrentUser()!=null){
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
             try {
                 //referencia database firebase
                 database = FirebaseDatabase.getInstance();
@@ -267,7 +267,7 @@ public class LoginActivity extends Activity {
 
     private void goToMain(FirebaseUser user) {
         Toast.makeText(this, "Login realizado com sucesso! " + user.getEmail(), Toast.LENGTH_SHORT).show();
-        irParaPreferencesGenerico();
+        irParaPreferencesGenerico(user);
     }
 
     private void signIn() {
@@ -332,7 +332,7 @@ public class LoginActivity extends Activity {
 
 //sign in com o google. fim do codigo do google.
 
-    public void irParaPreferencesGenerico() {
+    public void irParaPreferencesGenerico(FirebaseUser user) {
         Intent intent = new Intent(this, PreferenceActivity.class);
         startActivity(intent);
     }
