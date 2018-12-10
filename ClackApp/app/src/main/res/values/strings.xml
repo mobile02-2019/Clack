@@ -16,7 +16,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
+    <string name="prompt_password">Password</string>
 
     <!-- STRINGS PREFERENCE ACTIVITY -->
     <string name="preference_greetings">Olá clacker!</string>
