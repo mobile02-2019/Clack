@@ -34,6 +34,7 @@ import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
 import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
 import br.com.digitalhouse.clackapp.interfaces.UpdateMovies;
+import br.com.digitalhouse.clackapp.model.FormatarData;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.service.RetrofitService;
 
@@ -143,7 +144,7 @@ public class DetailFragment extends Fragment {
         String data = movie.getData();
         TextView dataText = view.findViewById(R.id.textView_data_id);
 //        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String dataFormatada = data;
+        String dataFormatada = FormatarData.formateData(data);
         dataText.setText("Data de lançamento: " + dataFormatada);
 
         float nota = movie.getNota();

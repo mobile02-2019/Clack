@@ -21,6 +21,7 @@ import java.util.List;
 import br.com.digitalhouse.clackapp.interfaces.RecyclerListenerFavoritos;
 import br.com.digitalhouse.clackapp.model.FilmeFavorito;
 import br.com.digitalhouse.clackapp.R;
+import br.com.digitalhouse.clackapp.model.FormatarData;
 import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.service.RetrofitService;
 
@@ -99,7 +100,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             if (movie.getData() != null) {
 //                data.setText(movie.getData());
                 String dataFilme = movie.getData();
-                data.setText("Data de lançamento:\n        " + dataFilme);
+                data.setText("Data de lançamento:\n        " + FormatarData.formateData(dataFilme));
 
 //                data = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
 
