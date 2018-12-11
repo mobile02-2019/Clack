@@ -106,8 +106,7 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
         };
 
-        String sortOrder =
-                FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE + " DESC";
+        String sortOrder = FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_NAME_TITLE + " DESC";
         Cursor cursor = db.query(
                 FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
