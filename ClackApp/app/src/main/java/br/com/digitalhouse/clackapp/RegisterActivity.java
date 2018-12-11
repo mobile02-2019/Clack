@@ -23,6 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -40,10 +42,12 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputEditText passwordInput;
     private TextInputEditText passwordConfirmInput;
     private Button register;
+    private FirebaseDatabase database;
     private FirebaseAuth mAuth;
-
+    private DatabaseReference myRef;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    private StorageReference imageReference;
     private CircleImageView imageUser;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -53,8 +57,21 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        myRef = database.getReference("users/" + mAuth.getCurrentUser().getUid());
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        imageReference = storageReference.child(mAuth.getCurrentUser().getUid());
+
+        imageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(imageUser);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+            }
+        });
 
         register = findViewById(R.id.register_button_id);
         register.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +89,20 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        storageReference = storage.getReference();
+        imageReference = storageReference.child(mAuth.getUid());
+
+        imageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(imageUser);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+            }
+        });
+
     }
 
     private void getUserImage() {
@@ -85,8 +116,28 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageUser.setImageBitmap(imageBitmap);
+            final Bitmap imageBitmap = (Bitmap) extras.get("data");
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] dataBytes = baos.toByteArray();
+
+            storageReference = storage.getReference();
+            imageReference = storageReference.child(mAuth.getCurrentUser().getUid());
+
+            UploadTask uploadTask = imageReference.putBytes(dataBytes);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.e("REGISTER", e.getLocalizedMessage());
+                    Toast.makeText(RegisterActivity.this, "REGISTER FAILED", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    imageUser.setImageBitmap(imageBitmap);                }
+            });
+
         }
     }
 
@@ -118,7 +169,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                 }
                                             }
                                         });
-                                saveUserImage();
+                               saveUserImage();
                             } else {
                                 Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(RegisterActivity.this, "Authentication failed.",
@@ -142,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
         imageUser.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageUser.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 150, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
         UploadTask uploadTask = storageReference.putBytes(data);
@@ -150,6 +201,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 Toast.makeText(RegisterActivity.this, "Falha ao salvar foto", Toast.LENGTH_SHORT).show();
+                Log.e("LOGIN: ", exception.getMessage());
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

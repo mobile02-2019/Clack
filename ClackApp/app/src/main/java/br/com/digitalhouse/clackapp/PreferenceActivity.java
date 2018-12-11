@@ -123,20 +123,20 @@ public class PreferenceActivity extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-        if (user.getPhotoUrl() == null) {
-            storageReference.child(mAuth.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Picasso.get().load(uri).into(imagePreference);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                }
-            });
-        } else {
-            Picasso.get().load(user.getPhotoUrl()).into(imagePreference);
-        }
+//        if (user.getPhotoUrl() == null) {
+//            storageReference.child(mAuth.getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                @Override
+//                public void onSuccess(Uri uri) {
+//                    Picasso.get().load(uri).into(imagePreference);
+//                }
+//            }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                }
+//            });
+//        } else {
+//            Picasso.get().load(user.getPhotoUrl()).into(imagePreference);
+//        }
 
         if (user != null) {
             Picasso.get().load(user.getPhotoUrl()).into(imagePreference);
