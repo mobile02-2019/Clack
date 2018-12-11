@@ -160,7 +160,7 @@ public class DetailFragment extends Fragment {
         TextView dataText = view.findViewById(R.id.textView_data_id);
         String dataFormatada = FormatarData.formateData(data);
         dataText.setText("Data de lançamento: " + dataFormatada);
-        
+
         float nota = filme.getNota();
         RatingBar ratingBar = view.findViewById(R.id.ratingbar_nota_id);
         ratingBar.setRating(nota / 2);
