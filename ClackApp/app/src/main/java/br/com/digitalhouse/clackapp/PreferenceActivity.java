@@ -187,6 +187,7 @@ public class PreferenceActivity extends AppCompatActivity {
                     setChecked(preference.getPreferenciaSelecionada2());
                     setChecked(preference.getPreferenciaSelecionada3());
                     setChecked(preference.getPreferenciaSelecionada4());
+                    floatingActionButton.callOnClick();
                 }
             }
 

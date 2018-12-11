@@ -161,9 +161,13 @@ public class DetailFragment extends Fragment {
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
-        mFirebaseDatabase = mFirebaseInstance.getReference("users/" + firebaseAuth.getUid());
+        mFirebaseDatabase = mFirebaseInstance.getReference("favoritos/" + firebaseAuth.getUid());
 
-        mFirebaseDatabase.push().setValue(movie);
+        DatabaseReference push = mFirebaseDatabase.push();
+
+        movie.setDatabaseKey(push.getKey());
+
+        push.setValue(movie);
 
 
     }

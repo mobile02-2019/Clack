@@ -41,7 +41,17 @@ public class Movie implements Serializable{
     private String dataString;
 
 
-//    private Boolean adult;
+    private String databaseKey;
+
+    public String getDatabaseKey() {
+        return databaseKey;
+    }
+
+    public void setDatabaseKey(String databaseKey) {
+        this.databaseKey = databaseKey;
+    }
+
+    //    private Boolean adult;
 //    private Integer genre_ids;
 //    private Integer id;
 //    private String original_language;

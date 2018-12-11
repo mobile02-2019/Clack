@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -29,6 +32,9 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
 
     private List<Movie> filmeFavoritosList = new ArrayList<>();
     private RecyclerListenerFavoritos recyclerListenerFavoritos;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference mref;
 
     public RecyclerviewFavoritosAdapter(List<Movie> filmeFavoritosLists, RecyclerListenerFavoritos listenerFavoritos) {
         this.filmeFavoritosList = filmeFavoritosLists;
@@ -66,6 +72,16 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
         return filmeFavoritosList.size();
     }
 
+    public void deletarFilmeFavorito (Movie movie){
+        mAuth = FirebaseAuth.getInstance();
+        filmeFavoritosList.remove(movie);
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("favoritos/"+mAuth.getUid());
+
+        myRef.child(movie.getDatabaseKey()).removeValue();
+
+        notifyDataSetChanged();
+    }
+
     public void setFilmesFavoritos(List<Movie> filmeFavoritosList) {
         this.filmeFavoritosList = filmeFavoritosList;
         notifyDataSetChanged();
@@ -80,6 +96,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
         private ImageView imagemView;
         private TextView data;
         private CardView cardFavorito;
+        private ImageView deletar;
 
         @SuppressLint("ResourceType")
         public ViewHolder(@NonNull View itemView) {
@@ -90,6 +107,7 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             data = itemView.findViewById(R.id.textViewCard_data_id);
             imagemView = itemView.findViewById(R.id.primeiro_filme_id);
             cardFavorito = itemView.findViewById(R.id.cardView_favorito);
+            deletar = itemView.findViewById(R.id.imageview_deletar_favoritos_id);
         }
 
         public void bind(final Movie movie) {
@@ -100,13 +118,12 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
             if (movie.getData() != null) {
 //                data.setText(movie.getData());
                 String dataFilme = movie.getData();
+
                 data.setText("Data de lançamento:\n        " + FormatarData.formateData(dataFilme));
 
+
 //                data = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-
             }
-
-
             Picasso.get().load(RetrofitService.BASE_IMAGE_URL + movie.getPoster()).into(imagemView);
             cardFavorito.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -114,6 +131,14 @@ public class RecyclerviewFavoritosAdapter extends RecyclerView.Adapter<Recyclerv
                     recyclerListenerFavoritos.onFavoritoClicado(movie.getId());
                 }
             });
+
+            deletar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deletarFilmeFavorito(movie);
+                }
+            });
+
 
 
         }
