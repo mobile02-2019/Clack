@@ -54,7 +54,7 @@
            <ImageView
                android:layout_width="40dp"
                android:layout_height="30dp"
-               android:src="@drawable/button_favoritar"
+               android:src="@drawable/icon_star_vazia"
                android:layout_margin="8dp"/>
 
            <ImageView

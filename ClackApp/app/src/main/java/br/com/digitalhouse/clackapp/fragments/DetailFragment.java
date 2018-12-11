@@ -7,29 +7,32 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
-import br.com.digitalhouse.clackapp.MainActivity;
 import br.com.digitalhouse.clackapp.R;
+import br.com.digitalhouse.clackapp.adapter.RecyclerviewFavoritosAdapter;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosContract;
 import br.com.digitalhouse.clackapp.database.FilmesFavoritosDbHelper;
 import br.com.digitalhouse.clackapp.interfaces.FavoritosListener;
@@ -45,7 +48,7 @@ public class DetailFragment extends Fragment {
     public static final String MOVIE = "MOVIE";
     private ImageView imagemPost;
     private ImageView share;
-    private Movie movie;
+    static private Movie filme;
     private ImageView favoritarFilme;
     private ImageButton botaoFechar;
     private FilmesFavoritosDbHelper mDbHelper;
@@ -55,11 +58,14 @@ public class DetailFragment extends Fragment {
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth firebaseAuth;
-    private List<Movie> movieList = new ArrayList<>();
+//    private List<Movie> movieList = new ArrayList<>();
+    private Boolean salvoNoFirebase = false;
+    private RecyclerviewFavoritosAdapter recyclerviewFavoritosAdapter;
 
     public static DetailFragment newInstance(Movie movie) {
         Bundle args = new Bundle();
         args.putSerializable(MOVIE, movie);
+        filme = movie;
         DetailFragment fragment = new DetailFragment();
         fragment.setArguments(args);
         return fragment;
@@ -73,7 +79,7 @@ public class DetailFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         listenerUpdate = (UpdateMovies) context;
-//        this.movie = (Movie) getArguments().getSerializable(MainActivity.OBJ_FAVORITO);
+//        this.filme = (Movie) getArguments().getSerializable(MainActivity.OBJ_FAVORITO);
         this.favoritosListener = (FavoritosListener) context;
     }
 
@@ -88,6 +94,9 @@ public class DetailFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+
+        buscarSeExisteNoFirebase(filme);
 
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
@@ -96,9 +105,16 @@ public class DetailFragment extends Fragment {
         favoritarFilme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                salvarFilmeFb(movie);
-                Toast.makeText(getContext(), "Favoritado!", Toast.LENGTH_SHORT).show();
-//                salvarFilmeLocal(movie);
+                if(salvoNoFirebase){
+                    deletarFilmeFb(filme);
+                    Toast.makeText(getContext(), "Removido dos Favoritos!", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    salvarFilmeFb(filme);
+                    Toast.makeText(getContext(), "Favoritado!", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
 
@@ -118,36 +134,33 @@ public class DetailFragment extends Fragment {
        {
             @Override
             public void onClick(View v) {
-                onShareClicado(movie);
+                onShareClicado(filme);
             }
         });
 
-        movie = (Movie) getArguments().getSerializable(MOVIE);
-        String titulo = movie.getNome();
+        filme = (Movie) getArguments().getSerializable(MOVIE);
+        String titulo = filme.getNome();
         TextView tituloText = view.findViewById(R.id.titulo_act_id);
         Typeface myCustomFontLogo = Typeface.createFromAsset(getContext().getAssets(), "fonts/LuckiestGuy-Regular.ttf");
         tituloText.setTypeface(myCustomFontLogo);
         tituloText.setText(titulo);
 
 
-        String descricao = movie.getSinopse();
+        String descricao = filme.getSinopse();
         TextView descricaoText = view.findViewById(R.id.sinopse_act_id);
         descricaoText.setText(descricao);
 
 
-
-
-        String poster = movie.getPoster();
+        String poster = filme.getPoster();
         Picasso.get().load(RetrofitService.BASE_IMAGE_URL + poster).into(imagemPost);
 
 
-        String data = movie.getData();
+        String data = filme.getData();
         TextView dataText = view.findViewById(R.id.textView_data_id);
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String dataFormatada = FormatarData.formateData(data);
         dataText.setText("Data de lançamento: " + dataFormatada);
 
-        float nota = movie.getNota();
+        float nota = filme.getNota();
         TextView notaText = view.findViewById(R.id.textView_nota_id);
         notaText.setText("Nota média: " + nota);
 
@@ -155,9 +168,48 @@ public class DetailFragment extends Fragment {
 
     }
 
+    private void buscarSeExisteNoFirebase(final Movie movieBuscado) {
+
+        mFirebaseDatabase = mFirebaseInstance.getReference("favoritos/" + firebaseAuth.getUid());
+        mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                GenericTypeIndicator<Map<String, Movie>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Movie>>() {
+                };
+                Map<String, Movie> mapaApiKeyFilme = dataSnapshot.getValue(genericTypeIndicator);
+                if (mapaApiKeyFilme != null) {
+                    salvoNoFirebase=false;
+                    favoritarFilme.setImageResource(R.drawable.icon_star_vazia);
+                    for (String apiKey : mapaApiKeyFilme.keySet()) {
+                        Movie movie = mapaApiKeyFilme.get(apiKey);
+                        if(movie.getId().equals(movieBuscado.getId())){
+                            favoritarFilme.setImageResource(R.drawable.icon_star_cheia);
+                            salvoNoFirebase = true;
+                            filme.setDatabaseKey(apiKey);
+                            break;
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+
+        });
+
+
+
+    }
+
     private void salvarFilmeFb(Movie movie) {
 
-        movieList.add(movie);
+//        movieList.add(movie);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
@@ -169,6 +221,21 @@ public class DetailFragment extends Fragment {
 
         push.setValue(movie);
 
+        buscarSeExisteNoFirebase(movie);//
+
+    }
+
+    private void deletarFilmeFb(Movie movie){
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        DatabaseReference firebaseDbReferenceFav = FirebaseDatabase.getInstance().getReference("favoritos/"+firebaseAuth.getUid());
+
+        firebaseDbReferenceFav.child(movie.getDatabaseKey()).removeValue();
+
+        buscarSeExisteNoFirebase(movie);
+
+        favoritarFilme.setImageResource(R.drawable.icon_star_vazia);
 
     }
 
