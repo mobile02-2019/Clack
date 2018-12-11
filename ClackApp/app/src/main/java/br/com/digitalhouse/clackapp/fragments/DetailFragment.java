@@ -162,14 +162,7 @@ public class DetailFragment extends Fragment {
         dataText.setText("Data de lançamento: " + dataFormatada);
 
         float nota = filme.getNota();
-        TextView notaText = view.findViewById(R.id.textView_nota_id);
-        notaText.setText("Nota média: " + nota);
-
-
-
-        //TODO NOTA
- //       float nota = filme.getNota();
-        RatingBar ratingBar = view.findViewById(R.id.textView_nota_id);
+        RatingBar ratingBar = view.findViewById(R.id.ratingbar_nota_id);
         ratingBar.setRating(nota / 2);
 
         return view;

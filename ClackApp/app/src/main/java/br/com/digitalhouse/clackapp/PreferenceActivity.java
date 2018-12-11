@@ -126,7 +126,7 @@ public class PreferenceActivity extends AppCompatActivity {
         if (user != null) {
             textViewHelloPref.setText("Olá  " + user.getDisplayName() + "!");
             if (user.getPhotoUrl() == null) {
-                imageReference = storageReference.child("/users").child(mAuth.getUid());
+                imageReference = storageReference.child("users/").child(mAuth.getUid());
                 imageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {

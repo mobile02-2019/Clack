@@ -94,11 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText nomeCadastrado = findViewById(R.id.edit_text_firstname_id);
         EditText emailCadastrado = findViewById(R.id.edit_text_email_id);
         EditText senhaCadastrada = findViewById(R.id.edit_text_password_id);
+
         mAuth.createUserWithEmailAndPassword(emailCadastrado.getText().toString(), senhaCadastrada.getText().toString())
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            saveUserImage();
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getInstance().getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -109,11 +111,11 @@ public class RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                goToPreferencia();
+
                                             }
                                         }
                                     });
-                            saveUserImage();
+
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(RegisterActivity.this, "Authentication failed.",
@@ -148,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
-        UploadTask uploadTask = storageReference.child("/users").child(mAuth.getUid()).putBytes(data);
+        UploadTask uploadTask = storageReference.child("users/").child(mAuth.getUid()).putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -158,7 +160,9 @@ public class RegisterActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                goToPreferencia();
                 Toast.makeText(RegisterActivity.this, "Foto salva com sucesso!", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
