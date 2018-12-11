@@ -117,7 +117,7 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
         int columns = 3;
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), columns));
 
-        progressBar.setVisibility(View.INVISIBLE);
+
 
 
     }
