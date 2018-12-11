@@ -161,15 +161,15 @@ public class DetailFragment extends Fragment {
         String dataFormatada = FormatarData.formateData(data);
         dataText.setText("Data de lançamento: " + dataFormatada);
 
-        float nota = filme.getNota();
-        TextView notaText = view.findViewById(R.id.textView_nota_id);
-        notaText.setText("Nota média: " + nota);
+ //       float nota = filme.getNota();
+  //      TextView notaText = view.findViewById(R.id.textView_nota_id);
+ //       notaText.setText("Nota média: " + nota);
 
 
 
         //TODO NOTA
- //       float nota = filme.getNota();
-        RatingBar ratingBar = view.findViewById(R.id.textView_nota_id);
+        float nota = filme.getNota();
+        RatingBar ratingBar = view.findViewById(R.id.ratingbar_nota_id);
         ratingBar.setRating(nota / 2);
 
         return view;
@@ -183,21 +183,21 @@ public class DetailFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                GenericTypeIndicator<Map<String, Movie>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Movie>>() {
-                };
-                Map<String, Movie> mapaApiKeyFilme = dataSnapshot.getValue(genericTypeIndicator);
-                if (mapaApiKeyFilme != null) {
-                    salvoNoFirebase=false;
-                    favoritarFilme.setImageResource(R.drawable.icon_star_vazia);
-                    for (String apiKey : mapaApiKeyFilme.keySet()) {
-                        Movie movie = mapaApiKeyFilme.get(apiKey);
-                        if(movie.getId().equals(movieBuscado.getId())){
-                            favoritarFilme.setImageResource(R.drawable.icon_star_cheia);
-                            salvoNoFirebase = true;
-                            filme.setDatabaseKey(apiKey);
-                            break;
-                        }
-                    }
+                            GenericTypeIndicator<Map<String, Movie>> genericTypeIndicator = new GenericTypeIndicator<Map<String, Movie>>() {
+                            };
+                            Map<String, Movie> mapaApiKeyFilme = dataSnapshot.getValue(genericTypeIndicator);
+                            if (mapaApiKeyFilme != null) {
+                                salvoNoFirebase=false;
+                                favoritarFilme.setImageResource(R.drawable.icon_star_vazia);
+                                for (String apiKey : mapaApiKeyFilme.keySet()) {
+                                    Movie movie = mapaApiKeyFilme.get(apiKey);
+                                    if(movie.getId().equals(movieBuscado.getId())){
+                                        favoritarFilme.setImageResource(R.drawable.icon_star_cheia);
+                                        salvoNoFirebase = true;
+                                        filme.setDatabaseKey(apiKey);
+                                        break;
+                                    }
+                                }
 
                 }
 

@@ -6,15 +6,17 @@
         android:icon="@drawable/icon_home"
         android:title="Home" />
 
-    <item
-        android:id="@+id/navigation_favoritos"
-        android:icon="@drawable/icon_favoritos"
-        android:title="Favoritos"/>
+
 
     <item
         android:id="@+id/navigation_pesquisa"
         android:icon="@drawable/icon_buscar"
         android:title="Pesquisa"/>
+
+    <item
+        android:id="@+id/navigation_favoritos"
+        android:icon="@drawable/icon_favoritos"
+        android:title="Favoritos"/>
 
     <item
         android:id="@+id/navigation_config"

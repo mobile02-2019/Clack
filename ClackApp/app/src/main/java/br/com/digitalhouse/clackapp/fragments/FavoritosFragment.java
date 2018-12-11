@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -90,6 +91,8 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
         setupRecyclerView(view);
 
+        favoritosAdapter.notifyDataSetChanged();
+
 
 
 
@@ -145,10 +148,11 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(getContext(), "teste", Toast.LENGTH_SHORT).show();
             }
 
         });
+
 
                 progressBar.setVisibility(View.INVISIBLE);
 
