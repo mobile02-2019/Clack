@@ -16,6 +16,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/luckiest_guy"
         android:text="FAVORITOS"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"

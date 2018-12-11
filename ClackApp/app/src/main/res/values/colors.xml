@@ -12,4 +12,6 @@
     <color name="ic_launcher_background">#F0DE3E</color>
     <color name="colorbt">#f8f1df45</color>
     <color name="colorCard">#F8EDDC47</color>
+    <color name="colorSearchbar">#FFF864</color>
+    <color name="backgroundRecyclerPreferences">#1F1F1F</color>
 </resources>
