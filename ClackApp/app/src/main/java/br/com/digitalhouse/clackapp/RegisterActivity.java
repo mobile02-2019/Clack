@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -37,18 +38,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RegisterActivity extends AppCompatActivity {
 
     private static final String TAG = "RegisterActivity";
-    private TextInputEditText firstNameInput;
-    private TextInputEditText emailInput;
-    private TextInputEditText passwordInput;
-    private TextInputEditText passwordConfirmInput;
+    private TextInputEditText nome;
+    private TextInputEditText email;
+    private TextInputEditText senha;
+    private TextInputEditText senhaConfirma;
     private Button register;
-    private FirebaseDatabase database;
     private FirebaseAuth mAuth;
-    private DatabaseReference myRef;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    private StorageReference imageReference;
     private CircleImageView imageUser;
+    private EditText emailCadastrado;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
@@ -57,29 +56,13 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        myRef = database.getReference("users/" + mAuth.getCurrentUser().getUid());
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        imageReference = storageReference.child(mAuth.getCurrentUser().getUid());
 
-        imageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(imageUser);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-            }
-        });
-
-        register = findViewById(R.id.register_button_id);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
-        });
+        nome = findViewById(R.id.edit_text_firstname_id);
+        email = findViewById(R.id.edit_text_email_id);
+        senha = findViewById(R.id.edit_text_password_id);
+        senhaConfirma = findViewById(R.id.edit_text_password_confirm_id);
 
         imageUser = findViewById(R.id.image_profile_id);
         imageUser.setOnClickListener(new View.OnClickListener() {
@@ -89,17 +72,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        storageReference = storage.getReference();
-        imageReference = storageReference.child(mAuth.getUid());
-
-        imageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        register = findViewById(R.id.register_button_id);
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(imageUser);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
+            public void onClick(View v) {
+                registerUser();
             }
         });
 
@@ -112,83 +89,58 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    private void registerUser() {
+
+        final EditText nomeCadastrado = findViewById(R.id.edit_text_firstname_id);
+        EditText emailCadastrado = findViewById(R.id.edit_text_email_id);
+        EditText senhaCadastrada = findViewById(R.id.edit_text_password_id);
+        mAuth.createUserWithEmailAndPassword(emailCadastrado.getText().toString(), senhaCadastrada.getText().toString())
+                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getInstance().getCurrentUser();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(nomeCadastrado.getText().toString())
+                                    .build();
+                            user.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                goToPreferencia();
+                                            }
+                                        }
+                                    });
+                            saveUserImage();
+                        } else {
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            goToPreferencia();
+
+                        }
+                    }
+                });
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            final Bitmap imageBitmap = (Bitmap) extras.get("data");
-
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] dataBytes = baos.toByteArray();
-
-            storageReference = storage.getReference();
-            imageReference = storageReference.child(mAuth.getCurrentUser().getUid());
-
-            UploadTask uploadTask = imageReference.putBytes(dataBytes);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.e("REGISTER", e.getLocalizedMessage());
-                    Toast.makeText(RegisterActivity.this, "REGISTER FAILED", Toast.LENGTH_SHORT).show();
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    imageUser.setImageBitmap(imageBitmap);                }
-            });
-
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageUser.setImageBitmap(imageBitmap);
         }
     }
 
-    private void registerUser() {
-        firstNameInput = findViewById(R.id.edit_text_firstname_id);
-        emailInput = findViewById(R.id.edit_text_email_id);
-        passwordInput = findViewById(R.id.edit_text_password_id);
-        passwordConfirmInput = findViewById(R.id.edit_text_password_confirm_id);
-
-        if (passwordConfirmInput.getText().toString().equals(passwordInput.getText().toString())) {
-            mAuth.createUserWithEmailAndPassword(emailInput.getText().toString(), passwordInput.getText().toString())
-                    .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                Log.d(TAG, "createUserWithEmail:success");
-                                FirebaseUser user = mAuth.getInstance().getCurrentUser();
-
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(firstNameInput.getText().toString())
-                                        .build();
-                                user.updateProfile(profileUpdates)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Log.d(TAG, "User profile updated.");
-                                                    goToHomeActivity();
-                                                }
-                                            }
-                                        });
-                               saveUserImage();
-                            } else {
-                                Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-            goToHomeActivity();
-        } else {
-            Toast.makeText(RegisterActivity.this, "Both passwords must match.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void goToHomeActivity() {
+    private void goToPreferencia() {
         Intent intent = new Intent(getApplicationContext(), PreferenceActivity.class);
         startActivity(intent);
     }
 
-    public void saveUserImage() {
+    private void saveUserImage() {
         imageUser.setDrawingCacheEnabled(true);
         imageUser.buildDrawingCache();
         Bitmap bitmap = ((BitmapDrawable) imageUser.getDrawable()).getBitmap();
@@ -196,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
 
-        UploadTask uploadTask = storageReference.putBytes(data);
+        UploadTask uploadTask = storageReference.child("/users").child(mAuth.getUid()).putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
