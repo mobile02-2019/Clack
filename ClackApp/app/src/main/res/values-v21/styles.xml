@@ -35,4 +35,6 @@
         <item name="android:textColorPrimary">@color/colorBlack</item>
         <item name="android:windowBackground">@color/colorBlack</item>
     </style>
+
+
 </resources>

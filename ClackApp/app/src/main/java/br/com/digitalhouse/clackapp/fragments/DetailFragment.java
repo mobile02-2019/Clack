@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -163,6 +164,13 @@ public class DetailFragment extends Fragment {
         float nota = filme.getNota();
         TextView notaText = view.findViewById(R.id.textView_nota_id);
         notaText.setText("Nota média: " + nota);
+
+
+
+        //TODO NOTA
+ //       float nota = filme.getNota();
+        RatingBar ratingBar = view.findViewById(R.id.textView_nota_id);
+        ratingBar.setRating(nota / 2);
 
         return view;
 
