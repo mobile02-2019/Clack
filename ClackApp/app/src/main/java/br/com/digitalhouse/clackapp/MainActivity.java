@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie, Up
 
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new HomeFragment());
-        fragmentList.add(new FavoritosFragment());
         fragmentList.add(new PesquisaFragment());
+        fragmentList.add(new FavoritosFragment());
         fragmentList.add(new ConfiguracoesFragment());
 
         FragmentViewPagerAdapter adapter = new FragmentViewPagerAdapter(getSupportFragmentManager(),fragmentList);
@@ -72,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements ReceptorMovie, Up
                         viewPager.setCurrentItem(0);
                         break;
                     }
-                    case R.id.navigation_favoritos: {
+                    case R.id.navigation_pesquisa: {
                         viewPager.setCurrentItem(1);
                         break;
                     }
-                    case R.id.navigation_pesquisa: {
+                    case R.id.navigation_favoritos: {
                         viewPager.setCurrentItem(2);
                         break;
                     }
