@@ -121,7 +121,6 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
     private void exibirFavoritos() {
 
 
-
         database = FirebaseDatabase.getInstance();
 
         mref = database.getReference("favoritos/" + mAuth.getCurrentUser().getUid());
@@ -214,7 +213,6 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 //        favoritosAdapter.setFilmesFaoritos(listaFavoritos);
 
     }
-
 
 
     @Override
