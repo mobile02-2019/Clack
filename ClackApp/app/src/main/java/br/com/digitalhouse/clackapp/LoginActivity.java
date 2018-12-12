@@ -15,6 +15,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class LoginActivity extends Activity {
     private CallbackManager callbackManager;
     private LoginButton loginFacebook;
     private ArrayList<String> listaChecados = new ArrayList<>();
+    private ProgressBar progressBar;
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
@@ -81,6 +83,8 @@ public class LoginActivity extends Activity {
                 .build();
 
         mAuth = FirebaseAuth.getInstance();
+
+        progressBar = findViewById(R.id.login_progress);
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
@@ -188,6 +192,10 @@ public class LoginActivity extends Activity {
        super.onStart();
 
         if(mAuth.getCurrentUser()!=null){
+
+            Toast.makeText(this, "Autenticando usuário, aguarde.", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.VISIBLE);
+
         FirebaseUser user = mAuth.getCurrentUser();
             try {
                 //referencia database firebase
@@ -220,6 +228,7 @@ public class LoginActivity extends Activity {
                         }else{//se nao existir preferencia, vai para tela de preferencias para serem criadas
                             //abre a outra Activity
                             Intent intent = new Intent(getApplicationContext(),PreferenceActivity.class);
+                            progressBar.setVisibility(View.INVISIBLE);
                             startActivity(intent);
                         }
                     }
@@ -232,6 +241,7 @@ public class LoginActivity extends Activity {
             } catch (Exception ex) {
 
             }
+
         }
 }
 
