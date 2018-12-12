@@ -195,6 +195,11 @@ public class HomeFragment extends Fragment implements CardMovieClicado, ServiceL
     }
 
     @Override
+    public void onSuccess(Object object) {
+
+    }
+
+    @Override
     public void onError(Throwable throwable) {
         Toast.makeText(getContext(), throwable.getMessage(), Toast.LENGTH_SHORT).show();
 
