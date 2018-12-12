@@ -29,7 +29,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -52,7 +52,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_id_1" />
@@ -75,7 +75,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_id_2" />
@@ -98,7 +98,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/colorPrimary"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_view_id_3" />

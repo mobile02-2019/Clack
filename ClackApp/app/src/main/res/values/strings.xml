@@ -15,8 +15,8 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_email">E-mail</string>
+    <string name="prompt_password">Senha</string>
 
     <!-- STRINGS PREFERENCE ACTIVITY -->
     <string name="preference_greetings">Olá clacker!</string>

@@ -16,7 +16,7 @@
         android:layout_height="125dp"
         android:layout_gravity="center"
         android:layout_margin="25dp"
-        android:src="@drawable/icon_profile"
+        android:src="@drawable/user"
         />
 
     <android.support.design.widget.TextInputLayout
@@ -88,15 +88,16 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:text="CADASTRAR"
         android:textSize="16sp"
-        android:layout_margin="8dp"
+        android:textStyle="bold"
+        android:layout_margin="12dp"
         android:layout_marginTop="16dp"
         android:background="@color/colorBlack"
         android:id="@+id/register_button_id"
-        android:textColor="@color/colorPrimaryOriginal"
+        android:textColor="@color/colorWhite"
         />
 
 </LinearLayout>

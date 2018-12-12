@@ -4,8 +4,11 @@ package br.com.digitalhouse.clackapp.fragments;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.content.Intent;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -99,6 +102,8 @@ public class DetailFragment extends Fragment {
 
         buscarSeExisteNoFirebase(filme);
 
+
+
         imagemPost = view.findViewById(R.id.imagem_act_id);
         share = view.findViewById(R.id.image_compartilhar);
         botaoFechar = view.findViewById(R.id.botao_fechar_id);
@@ -164,6 +169,10 @@ public class DetailFragment extends Fragment {
         float nota = filme.getNota();
         RatingBar ratingBar = view.findViewById(R.id.ratingbar_nota_id);
         ratingBar.setRating(nota / 2);
+        LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
+//        stars.getDrawable(2).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
+//        stars.getDrawable(0).setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+//        stars.getDrawable(1).setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_ATOP);
 
         return view;
 

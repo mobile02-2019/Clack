@@ -99,7 +99,7 @@ public class LoginActivity extends Activity {
         loginFacebook = findViewById(R.id.button_facebookLogin_id);
         //Configuração para modificar botão original do facebook
         loginFacebook.setBackgroundResource(R.drawable.icon_facebook_circled_preto_96px);
-        loginFacebook.setScaleY(1.75F);
+        loginFacebook.setScaleY(2.25F);
         loginFacebook.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
         loginFacebook.setReadPermissions("email", "public_profile");
