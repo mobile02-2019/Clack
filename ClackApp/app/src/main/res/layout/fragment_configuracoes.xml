@@ -10,82 +10,85 @@
     tools:layout_editor_absoluteY="25dp"
     >
 
-    <TextView
-        android:id="@+id/textTituloConf"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="CLACKER"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimaryOriginal"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_estou_com_sorte_id"
-        android:layout_width="136dp"
-        android:layout_height="85dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorBlack"
         android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="ESTOU COM SORTE!"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btn_edit_preferencias"
+        app:layout_constrainedHeight="false"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTituloConf"
-        app:layout_constraintVertical_bias="0.392" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 
     <Button
         android:id="@+id/btn_edit_preferencias"
-        android:layout_width="230dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginBottom="236dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorBlack"
         android:gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
         android:text="Editar Preferências"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_estou_com_sorte_id"
         tools:ignore="MissingConstraints" />
 
 
     <Button
         android:id="@+id/button_logout_id"
-        android:layout_width="121dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorBlack"
         android:text="LOGOUT"
-        android:textColor="@color/colorBlack"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_edit_preferencias"
-        app:layout_constraintVertical_bias="0.386" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_preferencias" />
 
 
 </android.support.constraint.ConstraintLayout>
