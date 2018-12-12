@@ -111,7 +111,6 @@ public class LoginActivity extends Activity {
         loginFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Toast.makeText(getApplicationContext(), "Autenticação foi bem sucedida", Toast.LENGTH_LONG).show();
                 Log.d(TAG, "facebook:onSuccess:" + loginResult);
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
@@ -119,12 +118,10 @@ public class LoginActivity extends Activity {
             @Override
             public void onCancel() {
                 Log.d(TAG, "facebook:onCancel");
-                Toast.makeText(getApplicationContext(), "Autenticação falhou", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(), "Login error", Toast.LENGTH_LONG).show();
                 Log.d(TAG, "facebook:onError", error);
             }
         });
@@ -143,7 +140,6 @@ public class LoginActivity extends Activity {
         loginClicado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(LoginActivity.this, "Estou no loginClicado.OnClick", Toast.LENGTH_SHORT).show();
                 final Intent intent = new Intent(v.getContext(), PreferenceActivity.class);
                 final Bundle bundle = new Bundle();
 
@@ -159,7 +155,6 @@ public class LoginActivity extends Activity {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "signInWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(LoginActivity.this, "Authentication successful!", Toast.LENGTH_LONG).show();
                                         bundle.putString(CHAVE_EMAIL, emailDigitado.getText().toString());
                                         intent.putExtras(bundle);
                                         startActivity(intent);
@@ -193,7 +188,7 @@ public class LoginActivity extends Activity {
 
         if(mAuth.getCurrentUser()!=null){
 
-            Toast.makeText(this, "Autenticando usuário, aguarde.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Autenticando usuário, aguarde...", Toast.LENGTH_LONG).show();
             progressBar.setVisibility(View.VISIBLE);
 
         FirebaseUser user = mAuth.getCurrentUser();
@@ -257,7 +252,6 @@ public class LoginActivity extends Activity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-//                            Toast.makeText(LoginActivity.this, "A autenticacao foi feita com sucesso!", Toast.LENGTH_LONG).show();
 
                             goToMain(user);
 //                            updateUI(user);
@@ -276,7 +270,6 @@ public class LoginActivity extends Activity {
     }
 
     private void goToMain(FirebaseUser user) {
-        Toast.makeText(this, "Login realizado com sucesso! " + user.getEmail(), Toast.LENGTH_SHORT).show();
         irParaPreferencesGenerico(user);
     }
 
@@ -333,8 +326,6 @@ public class LoginActivity extends Activity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

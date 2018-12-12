@@ -97,7 +97,6 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
                     progressBar.setVisibility(View.INVISIBLE);
                 }
 
-                //Toast.makeText(getContext(), newText, Toast.LENGTH_SHORT).show();
                 return false;
             }
         });

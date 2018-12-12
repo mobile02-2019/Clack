@@ -116,7 +116,7 @@ public class PreferenceActivity extends AppCompatActivity {
                     intent.putExtras(bundleHome());
                     startActivity(intent);
                 } else {
-                    Toast.makeText(PreferenceActivity.this, "Selecione 4 gêneros preferidos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "Selecione 4 gêneros preferidos!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

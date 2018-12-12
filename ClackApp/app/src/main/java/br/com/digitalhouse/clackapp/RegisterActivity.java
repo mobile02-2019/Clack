@@ -118,8 +118,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(RegisterActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
                             goToPreferencia();
 
                         }
@@ -154,14 +152,12 @@ public class RegisterActivity extends AppCompatActivity {
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(RegisterActivity.this, "Falha ao salvar foto", Toast.LENGTH_SHORT).show();
                 Log.e("LOGIN: ", exception.getMessage());
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 goToPreferencia();
-                Toast.makeText(RegisterActivity.this, "Foto salva com sucesso!", Toast.LENGTH_SHORT).show();
 
             }
         });

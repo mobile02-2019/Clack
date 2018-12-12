@@ -148,7 +148,6 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getContext(), "teste", Toast.LENGTH_SHORT).show();
             }
 
         });

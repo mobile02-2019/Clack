@@ -113,11 +113,9 @@ public class DetailFragment extends Fragment {
             public void onClick(View v) {
                 if(salvoNoFirebase){
                     deletarFilmeFb(filme);
-                    Toast.makeText(getContext(), "Removido dos Favoritos!", Toast.LENGTH_SHORT).show();
 
                 } else {
                     salvarFilmeFb(filme);
-                    Toast.makeText(getContext(), "Favoritado!", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -259,7 +257,6 @@ public class DetailFragment extends Fragment {
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_GENERO, movie.getGeneros().toString());
         values.put(FilmesFavoritosContract.FilmesFavoritosEntry.COLUMN_SINOPSE,movie.getSinopse());
         long newRowId = db.insert(FilmesFavoritosContract.FilmesFavoritosEntry.TABLE_NAME, null, values);
-        Toast.makeText(getContext(),"Filme salvo!",Toast.LENGTH_SHORT).show();
         listenerUpdate.updateMovies();
     }
 

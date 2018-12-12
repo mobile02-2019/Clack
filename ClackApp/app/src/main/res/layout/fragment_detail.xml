@@ -65,43 +65,32 @@
             android:id="@+id/favoritar_film"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="28dp"
             android:src="@drawable/icon_star_vazia"
-            app:layout_constraintBottom_toTopOf="@+id/textView_data_id"
-            app:layout_constraintEnd_toStartOf="@+id/image_compartilhar"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagem_act_id"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/imagem_act_id" />
 
         <RatingBar
             android:id="@+id/ratingbar_nota_id"
             style="@style/MyRatingBar"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
-            android:layout_marginStart="62dp"
-            android:layout_marginLeft="62dp"
-
-            android:layout_marginEnd="62dp"
-            android:layout_marginRight="62dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:numStars="5"
+            android:progressBackgroundTint="@color/colorWhite"
+
             android:progressTint="@color/colorPrimaryOriginal"
-            android:stepSize=".5"
             android:text="Nota"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toTopOf="@+id/sinopse_act_id"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            
-            app:layout_constraintStart_toEndOf="@+id/guideline" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/sinopse_act_id"
@@ -127,15 +116,15 @@
             android:id="@+id/image_compartilhar"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="136dp"
-            android:layout_marginRight="136dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:src="@drawable/image_compartilhar"
-            app:layout_constraintBottom_toTopOf="@+id/textView_data_id"
+            app:layout_constraintBottom_toBottomOf="@+id/favoritar_film"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagem_act_id"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintStart_toEndOf="@+id/favoritar_film"
+            app:layout_constraintTop_toTopOf="@+id/favoritar_film" />
 
         <TextView
             android:id="@+id/textView_data_id"
@@ -149,12 +138,11 @@
             android:text="Ano"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
-            android:textStyle="bold"
             android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagem_act_id" />
-
 
 
         <android.support.constraint.Guideline
@@ -196,6 +184,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_data_id" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="192dp" />
 
 
     </android.support.constraint.ConstraintLayout>
