@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/imagem_act_id"
-            android:layout_width="329dp"
-            android:layout_height="479dp"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
             android:layout_gravity="center"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -42,7 +42,7 @@
             android:text="TITULO"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryOriginal"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
@@ -65,11 +65,11 @@
             android:id="@+id/favoritar_film"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/icon_star_vazia"
             app:layout_constraintBottom_toTopOf="@+id/textView_data_id"
@@ -85,21 +85,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+
             android:layout_marginStart="62dp"
             android:layout_marginLeft="62dp"
 
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="62dp"
             android:layout_marginRight="62dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="8dp"
+            android:numStars="5"
+            android:progressTint="@color/colorPrimaryOriginal"
+            android:stepSize=".5"
             android:text="Nota"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toTopOf="@+id/sinopse_act_id"
-            android:progressTint="@color/colorPrimaryOriginal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.142"
-            app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:layout_constraintTop_toBottomOf="@+id/textView_data_id" />
+            app:layout_constraintHorizontal_bias="1.0"
+            
+            app:layout_constraintStart_toEndOf="@+id/guideline" />
 
         <TextView
             android:id="@+id/sinopse_act_id"
@@ -107,18 +109,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"
             android:text="Sinopse do filme"
+            android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ratingbar_nota_id" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <ImageView
@@ -126,8 +128,8 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="124dp"
-            android:layout_marginRight="124dp"
+            android:layout_marginEnd="136dp"
+            android:layout_marginRight="136dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/image_compartilhar"
             app:layout_constraintBottom_toTopOf="@+id/textView_data_id"
@@ -137,17 +139,18 @@
 
         <TextView
             android:id="@+id/textView_data_id"
-            android:layout_width="180dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="80dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="Ano"
-            android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagem_act_id" />
@@ -174,6 +177,25 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="20dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Nota média:"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/ratingbar_nota_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_data_id" />
 
 
     </android.support.constraint.ConstraintLayout>
