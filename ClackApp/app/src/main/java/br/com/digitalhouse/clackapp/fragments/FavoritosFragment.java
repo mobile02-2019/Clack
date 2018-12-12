@@ -228,13 +228,18 @@ public class FavoritosFragment extends Fragment implements CardMovieClicado,Recy
     @Override
     public void onFavoritoClicado(Integer movieID) {
         MovieDAO movieDAO = new MovieDAO();
-        movieDAO.getMovieById(this,movieID, 1);
+        movieDAO.getMovieById(this,movieID);
     }
 
     @Override
     public void onSuccess(Object object, Integer adapter) {
+    }
+
+    @Override
+    public void onSuccess(Object object) {
         Movie movie = (Movie) object;
         listenerFavoritos.iniciarFragmentDetalheFavorito(movie);
+
     }
 
     @Override

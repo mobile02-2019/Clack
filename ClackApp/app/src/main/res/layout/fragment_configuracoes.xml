@@ -15,101 +15,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="CONFIGURAÇÃO"
+        android:text="CLACKER"
         android:textAlignment="center"
-        android:textColor="@color/colorWhite"
+        android:textColor="@color/colorPrimaryOriginal"
         android:textSize="21sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <Switch
-        android:id="@+id/switcher-notificacao"
-        android:layout_width="316dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:drawableLeft="@drawable/notificacao"
-        android:fontFamily="sans-serif-condensed"
-        android:textColor="@color/colorWhite"
-        android:showText="true"
-        android:text="  NOTIFICAÇÃO"
-        android:textOff="Off"
-        android:textOn="On"
-        android:textSize="17sp"
+    <Button
+        android:id="@+id/btn_estou_com_sorte_id"
+        android:layout_width="136dp"
+        android:layout_height="85dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="ESTOU COM SORTE!"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:thumb="@drawable/switch_thumb"
-        android:track="@drawable/switch_bg"
+        app:layout_constraintBottom_toTopOf="@+id/btn_edit_preferencias"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTituloConf"
-        tools:ignore="MissingConstraints" />
-
-
-    <Switch
-        android:id="@+id/switcher-traducao"
-        android:layout_width="316dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:drawableLeft="@drawable/language"
-        android:textColor="@color/colorWhite"
-        android:fontFamily="sans-serif-condensed"
-        android:showText="true"
-        android:text="  TRADUÇÃO"
-        android:textOff="Ing"
-        android:textOn="Port"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:thumb="@drawable/switch_thumb"
-        android:track="@drawable/switch_bg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switcher-notificacao"
-        tools:ignore="MissingConstraints" />
-
-    <!--<Switch-->
-        <!--android:id="@+id/switcher-luz"-->
-        <!--android:layout_width="316dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:layout_marginRight="8dp"-->
-        <!--android:drawableLeft="@drawable/lampada"-->
-        <!--android:fontFamily="sans-serif-condensed"-->
-        <!--android:showText="true"-->
-        <!--android:text="  LUZ"-->
-        <!--android:textOff="Off"-->
-        <!--android:textOn="On"-->
-        <!--android:textSize="17sp"-->
-        <!--android:textStyle="bold"-->
-        <!--android:thumb="@drawable/switch_thumb"-->
-        <!--android:track="@drawable/switch_bg"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/switcher-traducao"-->
-        <!--tools:ignore="MissingConstraints" />-->
-
-
-    <!--<Button-->
-        <!--android:id="@+id/btn_edit_preferencias"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="74dp"-->
-        <!--android:layout_marginLeft="74dp"-->
-        <!--android:layout_marginEnd="92dp"-->
-        <!--android:layout_marginRight="92dp"-->
-        <!--android:backgroundTint="@color/colorPrimary"-->
-        <!--android:text="Editar Preferências"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--tools:layout_editor_absoluteY="259dp" />-->
+        app:layout_constraintVertical_bias="0.392" />
 
 
     <Button
@@ -118,12 +47,11 @@
         android:layout_height="40dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginBottom="236dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="250dp"
+        android:layout_marginStart="8dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="Editar Preferências"
@@ -132,23 +60,19 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switcher-traducao"
-        app:layout_constraintVertical_bias="0.093"
         tools:ignore="MissingConstraints" />
-
 
 
     <Button
         android:id="@+id/button_logout_id"
         android:layout_width="121dp"
         android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:background="@color/colorPrimary"
         android:text="LOGOUT"
         android:textColor="@color/colorBlack"
@@ -159,7 +83,9 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_edit_preferencias"
-        app:layout_constraintVertical_bias="0.592" />
+        app:layout_constraintVertical_bias="0.386" />
+
+
 
 
 </android.support.constraint.ConstraintLayout>
