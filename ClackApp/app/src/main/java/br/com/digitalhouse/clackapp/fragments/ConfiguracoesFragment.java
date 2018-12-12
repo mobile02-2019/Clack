@@ -5,9 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,26 +25,50 @@ import android.widget.TextView;
 import com.bumptech.glide.util.Util;
 import com.facebook.FacebookButtonBase;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FacebookAuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import br.com.digitalhouse.clackapp.LoginActivity;
 import br.com.digitalhouse.clackapp.PreferenceActivity;
 import br.com.digitalhouse.clackapp.R;
+import br.com.digitalhouse.clackapp.adapter.RecyclerViewMovieAdapter;
+import br.com.digitalhouse.clackapp.interfaces.ReceptorMovie;
+import br.com.digitalhouse.clackapp.interfaces.ServiceListener;
+import br.com.digitalhouse.clackapp.model.Movie;
+import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static br.com.digitalhouse.clackapp.fragments.DetailFragment.MOVIE;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ConfiguracoesFragment extends Fragment {
+public class ConfiguracoesFragment extends Fragment implements ServiceListener {
 
-    private ConstraintLayout constraintFavorito, constraintHome;
-    private TextView textTituloConf;
-    private Switch switchNot, switchTraducao, switchLuz;
-    private Button btnSalvar, btnLogout, btnEditPreferencias;
-    private TextView textView1id;
-    private FacebookButtonBase facebookButtonBase;
+
+    private Button btnLogout, btnEditPreferencias,btnEstouComSorte;
+    private DetailFragment detailFragment;
+    private Movie movie;
+    private RecyclerViewMovieAdapter movieAdapter;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+    }
+
 
     public ConfiguracoesFragment() {
         // Required empty public constructor
@@ -52,79 +80,29 @@ public class ConfiguracoesFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
+        final View view = inflater.inflate(R.layout.fragment_configuracoes, container, false);
 
-
-//        // create ContextThemeWrapper from the original Activity Context with the custom theme
-//        final Context contextThemeWrapper = new ContextThemeWrapper(getContext(), R.style.AppEscuro);
-//
-//        // clone the inflater using the ContextThemeWrapper
-//        LayoutInflater localInflater = inflater.cloneInContext(contextThemeWrapper);
-
-//        // inflate the layout using the cloned inflater, not default inflater
-//        return localInflater.inflate(R.layout.activity_main, container, false);
-
-        // iniciar um interruptor
-//        Switch luzSwitch = view.findViewById (R.id.switcher_luz);
-
-        switchNot = view.findViewById(R.id.switcher_notificacao);
-
-        switchTraducao = view.findViewById(R.id.switcher_traducao);
-
-//        switchLuz = view.findViewById(R.id.switcher_luz);
-
-        textTituloConf = view.findViewById(R.id.textTituloConf);
-
-        constraintFavorito = view.findViewById(R.id.constraint_fav);
-
-//        btnSalvar = view.findViewById(R.id.btn_salvar);
 
         btnLogout = view.findViewById(R.id.button_logout_id);
-
         btnEditPreferencias = view.findViewById(R.id.btn_edit_preferencias);
+        btnEstouComSorte = view.findViewById(R.id.btn_estou_com_sorte_id);
 
-        textView1id = view.findViewById(R.id.textView_1_id);
+        btnEstouComSorte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        constraintHome = view.findViewById(R.id.constraint_home);
 
-//        switchLuz.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // do something, the isChecked will be
-//                // true if the switch is in the On position
-//                if (isChecked == true ){
-//                    // transformar em inteiro
-//                    int clackColorValue = Color.parseColor("#ffe81a");
-//                    constraintFavorito.setBackgroundColor(clackColorValue);
-//                    textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
-//                    textTituloConf.setTextColor(getResources().getColor(android.R.color.black));
-//                    switchNot.setTextColor(getResources().getColor(android.R.color.black));
-//                    switchTraducao.setTextColor(getResources().getColor(android.R.color.black));
-//                    switchLuz.setTextColor(getResources().getColor(android.R.color.black));
-//                    btnSalvar.setTextColor(getResources().getColor(android.R.color.white));
-//                    btnSalvar.setBackgroundColor(getResources().getColor(android.R.color.black));
-////                    textView1id.setBackgroundColor(getResources().getColor(android.R.color.black));
-////                    constraintHome.setBackgroundColor(clackColorValue);
-//
-//                }
-//                if(isChecked == false) {
-////                    contextThemeWrapper.setTheme(R.style.AppEscuro);
-//                    int clackColorValue = Color.parseColor("#ffe81a");
-//
-//                    constraintFavorito.setBackgroundColor(getResources().getColor(android.R.color.black));
-//                    textTituloConf.setTextColor(getResources().getColor(android.R.color.white));
-//                    switchNot.setTextColor(getResources().getColor(android.R.color.white));
-//                    switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
-//                    switchLuz.setTextColor(getResources().getColor(android.R.color.white));
-//                    btnSalvar.setTextColor(getResources().getColor(android.R.color.black));
-//                    btnSalvar.setBackgroundColor(clackColorValue);
-//
-//
-////                    switchNot.setTextColor(getResources().getColor(android.R.color.white));
-////                    switchTraducao.setTextColor(getResources().getColor(android.R.color.white));
-////                    switchLuz.setTextColor(getResources().getColor(android.R.color.white));
-//                }
-//            }
-//        });
+
+                buscarFilme();
+
+
+
+    //            movie = movieAdapter.getItemCount();
+
+
+            }
+        });
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +127,12 @@ public class ConfiguracoesFragment extends Fragment {
 
     }
 
+    private void buscarFilme() {
+        Random random = new Random();
+        MovieDAO dao = new MovieDAO();
+        dao.getMovieById(this,random.nextInt(30000));
+    }
+
     private void deslogarDoAplicativo() {
         FirebaseAuth.getInstance().signOut();
         //TODO com essa frase abaixo desloga corretamente do face
@@ -156,4 +140,30 @@ public class ConfiguracoesFragment extends Fragment {
     }
 
 
+    @Override
+    public void onSuccess(Object object, Integer adapter) {
+
+    }
+
+    @Override
+    public void onSuccess(Object object) {
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MOVIE, (Movie)object);
+        detailFragment = new DetailFragment();
+        detailFragment.setArguments(bundle);
+
+
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.container_detalhes_id, detailFragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void onError(Throwable throwable) {
+
+    }
 }
