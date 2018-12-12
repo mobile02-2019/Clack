@@ -130,7 +130,7 @@ public class ConfiguracoesFragment extends Fragment implements ServiceListener {
     private void buscarFilme() {
         Random random = new Random();
         MovieDAO dao = new MovieDAO();
-        dao.getMovieById(this,random.nextInt(30000));
+        dao.getMovieById(this,random.nextInt(124));
     }
 
     private void deslogarDoAplicativo() {
