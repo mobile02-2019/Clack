@@ -55,10 +55,10 @@ import static br.com.digitalhouse.clackapp.fragments.DetailFragment.MOVIE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ConfiguracoesFragment extends Fragment implements ServiceListener {
+public class ConfiguracoesFragment extends Fragment {
 
 
-    private Button btnLogout, btnEditPreferencias,btnEstouComSorte;
+    private Button btnLogout, btnEditPreferencias;
     private DetailFragment detailFragment;
     private Movie movie;
     private RecyclerViewMovieAdapter movieAdapter;
@@ -85,7 +85,7 @@ public class ConfiguracoesFragment extends Fragment implements ServiceListener {
 
         btnLogout = view.findViewById(R.id.button_logout_id);
         btnEditPreferencias = view.findViewById(R.id.btn_edit_preferencias);
-        btnEstouComSorte = view.findViewById(R.id.btn_estou_com_sorte_id);
+        /*btnEstouComSorte = view.findViewById(R.id.btn_estou_com_sorte_id);
 
         btnEstouComSorte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +101,7 @@ public class ConfiguracoesFragment extends Fragment implements ServiceListener {
 
 
             }
-        });
+        });*/
 
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -127,11 +127,11 @@ public class ConfiguracoesFragment extends Fragment implements ServiceListener {
 
     }
 
-    private void buscarFilme() {
+    /*private void buscarFilme() {
         Random random = new Random();
         MovieDAO dao = new MovieDAO();
         dao.getMovieById(this,random.nextInt(124));
-    }
+    }*/
 
     private void deslogarDoAplicativo() {
         FirebaseAuth.getInstance().signOut();
@@ -140,7 +140,7 @@ public class ConfiguracoesFragment extends Fragment implements ServiceListener {
     }
 
 
-    @Override
+    /*@Override
     public void onSuccess(Object object, Integer adapter) {
 
     }
@@ -165,5 +165,5 @@ public class ConfiguracoesFragment extends Fragment implements ServiceListener {
     @Override
     public void onError(Throwable throwable) {
 
-    }
+    }*/
 }

@@ -84,7 +84,7 @@
             android:layout_marginBottom="8dp"
             android:numStars="5"
             android:progressBackgroundTint="@color/colorWhite"
-
+            android:isIndicator="true"
             android:progressTint="@color/colorPrimaryOriginal"
             android:text="Nota"
             android:textColor="@color/colorWhite"

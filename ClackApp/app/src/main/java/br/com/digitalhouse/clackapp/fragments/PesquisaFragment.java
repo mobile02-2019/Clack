@@ -17,12 +17,14 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import br.com.digitalhouse.clackapp.adapter.RecyclerViewPesquisaFilmeAdapter;
 import br.com.digitalhouse.clackapp.interfaces.CardMovieClicado;
@@ -32,6 +34,8 @@ import br.com.digitalhouse.clackapp.model.Movie;
 import br.com.digitalhouse.clackapp.R;
 import br.com.digitalhouse.clackapp.model.MovieResponse;
 import br.com.digitalhouse.clackapp.model.dao.MovieDAO;
+
+import static br.com.digitalhouse.clackapp.fragments.DetailFragment.MOVIE;
 
 
 /**
@@ -44,6 +48,8 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
     private List<Movie> movieList = new ArrayList<>();
     private ProgressBar progressBar;
     private ReceptorMovie listener;
+    private Button btnEstouComSorte;
+    private DetailFragment detailFragment;
 
 
     public PesquisaFragment() {
@@ -64,6 +70,23 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
         View view = inflater.inflate(R.layout.fragment_pesquisa, container, false);
         //movieList = createMovieList();
 
+        btnEstouComSorte = view.findViewById(R.id.btn_estou_com_sorte_id);
+
+        btnEstouComSorte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                buscarFilme();
+
+
+
+                //            movie = movieAdapter.getItemCount();
+
+
+            }
+        });
 
         progressBar = view.findViewById(R.id.progressbar_id);
         progressBar.setVisibility(View.INVISIBLE);
@@ -143,9 +166,26 @@ public class PesquisaFragment extends Fragment implements CardMovieClicado,Servi
 
     }
 
+    private void buscarFilme() {
+        Random random = new Random();
+        MovieDAO dao = new MovieDAO();
+        dao.getMovieById(this,random.nextInt(12400));
+    }
+
     @Override
     public void onSuccess(Object object) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(MOVIE, (Movie)object);
+        detailFragment = new DetailFragment();
+        detailFragment.setArguments(bundle);
 
+
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.container_detalhes_id, detailFragment);
+        transaction.commit();
     }
 
     @Override

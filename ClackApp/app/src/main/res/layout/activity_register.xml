@@ -58,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:outlineSpotShadowColor="@color/colorWhite"
+        app:passwordToggleEnabled="true"
         app:boxStrokeColor="@color/colorBlack">
 
         <android.support.design.widget.TextInputEditText
@@ -74,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:outlineSpotShadowColor="@color/colorWhite"
+        app:passwordToggleEnabled="true"
         app:boxStrokeColor="@color/colorBlack">
 
         <android.support.design.widget.TextInputEditText
