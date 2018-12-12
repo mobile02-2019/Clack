@@ -70,8 +70,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
             android:hint="@string/prompt_password"
             android:imeActionId="6"
             android:imeActionLabel="@string/action_sign_in_short"
